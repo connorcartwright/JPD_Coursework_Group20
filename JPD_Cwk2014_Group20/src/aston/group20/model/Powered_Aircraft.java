@@ -98,7 +98,7 @@ public abstract class Powered_Aircraft implements Aircraft {
 	 * Returns the fuel level of the aircraft
 	 * @return the fuel level of the aircraft
 	 */
-	public int getFuelLevel() {
+	public int getFuelFlyingTime() {
 		return fuelFlyingTime;
 	}
 	
