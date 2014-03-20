@@ -1,0 +1,1 @@
+package aston.group20.model;Cannot instantiate the type AircraftCommercial_Aircraft A1 = new Commercial_Aircraft();int b = A1.getFuelLevel();int c = A1.getLandingTime();A1.toString();System.out.println(b);System.out.println(c);
