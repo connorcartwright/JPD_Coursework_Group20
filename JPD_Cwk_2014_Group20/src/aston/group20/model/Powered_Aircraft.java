@@ -57,27 +57,25 @@ public abstract class Powered_Aircraft implements Aircraft {
 	 * simulation for each and every aircraft.
 	 */
 	public void step() {
-		if(isBrokedown()) {
-			
+		incrementWaitingTime();
+		if(isBrokedown() == false && fuelFlyingTime > 0) {
+			if (rand.nextDouble() < 0.0001) {
+				brokeDown = true;
+			}
+			else {
+				schedule();
+			}
 		}
 		else {
-			
+			incrementMaintenanceTime();
 		}
 		
-		// if (aircraft is outgoing) {
-		// if (1st in queue && takeoffTime < incoming 1st fuelFlyingTime - landingTime) {
-		// takeOff();
-		
-		// if is first in queue
-		// if pos in list = 1 && waitingToLand ! true then takeOff();
-		// else incrementWaitingTime()
-		
-		if(brokeDown == true) {
-			incrementMainteanceTime();
-			
-		}
 	}
 	
+	
+	public void schedule() {
+		
+	}
 	/*
 	 * Add one to the waiting time of the aircraft
 	 */
@@ -122,7 +120,7 @@ public abstract class Powered_Aircraft implements Aircraft {
 		return brokeDown;
 	}
 	
-	public void incrementMainteanceTime() {
+	public void incrementMaintenanceTime() {
 		maintenanceTime++;
 	}
 	
