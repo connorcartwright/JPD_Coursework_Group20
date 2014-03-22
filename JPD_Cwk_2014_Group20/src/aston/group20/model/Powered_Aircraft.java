@@ -26,8 +26,6 @@ public abstract class Powered_Aircraft implements Aircraft {
 	protected boolean brokeDown = false;
 	protected int maintenanceTime;
 	
-	protected boolean canFly = true;
-	
 	// Shared Random number generator
 	private static final int SEED = 24;
 	protected static Random rand = new Random(SEED);
@@ -58,29 +56,30 @@ public abstract class Powered_Aircraft implements Aircraft {
 	 */
 	public void step() {
 		incrementWaitingTime();
+		decrementFuelFlyingTime();
 		if(isBrokedown() == false && fuelFlyingTime > 0) {
 			if (rand.nextDouble() < 0.0001) {
 				brokeDown = true;
 			}
-			else {
-				schedule();
-			}
 		}
 		else {
 			incrementMaintenanceTime();
+			if(maintenanceTime >= 120) {
+				brokeDown = false;
+				maintenanceTime = 0;
+			}
 		}
-		
 	}
 	
-	
-	public void schedule() {
-		
-	}
 	/*
 	 * Add one to the waiting time of the aircraft
 	 */
 	public void incrementWaitingTime() {
 		waitingTime++;
+	}
+	
+	public void decrementFuelFlyingTime() {
+		fuelFlyingTime--;
 	}
 
 	/**

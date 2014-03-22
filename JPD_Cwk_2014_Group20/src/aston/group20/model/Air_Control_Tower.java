@@ -1,4 +1,5 @@
 package aston.group20.model;
+
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 
@@ -39,35 +40,40 @@ public class Air_Control_Tower {
 		return outgoing;
 	}
 
-	public void removeOutgoing(Aircraft a) { /////////////////////////////////// ----------------------------------
-		outgoing.remove(a);                  // better to use the poll method?
+	public void removeOutgoing(Aircraft a) { // /////////////////////////////////
+												// ----------------------------------
+		outgoing.remove(a); // better to use the poll method?
 	}
 
 	public void addBrokenDown(Aircraft a) {
 		brokenDown.add(a);
 	}
 	
-	public void checkBrokenDown() {
-		Aircraft a = brokenDown.peek();
-		if(a.getMaintenanceTime() >= 120) {
-			a.setBrokedown(false);
-			addIncoming(a);
-			brokenDown.poll();
-		}
+	public PriorityQueue<Aircraft> getBrokenDown() {
+		return brokenDown;
 	}
-	
+
+	// public void checkBrokenDown() {
+	// Aircraft a = brokenDown.peek();
+	// if(a.getMaintenanceTime() >= 120) {
+	// a.setBrokedown(false);
+	// addIncoming(a);
+	// brokenDown.poll();
+	// }
+	// }
+
 	public void addIncomingSummary(Aircraft a) {
 		incomingSummary.add(a);
 	}
-	
+
 	public void addOutgoingSummary(Aircraft a) {
 		outgoingSummary.add(a);
 	}
-	
+
 	public void summary() {
 		// go through the finished arraylists
 		// and find the average waiting times
 		// etc.
 	}
-	
+
 }

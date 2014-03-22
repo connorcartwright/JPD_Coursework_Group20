@@ -1,5 +1,7 @@
 package aston.group20.model;
 
+import java.util.Iterator;
+
 public abstract class Airport {
 	
 	private Air_Control_Tower ACT;
@@ -11,14 +13,25 @@ public abstract class Airport {
 	}
 	
 	public void schedule() {
+		// assuming the two queues are populated
+		// iterator over all lists, calling step
+		for(Iterator<Aircraft> it = ACT.getIncoming().iterator(); it.hasNext(); )
+		{
+			it.next().step();
+		}
+		
+		
 		// method should call the schedule method of the aircraft
 		// only the head of each queue is needed each turn,
 		// unless the fuel is low - need to work out how to implement this
 		// every other aircraft can just have it's time incremented, and the chance
 		// of breaking down IF on the ground
 		if(runway.isAvailable()) {
+		ACT.getIncoming().peek().step();
+		ACT.getOutgoing().peek().step();
 		Aircraft Incoming = ACT.getIncoming().peek();
 		Aircraft Outgoing = ACT.getOutgoing().peek();
+		
 		if (Outgoing.getTakeoffTime() < Incoming.getFuelFlyingTime() - Incoming.getLandingTime()) {
 			takeOff(Outgoing);
 		}
