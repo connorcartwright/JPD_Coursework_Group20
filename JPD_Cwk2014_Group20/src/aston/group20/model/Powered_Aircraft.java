@@ -57,6 +57,13 @@ public abstract class Powered_Aircraft implements Aircraft {
 	 * simulation for each and every aircraft.
 	 */
 	public void step() {
+		if(isBrokedown()) {
+			
+		}
+		else {
+			
+		}
+		
 		// if (aircraft is outgoing) {
 		// if (1st in queue && takeoffTime < incoming 1st fuelFlyingTime - landingTime) {
 		// takeOff();

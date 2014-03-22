@@ -15,7 +15,6 @@ public class Commercial_Aircraft extends Powered_Aircraft {
 		
 	}
 	
-	
 	public String toString() {
 		return (super.toString());
 	}
