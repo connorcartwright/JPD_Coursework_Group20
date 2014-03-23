@@ -1,5 +1,5 @@
 package aston.group20.GUIview;
-// import application packages
+// import packages
 import javax.swing.JSlider;
 
 public class GUI {
