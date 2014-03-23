@@ -40,6 +40,7 @@ public abstract class Powered_Aircraft implements Aircraft {
 	 * 
 	 * @param takeOffTime the time it will take for the aircraft to take off
 	 * @param landingTime the time it will take for the aircraft to land
+	 * @param fuelFlyinhTime the time the aircraft can fly for
 	 */
 	public Powered_Aircraft(int takeoffTime, int landingTime, int fuelFlyingTime) {
 		this.takeoffTime = takeoffTime;
