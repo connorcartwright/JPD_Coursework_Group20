@@ -9,30 +9,29 @@ import java.util.Random;
  *
  */
 public abstract class Powered_Aircraft implements Aircraft {
-
+	
+	// the four fields below are measured in half minutes
+	
 	// The time it takes for the aircraft to take off
 	protected int takeoffTime = 0;
-	
 	// The time that it takes for the aircraft to land
 	protected int landingTime = 0;
-	
 	// The amount of time the aircraft can fly
 	protected int fuelFlyingTime = 0;
-	
 	// The amount of time the aircraft has been waiting
 	protected int waitingTime;
 	
-	// True if the aircraft has broke down
+	// True if the aircraft has broken down
 	protected boolean brokeDown = false;
+	// The amount of time the aircraft has been maintained
+	// once it reaches 120 the aircraft is fixed, and the value reset to 0
 	protected int maintenanceTime;
 	
 	// Shared Random number generator
 	private static final int SEED = 24;
 	protected static Random rand = new Random(SEED);
 	
-	///
-	//////// private int priority = null; - can be set later? IMPORTANT
-	///
+	protected boolean inTheAir;
 	
 	
 	/**

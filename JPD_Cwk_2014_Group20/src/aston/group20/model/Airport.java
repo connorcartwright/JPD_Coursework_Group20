@@ -13,12 +13,22 @@ public abstract class Airport {
 	}
 	
 	public void schedule() {
-		// assuming the two queues are populated by a populate method
-		// iterator over all lists, calling step
+		// assuming the two queues are populated by a populate method 
+		// here we iterate over all queues/aircraft, calling core method step()
 		for(Iterator<Aircraft> it = ACT.getIncoming().iterator(); it.hasNext(); )
 		{
 			it.next().step();
 		}
+		for(Iterator<Aircraft> it = ACT.getOutgoing().iterator(); it.hasNext(); )
+		{
+			it.next().step();
+		}
+		for(Iterator<Aircraft> it = ACT.getBrokenDown().iterator(); it.hasNext(); )
+		{
+			it.next().step();
+		}
+		
+		
 		
 		
 		// method should call the schedule method of the aircraft
