@@ -69,5 +69,10 @@ public class Unpowered_Aircraft implements Aircraft {
 	public int getFuelFlyingTime() {
 		return 0;
 	}
+	
+	@Override
+	public int getWaitingTime() {
+		return waitingTime;
+	}
 
 }

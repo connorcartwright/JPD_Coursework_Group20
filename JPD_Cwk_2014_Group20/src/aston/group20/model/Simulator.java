@@ -31,6 +31,7 @@ public class Simulator {
 	}
 
 	public Simulator() {
+		this.airport = new Airport();
 		reset();
 	}
 	
@@ -38,25 +39,15 @@ public class Simulator {
 		for(int step = 1; step <= numSteps; step++) {
 			simulateOneStep();
 		}
+		System.out.println(airport.getAirControlTower().summary());
 	}
 		
 		public void simulateOneStep() {
+			airport.schedule();
 			step++;
-			airport.getAirControlTower().getIncoming().clear();
-			airport.getAirControlTower().getOutgoing().clear();
-			
-			// need to go through and step() for every aircraft
-			// some will just increment waiting time
-			// others will takeoff/land
 		}
 	
-	public void reset() {
-		step = 0;
-		airport.getAirControlTower().getIncoming().clear();
-		airport.getAirControlTower().getOutgoing().clear();
-	}
-	
-	private void generateAircraft() {;
+	private void generateAircraft() {
 		while(step < numSteps) {
 			if (rand.nextDouble() <= GLIDER_CREATION_PROBABILITY) {
 				Glider glider = new Glider();
@@ -73,4 +64,10 @@ public class Simulator {
 			}
 			
 		}
+	
+	public void reset() {
+		step = 0;
+		airport.getAirControlTower().clear();
+		generateAircraft();
+	}
 	}

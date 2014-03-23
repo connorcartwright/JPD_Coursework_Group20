@@ -16,4 +16,6 @@ public interface Aircraft {
 
 	public abstract int getFuelFlyingTime();
 	
+	public abstract int getWaitingTime();
+	
 }

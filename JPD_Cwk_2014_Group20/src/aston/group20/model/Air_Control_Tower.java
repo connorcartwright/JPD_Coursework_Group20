@@ -3,6 +3,14 @@ package aston.group20.model;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 
+/**
+ * Controls the queues containing the active aircrafts
+ * as well as the lists used for reporting the statistics.
+ * 
+ * @author Group_20
+ * @version 1.0, March 2014
+ *
+ */
 public class Air_Control_Tower {
 
 	private PriorityQueue<Aircraft> incoming;
@@ -10,6 +18,7 @@ public class Air_Control_Tower {
 	private PriorityQueue<Aircraft> brokenDown;
 	private ArrayList<Aircraft> incomingSummary;
 	private ArrayList<Aircraft> outgoingSummary;
+	private ArrayList<Aircraft> crashed;
 
 	public Air_Control_Tower() {
 		incoming = new PriorityQueue<Aircraft>();
@@ -17,6 +26,7 @@ public class Air_Control_Tower {
 		brokenDown = new PriorityQueue<Aircraft>();
 		incomingSummary = new ArrayList<Aircraft>();
 		outgoingSummary = new ArrayList<Aircraft>();
+		crashed = new ArrayList<Aircraft>();
 	}
 
 	public void addIncoming(Aircraft a) {
@@ -40,8 +50,7 @@ public class Air_Control_Tower {
 		return outgoing;
 	}
 
-	public void removeOutgoing(Aircraft a) { // /////////////////////////////////
-												// ----------------------------------
+	public void removeOutgoing(Aircraft a) { // /////////////////////////////////// ----------------------------------
 		outgoing.remove(a); // better to use the poll method?
 	}
 
@@ -52,15 +61,10 @@ public class Air_Control_Tower {
 	public PriorityQueue<Aircraft> getBrokenDown() {
 		return brokenDown;
 	}
-
-	// public void checkBrokenDown() {
-	// Aircraft a = brokenDown.peek();
-	// if(a.getMaintenanceTime() >= 120) {
-	// a.setBrokedown(false);
-	// addIncoming(a);
-	// brokenDown.poll();
-	// }
-	// }
+	
+	public void addCrashed(Aircraft a) {
+		crashed.add(a);
+	}
 
 	public void addIncomingSummary(Aircraft a) {
 		incomingSummary.add(a);
@@ -69,11 +73,36 @@ public class Air_Control_Tower {
 	public void addOutgoingSummary(Aircraft a) {
 		outgoingSummary.add(a);
 	}
-
-	public void summary() {
-		// go through the finished arraylists
-		// and find the average waiting times
-		// etc.
+	
+	public String summary() {
+		int totalPlanes = incomingSummary.size() + outgoingSummary.size() + crashed.size();
+		int averageWaitingTime = 0;
+		for(int i = 0; i < incomingSummary.size(); i++) {
+			averageWaitingTime += incomingSummary.get(i).getWaitingTime();
+		}
+		for(int i = 0; i < outgoingSummary.size(); i++) {
+			averageWaitingTime += outgoingSummary.get(i).getWaitingTime();
+		}
+		for(int i = 0; i < crashed.size(); i++) {
+			averageWaitingTime += crashed.get(i).getWaitingTime();
+		}
+		
+		averageWaitingTime /= totalPlanes;
+		
+		return 
+				"Total planes: " + totalPlanes + "\n" +
+				"Total landings: " + incomingSummary.size() + "\n" +
+				"Total takeoffs: " + outgoingSummary.size() + "\n" +
+				"Total crashes: " + crashed.size() + "\n" + 
+				"Average Waiting Time: " + averageWaitingTime + "\n";
 	}
 
+	public void clear() {
+		incoming.clear();
+		outgoing.clear();
+		brokenDown.clear();
+		incomingSummary.clear();
+		outgoingSummary.clear();
+		crashed.clear();
+	}
 }

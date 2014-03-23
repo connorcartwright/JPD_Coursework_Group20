@@ -2,7 +2,7 @@ package aston.group20.model;
 import java.util.Random;
 
 /**
- * Characterizes the shared behaviours of all aircraft
+ * Characterizes the shared behaviours of all powered aircraft
  * 
  * @author Group_20
  * @version 1.0, March 2014
@@ -124,6 +124,11 @@ public abstract class Powered_Aircraft implements Aircraft {
 	
 	public int getMaintenanceTime() {
 		return maintenanceTime;
+	}
+	
+	@Override
+	public int getWaitingTime() {
+		return waitingTime;
 	}
 	
 }
