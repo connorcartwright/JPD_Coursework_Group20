@@ -13,7 +13,7 @@ public abstract class Airport {
 	}
 	
 	public void schedule() {
-		// assuming the two queues are populated
+		// assuming the two queues are populated by a populate method
 		// iterator over all lists, calling step
 		for(Iterator<Aircraft> it = ACT.getIncoming().iterator(); it.hasNext(); )
 		{

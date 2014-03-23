@@ -4,11 +4,11 @@ public abstract class Runway {
 	
 	private boolean isAvailable;
 	private int occupiedTime;
-	private int clear;
+	private int clearRunway;
 
 	public Runway() {
 		isAvailable = true;
-		clear = 0;
+		clearRunway = 0;
 		occupiedTime = 0;
 	}
 
@@ -25,9 +25,9 @@ public abstract class Runway {
 	}
 	
 	public void incrementTime() {
-		clear++;
-		if(clear >= occupiedTime) {
-			clear = 0;
+		clearRunway++;
+		if(clearRunway >= occupiedTime) {
+			clearRunway = 0;
 			occupiedTime = 0;
 			isAvailable = true;
 		}
