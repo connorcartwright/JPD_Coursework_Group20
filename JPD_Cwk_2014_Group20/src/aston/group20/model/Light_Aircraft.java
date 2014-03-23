@@ -1,6 +1,7 @@
 package aston.group20.model;
 
 public class Light_Aircraft extends Powered_Aircraft {
+	
 	// The amount of time it takes to take off
 	private static final int LIGHT_TAKEOFF = 4; // measured in half minutes
 	// The amount of time it takes to land

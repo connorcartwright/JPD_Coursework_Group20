@@ -1,6 +1,6 @@
 package aston.group20.model;
 
-public abstract class Runway {
+public class Runway { // maybe make abstract later
 	
 	private boolean isAvailable;
 	private int occupiedTime;

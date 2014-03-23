@@ -3,14 +3,14 @@ import java.util.Random;
 
 public class Simulator {
 	
-	private static final double COMMERCIAL_CREATION_PROBABILITY = 0.01; /// ------------------------- p IMPORTANT
+	private static final double COMMERCIAL_CREATION_PROBABILITY = 0.9; /// ------------------------- p IMPORTANT
 	private static final double LIGHT_CREATION_PROBABILITY = 0.005;
 	private static final double GLIDER_CREATION_PROBABILITY = 0.002;
 	
 	private Airport airport;
 	
 	private int step;
-	private static int numSteps = 1; // by default run the simulation for 1 step
+	private static int numSteps = 100; // by default run the simulation for 1 step
 	
 	private static final int SEED = 17;
 	private static final Random rand = new Random(SEED);
@@ -45,10 +45,12 @@ public class Simulator {
 		public void simulateOneStep() {
 			airport.schedule();
 			step++;
+			System.out.println("Schedule should be called!");
 		}
 	
 	private void generateAircraft() {
-		while(step < numSteps) {
+		for (int i = 0; i < 5; i++) {
+			System.out.println(rand.nextDouble());
 			if (rand.nextDouble() <= GLIDER_CREATION_PROBABILITY) {
 				Glider glider = new Glider();
 				airport.getAirControlTower().addOutgoing(glider);

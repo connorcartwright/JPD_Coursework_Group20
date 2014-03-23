@@ -44,6 +44,8 @@ public class Air_Control_Tower {
 
 	public void addOutgoing(Aircraft a) {
 		outgoing.add(a);
+		System.out.println("Aircraft should be added");
+		System.out.println(outgoing.size());
 	}
 
 	public PriorityQueue<Aircraft> getOutgoing() {

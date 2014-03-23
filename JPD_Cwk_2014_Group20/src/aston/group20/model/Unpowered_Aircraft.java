@@ -74,5 +74,15 @@ public class Unpowered_Aircraft implements Aircraft {
 	public int getWaitingTime() {
 		return waitingTime;
 	}
+	
+	@Override
+	public int compareTo(Aircraft a) {
+		if (this == a) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
+	}
 
 }

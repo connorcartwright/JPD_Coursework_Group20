@@ -1,6 +1,6 @@
 package aston.group20.model;
 
-public interface Aircraft {
+public interface Aircraft extends Comparable<Aircraft> {
 
 	public abstract void step();
 	
