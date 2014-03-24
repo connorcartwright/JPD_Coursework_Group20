@@ -52,12 +52,7 @@ public class Simulator {
 		
 			if (rand.nextDouble() <= GLIDER_CREATION_PROBABILITY) {
 				Glider glider = new Glider();
-				if (rand.nextDouble() < 0.5) {
-				airport.getAirControlTower().addIncoming(glider);
-				}
-				else {
-					airport.getAirControlTower().addOutgoing(glider);
-				}
+				airport.getAirControlTower().addOutgoing(glider);
 			} 
 			else if (rand.nextDouble() <= LIGHT_CREATION_PROBABILITY) {
 				Light_Aircraft light = new Light_Aircraft();
