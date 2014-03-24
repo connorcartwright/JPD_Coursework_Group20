@@ -29,7 +29,6 @@ public class Airport { ////// would it be better to have this as abstract
 
 		if (runway.isAvailable()) {
 			if (defaultScheduling) {
-				System.out.println(ACT.getIncoming().peek());
 				if (ACT.getIncoming().peek() != null) { // if there's a plane waiting to land let it land
 					land(ACT.getIncoming().peek()); 
 				} 

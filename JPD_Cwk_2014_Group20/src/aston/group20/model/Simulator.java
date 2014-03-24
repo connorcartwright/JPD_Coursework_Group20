@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class Simulator {
 	
-	private static final double COMMERCIAL_CREATION_PROBABILITY = 0.9; /// ------------------------- p IMPORTANT
+	private static final double COMMERCIAL_CREATION_PROBABILITY = 0.2; /// ------------------------- p IMPORTANT
 	private static final double LIGHT_CREATION_PROBABILITY = 0.005;
 	private static final double GLIDER_CREATION_PROBABILITY = 0.002;
 	
@@ -43,14 +43,13 @@ public class Simulator {
 	}
 		
 		public void simulateOneStep() {
+			generateAircraft();
 			airport.schedule();
 			step++;
-			System.out.println("Schedule should be called!");
 		}
 	
 	private void generateAircraft() {
-		for (int i = 0; i < 5; i++) {
-			System.out.println(rand.nextDouble());
+		//for (int i = 0; i < numSteps; i++) {
 			if (rand.nextDouble() <= GLIDER_CREATION_PROBABILITY) {
 				Glider glider = new Glider();
 				airport.getAirControlTower().addOutgoing(glider);
@@ -63,13 +62,13 @@ public class Simulator {
 				Commercial_Aircraft commercial = new Commercial_Aircraft();
 					airport.getAirControlTower().addOutgoing(commercial);
 				}
-			}
+			//}
 			
 		}
 	
 	public void reset() {
 		step = 0;
 		airport.getAirControlTower().clear();
-		generateAircraft();
+		//generateAircraft();
 	}
 	}
