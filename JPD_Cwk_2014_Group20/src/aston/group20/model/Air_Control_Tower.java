@@ -92,6 +92,7 @@ public class Air_Control_Tower {
 		}
 		
 		averageWaitingTime /= totalPlanes;
+		totalPlanes += incoming.size() + outgoing.size();
 		
 		return  "Total planes: " + totalPlanes + "\n" +
 				"Total landings: " + incomingSummary.size() + "\n" +

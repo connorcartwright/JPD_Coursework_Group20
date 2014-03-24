@@ -2,7 +2,7 @@ package aston.group20.model;
 
 import java.util.Iterator;
 
-public class Airport { ////// would it be better to have this as abstract
+public class Airport { // //// would it be better to have this as abstract
 
 	private Air_Control_Tower ACT;
 	private Runway runway;
@@ -26,37 +26,42 @@ public class Airport { ////// would it be better to have this as abstract
 		for (Iterator<Aircraft> it = ACT.getBrokenDown().iterator(); it.hasNext();) {
 			it.next().step();
 		}
+		
+		Aircraft Incoming = ACT.getIncoming().peek();
+		Aircraft Outgoing = ACT.getOutgoing().peek();
 
 		if (runway.isAvailable()) {
 			if (defaultScheduling) {
-				if (ACT.getIncoming().peek() != null) { // if there's a plane waiting to land let it land
-					land(ACT.getIncoming().peek()); 
-				} 
-				else if (ACT.getOutgoing().peek() != null) { // else if theres a plane waiting to take off let it takeoff
-						takeOff(ACT.getOutgoing().peek());
+				if (Incoming != null) {
+					if (Incoming.getFuelFlyingTime() - Incoming.getLandingTime() >= 0) {
+						land(Incoming);
 					}
+					else {
+						crashed(Incoming);
+					}
+				} 
+				else if (Outgoing != null) {
+					takeOff(Outgoing);
+				}
 			}
 			else {
-				Aircraft Incoming = ACT.getIncoming().peek();
-				Aircraft Outgoing = ACT.getOutgoing().peek();
-				int incomingTimeLeft = Incoming.getFuelFlyingTime() - Incoming.getLandingTime();
-				if (incomingTimeLeft < 0) {
-					ACT.removeIncoming(Incoming);
-					ACT.addCrashed(Incoming);
-				} 
-				else  if (Outgoing.getTakeoffTime() < incomingTimeLeft) { // if the plane can takeoff without causing the highest priority landing to crash
+				if (Incoming.getFuelFlyingTime() - Incoming.getLandingTime() > 0) {
+					if (Outgoing.getTakeoffTime() < Incoming.getFuelFlyingTime() - Incoming.getLandingTime()) {
 					takeOff(Outgoing);
+					}
+					else {
+						land(Incoming);
+					}
 				} 
 				else {
-					land(Incoming);
+					crashed(Incoming);
 				}
 			}
 		} 
 		else {
 			runway.incrementTime();
 		}
-
-	}
+		}
 
 	private void takeOff(Aircraft a) {
 		ACT.removeOutgoing(a);
@@ -70,6 +75,11 @@ public class Airport { ////// would it be better to have this as abstract
 		ACT.addIncomingSummary(a);
 		runway.setAvailable(false);
 		runway.setOccupiedTime(a.getLandingTime());
+	}
+
+	public void crashed(Aircraft a) {
+		ACT.removeIncoming(a);
+		ACT.addCrashed(a);
 	}
 
 	public Air_Control_Tower getAirControlTower() {

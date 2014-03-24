@@ -3,14 +3,14 @@ import java.util.Random;
 
 public class Simulator {
 	
-	private static final double COMMERCIAL_CREATION_PROBABILITY = 0.2; /// ------------------------- p IMPORTANT
+	private static final double COMMERCIAL_CREATION_PROBABILITY = 0.1; /// ------------------------- p IMPORTANT
 	private static final double LIGHT_CREATION_PROBABILITY = 0.005;
 	private static final double GLIDER_CREATION_PROBABILITY = 0.002;
 	
 	private Airport airport;
 	
 	private int step;
-	private static int numSteps = 100; // by default run the simulation for 1 step
+	private static int numSteps = 5000; // by default run the simulation for 1 step
 	
 	private static final int SEED = 17;
 	private static final Random rand = new Random(SEED);
@@ -49,21 +49,34 @@ public class Simulator {
 		}
 	
 	private void generateAircraft() {
-		//for (int i = 0; i < numSteps; i++) {
+		
 			if (rand.nextDouble() <= GLIDER_CREATION_PROBABILITY) {
 				Glider glider = new Glider();
-				airport.getAirControlTower().addOutgoing(glider);
+				if (rand.nextDouble() < 0.5) {
+				airport.getAirControlTower().addIncoming(glider);
+				}
+				else {
+					airport.getAirControlTower().addOutgoing(glider);
+				}
 			} 
 			else if (rand.nextDouble() <= LIGHT_CREATION_PROBABILITY) {
 				Light_Aircraft light = new Light_Aircraft();
-				airport.getAirControlTower().addOutgoing(light);
+				if (rand.nextDouble() < 0.5) {
+				airport.getAirControlTower().addIncoming(light);
+				}
+				else {
+					airport.getAirControlTower().addOutgoing(light);
+				}
 			}
 			else if (rand.nextDouble() <= COMMERCIAL_CREATION_PROBABILITY) {
 				Commercial_Aircraft commercial = new Commercial_Aircraft();
+				if (rand.nextDouble() < 0.5) {
+				airport.getAirControlTower().addIncoming(commercial);
+				}
+				else {
 					airport.getAirControlTower().addOutgoing(commercial);
 				}
-			//}
-			
+				}
 		}
 	
 	public void reset() {
