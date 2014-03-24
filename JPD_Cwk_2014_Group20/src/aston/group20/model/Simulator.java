@@ -10,7 +10,7 @@ public class Simulator {
 	private Airport airport;
 	
 	private int step;
-	private static int numSteps = 5000; // by default run the simulation for 1 step
+	private static int numSteps = 50000; // by default run the simulation for 1 step
 	
 	private static final int SEED = 17;
 	private static final Random rand = new Random(SEED);
