@@ -30,10 +30,29 @@ public class Unpowered_Aircraft implements Aircraft {
 
 	@Override
 	public void step() {
-		if(isBrokedown()) {
-			
+		incrementWaitingTime();
+		if(isBrokedown() == false) {
+			if (rand.nextDouble() < 0.0001) {
+				brokeDown = true;
+			}
 		}
-		// TODO Auto-generated method stub
+		else {
+			incrementMaintenanceTime();
+			if(maintenanceTime >= 120) {
+				brokeDown = false;
+				maintenanceTime = 0;
+			}
+		}
+		
+	}
+
+	private void incrementMaintenanceTime() {
+		maintenanceTime++;
+		
+	}
+
+	private void incrementWaitingTime() {
+		waitingTime++;
 		
 	}
 

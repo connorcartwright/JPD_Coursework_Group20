@@ -15,14 +15,21 @@ public class Airport { // //// would it be better to have this as abstract
 	}
 
 	public void schedule() {
-		// assuming the two queues are populated by a populate method
-		// here we iterate over all queues/aircraft, calling core method step()
 		for (Iterator<Aircraft> it = ACT.getIncoming().iterator(); it.hasNext();) {
 			it.next().step();
 		}
-		for (Iterator<Aircraft> it = ACT.getOutgoing().iterator(); it.hasNext();) {
-			it.next().step();
+		
+		for(int i = 0; i < ACT.getOutgoing().toArray().length; i++) {
+			((Aircraft) ACT.getOutgoing().toArray()[i]).step();
+			if (((Aircraft) ACT.getOutgoing().toArray()[i]).isBrokedown()) {
+				brokeDown(((Aircraft) ACT.getOutgoing().toArray()[i]));
+			}
 		}
+		
+//		for (Iterator<Aircraft> it = ACT.getOutgoing().iterator(); it.hasNext();) {
+//			it.next().step();
+//		}
+		
 		for (Iterator<Aircraft> it = ACT.getBrokenDown().iterator(); it.hasNext();) {
 			it.next().step();
 		}
@@ -80,6 +87,11 @@ public class Airport { // //// would it be better to have this as abstract
 	public void crashed(Aircraft a) {
 		ACT.removeIncoming(a);
 		ACT.addCrashed(a);
+	}
+	
+	public void brokeDown(Aircraft a) {
+		ACT.removeOutgoing(a);
+		ACT.addBrokenDown(a);
 	}
 
 	public Air_Control_Tower getAirControlTower() {
