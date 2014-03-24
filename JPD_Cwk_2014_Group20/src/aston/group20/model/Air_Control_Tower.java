@@ -19,6 +19,7 @@ public class Air_Control_Tower {
 	private ArrayList<Aircraft> incomingSummary;
 	private ArrayList<Aircraft> outgoingSummary;
 	private ArrayList<Aircraft> crashed;
+	private int totalBreakDowns;
 
 	public Air_Control_Tower() {
 		incoming = new PriorityQueue<Aircraft>();
@@ -27,6 +28,7 @@ public class Air_Control_Tower {
 		incomingSummary = new ArrayList<Aircraft>();
 		outgoingSummary = new ArrayList<Aircraft>();
 		crashed = new ArrayList<Aircraft>();
+		totalBreakDowns = 0;
 	}
 
 	public void addIncoming(Aircraft a) {
@@ -56,6 +58,7 @@ public class Air_Control_Tower {
 
 	public void addBrokenDown(Aircraft a) {
 		brokenDown.add(a);
+		totalBreakDowns++;
 	}
 	
 	public PriorityQueue<Aircraft> getBrokenDown() {
@@ -98,6 +101,7 @@ public class Air_Control_Tower {
 				"Total landings: " + incomingSummary.size() + "\n" +
 				"Total takeoffs: " + outgoingSummary.size() + "\n" +
 				"Total crashes: " + crashed.size() + "\n" + 
+				"Total breakdowns: " + totalBreakDowns + "\n" +
 				"Average Waiting Time: " + averageWaitingTime + "\n" +
 				"Planes still grounded: " + outgoing.size() + "\n" +
 				"Planes still flying: " + incoming.size();	
