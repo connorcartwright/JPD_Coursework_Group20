@@ -78,9 +78,6 @@ public class Air_Control_Tower {
 	}
 	
 	public String summary() {
-		
-		System.out.println(outgoing.size());
-		
 		int totalPlanes = incomingSummary.size() + outgoingSummary.size() + crashed.size(); // need to add the planes still grounded/in the air
 		int averageWaitingTime = 0;
 		
@@ -102,7 +99,7 @@ public class Air_Control_Tower {
 				"Total takeoffs: " + outgoingSummary.size() + "\n" +
 				"Total crashes: " + crashed.size() + "\n" + 
 				"Total breakdowns: " + totalBreakDowns + "\n" +
-				"Average Waiting Time: " + averageWaitingTime + "\n" +
+				"Average Waiting Time: " + averageWaitingTime + " (excludes those still in the air/grounded)\n" +
 				"Planes still grounded: " + outgoing.size() + "\n" +
 				"Planes still flying: " + incoming.size();	
 	}

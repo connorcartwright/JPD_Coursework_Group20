@@ -10,9 +10,9 @@ public class Simulator {
 	private Airport airport;
 	
 	private int step;
-	private static int numSteps = 50000; // by default run the simulation for 1 step
+	private static int numSteps = 2880; // by default run the simulation for 1 step
 	
-	private static final int SEED = 17;
+	private static final int SEED = 42;
 	private static final Random rand = new Random(SEED);
 	
 	public static void main(String[] args) {
@@ -36,7 +36,7 @@ public class Simulator {
 	}
 	
 	public void simulate(int numSteps) {
-		for(int step = 1; step <= numSteps; step++) {
+		for(step = 1; step <= numSteps; step++) {
 			simulateOneStep();
 		}
 		System.out.println(airport.getAirControlTower().summary());

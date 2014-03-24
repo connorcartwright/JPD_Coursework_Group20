@@ -23,7 +23,8 @@ public class Airport { // //// would it be better to have this as abstract
 			((Aircraft) ACT.getOutgoing().toArray()[i]).step();
 			if (((Aircraft) ACT.getOutgoing().toArray()[i]).isBrokedown()) {
 				brokeDown(((Aircraft) ACT.getOutgoing().toArray()[i]));
-			}
+			} 
+			
 		}
 		
 //		for (Iterator<Aircraft> it = ACT.getOutgoing().iterator(); it.hasNext();) {
