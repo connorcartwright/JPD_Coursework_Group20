@@ -63,7 +63,7 @@ public class Airport { // //// would it be better to have this as abstract
 		for (Aircraft a : (ACT.getBrokenDown().toArray(new Aircraft[ACT.getBrokenDown().size()]))) { // call the step method for all brokenDown planes;
 			a.step();                                                                             // this will cause their maintenance to continue
 			if (! a.isBrokedown()) { // if the aircraft has been fixed
-				ACT.addOutgoing(a); // add it to the outgoing queue
+				ACT.getOutgoing().add(a); // add it to the outgoing queue
 				ACT.getBrokenDown().remove(a); // and remove it from the broken down queue
 			}
 			
@@ -89,9 +89,15 @@ public class Airport { // //// would it be better to have this as abstract
 
 	private void takeOff(Aircraft a) {
 		counter.incrementTakeoffs();
+		counter.incrementWaitingTime(a.getWaitingTime());
 		runway.setAvailable(false);
 		runway.setOccupiedTime(a.getTakeoffTime());
 		ACT.getOutgoing().remove(a);
+		if (a instanceof Glider) {
+			Light_Aircraft light = new Light_Aircraft();
+			light.setWaitingTime(a.getWaitingTime());
+			ACT.getIncoming().add(light);
+		}
 	}
 
 	private void land(Aircraft a) {
@@ -109,7 +115,7 @@ public class Airport { // //// would it be better to have this as abstract
 
 	public void brokeDown(Aircraft a) {
 		ACT.getOutgoing().remove(a);
-		ACT.addBrokenDown(a);
+		ACT.getBrokenDown().add(a);
 		counter.incrementBreakdowns();
 	}
 

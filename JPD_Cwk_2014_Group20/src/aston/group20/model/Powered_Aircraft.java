@@ -127,11 +127,14 @@ public abstract class Powered_Aircraft implements Aircraft {
 		return maintenanceTime;
 	}
 	
-	@Override
 	public int getWaitingTime() {
 		return waitingTime;
 	}
 
+	public void setWaitingTime(int wait) {
+		waitingTime = wait;
+	}
+	
 	@Override
 	public int compareTo(Aircraft a) {
 		if (this == a) {

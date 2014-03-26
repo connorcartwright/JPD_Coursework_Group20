@@ -8,7 +8,7 @@ public class Simulator {
 	private Hangar hangar;
 
 	private int step;
-	private static int numSteps = 100000; // the number of steps to run for
+	private static int numSteps = 1000000; // the number of steps to run for
 	private static final int SEED = 17;
 	private static final Random rand = new Random(SEED);
 
@@ -45,11 +45,11 @@ public class Simulator {
 		Aircraft aircraft = hangar.generateAircraft(rand); // has a chance of generating an aircraft
 		if (aircraft != null) { // if an aircraft was generated
 			airport.getCounter().incrementTotalPlanes(); // increment the total no. of planes
-			if (rand.nextDouble() < 0.5) { 
-				airport.getAirControlTower().addIncoming(aircraft); // 50% chance to by flying
+			if (rand.nextDouble() < 0.5 && !(aircraft instanceof Glider)) { 
+				airport.getAirControlTower().getIncoming().add(aircraft); // 50% chance to by flying
 			} 
 			else {
-				airport.getAirControlTower().addOutgoing(aircraft); // 50% chance to be grounded
+				airport.getAirControlTower().getOutgoing().add(aircraft); // 50% chance to be grounded
 			}
 		}
 	}

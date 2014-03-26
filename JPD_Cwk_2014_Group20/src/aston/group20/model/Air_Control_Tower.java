@@ -20,24 +20,12 @@ public class Air_Control_Tower {
 		brokenDown = new PriorityQueue<Aircraft>();
 	}
 	
-	public void addIncoming(Aircraft a) {
-		incoming.add(a);
-	}
-
 	public PriorityQueue<Aircraft> getIncoming() {
 		return incoming;
 	}
 
-	public void addOutgoing(Aircraft a) {
-		outgoing.add(a);
-	}
-
 	public PriorityQueue<Aircraft> getOutgoing() {
 		return outgoing;
-	}
-
-	public void addBrokenDown(Aircraft a) {
-		brokenDown.add(a);
 	}
 
 	public PriorityQueue<Aircraft> getBrokenDown() {
