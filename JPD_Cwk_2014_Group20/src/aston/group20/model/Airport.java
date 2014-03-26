@@ -107,13 +107,13 @@ public class Airport { // //// would it be better to have this as abstract
 		ACT.getIncoming().remove(a);
 	}
 
-	public void crashed(Aircraft a) {
+	private void crashed(Aircraft a) {
 		ACT.getIncoming().remove(a);
 		counter.incrementCrashes();
 		counter.incrementWaitingTime(a.getWaitingTime());
 	}
 
-	public void brokeDown(Aircraft a) {
+	private void brokeDown(Aircraft a) {
 		ACT.getOutgoing().remove(a);
 		ACT.getBrokenDown().add(a);
 		counter.incrementBreakdowns();
