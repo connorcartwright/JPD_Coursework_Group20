@@ -45,12 +45,14 @@ public class Unpowered_Aircraft implements Aircraft {
 		}
 		
 	}
-
+	
+	//increases the maintenance time
 	private void incrementMaintenanceTime() {
 		maintenanceTime++;
 		
 	}
-
+	
+	//increases the waiting time
 	private void incrementWaitingTime() {
 		waitingTime++;
 		
