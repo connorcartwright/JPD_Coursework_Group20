@@ -23,7 +23,7 @@ public class AirControlTower {
 	public PriorityQueue<IAircraft> getIncoming() {
 		return incoming;
 	}
-
+	
 	public PriorityQueue<IAircraft> getOutgoing() {
 		return outgoing;
 	}
