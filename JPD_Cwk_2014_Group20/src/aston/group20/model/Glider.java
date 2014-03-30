@@ -11,5 +11,4 @@ public class Glider extends Unpowered_Aircraft {
 		super(GLIDER_TAKEOFF, GLIDER_LANDING);
 	}
 	
-
 }

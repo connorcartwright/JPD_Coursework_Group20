@@ -42,7 +42,7 @@ public class Simulator {
 	}
 
 	private void generateAircraft() {
-		Aircraft aircraft = hangar.generateAircraft(rand); // has a chance of generating an aircraft
+		IAircraft aircraft = hangar.generateAircraft(rand); // has a chance of generating an aircraft
 		if (aircraft != null) { // if an aircraft was generated
 			airport.getCounter().incrementTotalPlanes(); // increment the total no. of planes
 			if (rand.nextDouble() < 0.5 && !(aircraft instanceof Glider)) { 

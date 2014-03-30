@@ -2,13 +2,13 @@ package aston.group20.model;
 
 public class Airport { // //// would it be better to have this as abstract
 
-	private Air_Control_Tower ACT;
+	private AirControlTower ACT;
 	private Runway runway;
 	private boolean defaultScheduling;
 	private Counter counter;
 
 	public Airport() {
-		ACT = new Air_Control_Tower();
+		ACT = new AirControlTower();
 		defaultScheduling = true;
 		runway = new Runway();
 		counter = new Counter();
@@ -17,13 +17,13 @@ public class Airport { // //// would it be better to have this as abstract
 	public void schedule() {
 		step();
 		
-		Aircraft Incoming = ACT.getIncoming().peek(); // Variable Incoming = the first Incoming Aircraft
-		Aircraft Outgoing = ACT.getOutgoing().peek(); // Variable Outgoing = the first Outgoing aircraft
+		IAircraft Incoming = ACT.getIncoming().peek(); // Variable Incoming = the first Incoming Aircraft
+		IAircraft Outgoing = ACT.getOutgoing().peek(); // Variable Outgoing = the first Outgoing aircraft
 
 		if (runway.isAvailable()) { // if the runway is available
 			if (defaultScheduling) { // if we are prioritising landings
 				if (Incoming != null) { // if there is a plane waiting to land
-					if (Incoming.getFuelFlyingTime() - Incoming.getLandingTime() >= 0) { // if it can land before it crashes
+					if ((Incoming).getFuelLevel() - Incoming.getLandingTime() >= 0) { // if it can land before it crashes
 						land(Incoming); // let it land
 					}
 					else {
@@ -37,8 +37,8 @@ public class Airport { // //// would it be better to have this as abstract
 			
 			else { // if we are prioritising landings by fuel time, but also letting planes take off if they can do so without causing the Incoming to crash
 				if (Incoming != null) { // if there is a plane waiting to land
-				if (Incoming.getFuelFlyingTime() - Incoming.getLandingTime() > 0) { // if it can land before it crashes
-					if (Outgoing.getTakeoffTime() < Incoming.getFuelFlyingTime() - Incoming.getLandingTime()) {
+				if (Incoming.getFuelLevel() - Incoming.getLandingTime() > 0) { // if it can land before it crashes
+					if (Outgoing.getTakeoffTime() < Incoming.getFuelLevel() - Incoming.getLandingTime()) {
 					takeOff(Outgoing); // if the head of the takeoff queue can takeoff without causing the head of the incoming queue to crash
 					}                 // then let it take off
 					else {
@@ -60,25 +60,25 @@ public class Airport { // //// would it be better to have this as abstract
 		}
 	
 	private void step() {
-		for (Aircraft a : (ACT.getBrokenDown().toArray(new Aircraft[ACT.getBrokenDown().size()]))) { // call the step method for all brokenDown planes;
+		for (IAircraft a : (ACT.getBrokenDown().toArray(new IAircraft[ACT.getBrokenDown().size()]))) { // call the step method for all brokenDown planes;
 			a.step();                                                                             // this will cause their maintenance to continue
-			if (! a.isBrokedown()) { // if the aircraft has been fixed
+			if (! a.isBrokeDown()) { // if the aircraft has been fixed
 				ACT.getOutgoing().add(a); // add it to the outgoing queue
 				ACT.getBrokenDown().remove(a); // and remove it from the broken down queue
 			}
 			
 		}
 		
-		for (Aircraft a : (ACT.getIncoming().toArray(new Aircraft[ACT.getIncoming().size()]))) {
+		for (IAircraft a : (ACT.getIncoming().toArray(new IAircraft[ACT.getIncoming().size()]))) {
 			a.step();
-			if (a.getFuelFlyingTime() - a.getLandingTime() < 0) { // if the plane has fuel enough to land still
+			if (a.getFuelLevel() - a.getLandingTime() < 0) { // if the plane has fuel enough to land still
 				crashed(a);
 			} 
 		}
 		
-		for (Aircraft a : (ACT.getOutgoing().toArray(new Aircraft[ACT.getOutgoing().size()]))) {
+		for (IAircraft a : (ACT.getOutgoing().toArray(new IAircraft[ACT.getOutgoing().size()]))) {
 			a.step();
-			if(a.isBrokedown()) {
+			if(a.isBrokeDown()) {
 				brokeDown(a); // if the aircraft is brokedown call the brokeDown method
 			}
 		}
@@ -87,39 +87,39 @@ public class Airport { // //// would it be better to have this as abstract
 	}
 	
 
-	private void takeOff(Aircraft a) {
+	private void takeOff(IAircraft a) {
 		counter.incrementTakeoffs();
 		counter.incrementWaitingTime(a.getWaitingTime());
 		runway.setAvailable(false);
 		runway.setOccupiedTime(a.getTakeoffTime());
 		ACT.getOutgoing().remove(a);
 		if (a instanceof Glider) {
-			Light_Aircraft light = new Light_Aircraft();
+			LightAircraft light = new LightAircraft();
 			light.setWaitingTime(a.getWaitingTime());
 			ACT.getIncoming().add(light);
 		}
 	}
 
-	private void land(Aircraft a) {
+	private void land(IAircraft a) {
 		counter.incrementLandings();
 		runway.setAvailable(false);
 		runway.setOccupiedTime(a.getLandingTime());
 		ACT.getIncoming().remove(a);
 	}
 
-	private void crashed(Aircraft a) {
+	private void crashed(IAircraft a) {
 		ACT.getIncoming().remove(a);
 		counter.incrementCrashes();
 		counter.incrementWaitingTime(a.getWaitingTime());
 	}
 
-	private void brokeDown(Aircraft a) {
+	private void brokeDown(IAircraft a) {
 		ACT.getOutgoing().remove(a);
 		ACT.getBrokenDown().add(a);
 		counter.incrementBreakdowns();
 	}
 
-	public Air_Control_Tower getAirControlTower() {
+	public AirControlTower getAirControlTower() {
 		return ACT;
 	}
 	

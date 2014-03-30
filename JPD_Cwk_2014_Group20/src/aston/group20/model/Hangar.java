@@ -11,16 +11,16 @@ public class Hangar {
 		
 	}
 	
-	public Aircraft generateAircraft(Random rand) {
-		Aircraft aircraft;
+	public IAircraft generateAircraft(Random rand) {
+		IAircraft aircraft;
 		if (rand.nextDouble() <= GLIDER_CREATION_PROBABILITY) { 
-			aircraft = new Glider();                           // setting variable aircraft to be a glider
+			aircraft = (IAircraft) new Glider();                           // setting variable aircraft to be a glider
 		}
 		else if (rand.nextDouble() <= LIGHT_CREATION_PROBABILITY + GLIDER_CREATION_PROBABILITY) {
-			aircraft = new Light_Aircraft();                // setting variable aircraft to be a light aircraft
+			aircraft = (IAircraft) new LightAircraft();                // setting variable aircraft to be a light aircraft
 		}
 		else if (rand.nextDouble() <= COMMERCIAL_CREATION_PROBABILITY) {
-			aircraft = new Commercial_Aircraft();        // setting variable aircraft to be a commercial aircraft
+			aircraft = (IAircraft) new CommercialAircraft();        // setting variable aircraft to be a commercial aircraft
 		}
 		else {
 			aircraft = null; // if the double didn't meet any of the rules, the aircraft is null

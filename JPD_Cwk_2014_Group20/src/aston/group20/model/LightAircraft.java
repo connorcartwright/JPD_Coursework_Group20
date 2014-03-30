@@ -1,6 +1,6 @@
 package aston.group20.model;
 
-public class Light_Aircraft extends Powered_Aircraft {
+public class LightAircraft extends PoweredAircraft {
 	
 	// The amount of time it takes to take off
 	private static final int LIGHT_TAKEOFF = 4; // measured in half minutes
@@ -9,7 +9,7 @@ public class Light_Aircraft extends Powered_Aircraft {
 	// The amount of time the aircraft can fly
 	private static final int LIGHT_FUEL_FLYING_TIME = (rand.nextInt(20) + 20); // measured in half minutes
 
-	public Light_Aircraft() {
+	public LightAircraft() {
 		super(LIGHT_TAKEOFF, LIGHT_LANDING, LIGHT_FUEL_FLYING_TIME);
 	}
 

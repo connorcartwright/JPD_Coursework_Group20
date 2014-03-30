@@ -1,37 +1,14 @@
 package aston.group20.model;
 
-import java.util.Random;
-
-public class Unpowered_Aircraft implements Aircraft {
+public class Unpowered_Aircraft extends Aircraft {
 	
-	// The time it takes for the aircraft to take off
-	protected int takeoffTime = 0;
-	
-	// The time that it takes for the aircraft to land
-	protected int landingTime = 0;
-	
-	// The amount of time the aircraft has been waiting
-	protected int waitingTime;
-	
-	// True if the aircraft has broke down
-	protected boolean brokeDown = false;
-	protected int maintenanceTime;
-	
-	// Shared Random number generator
-	private static final int SEED = 24;
-	protected static Random rand = new Random(SEED);
-	
-	public Unpowered_Aircraft(int takeoffTime, int landingTime) {
-		this.takeoffTime = takeoffTime;
-		this.landingTime = landingTime;
-		waitingTime = 0;
-		maintenanceTime = 0;
+	public Unpowered_Aircraft(int landingTime, int takeoffTime) {
+		super(landingTime, takeoffTime);
 	}
 
-	@Override
 	public void step() {
 		incrementWaitingTime();
-		if(isBrokedown() == false) {
+		if(isBrokeDown() == false) {
 			if (rand.nextDouble() < 0.0001) {
 				brokeDown = true;
 			}
@@ -42,68 +19,11 @@ public class Unpowered_Aircraft implements Aircraft {
 				brokeDown = false;
 				maintenanceTime = 0;
 			}
-		}
-		
-	}
-	
-	//increases the maintenance time
-	private void incrementMaintenanceTime() {
-		maintenanceTime++;
-		
-	}
-	
-	//increases the waiting time
-	private void incrementWaitingTime() {
-		waitingTime++;
-		
+		}	
 	}
 
-	@Override
-	public int getTakeoffTime() {
-		// TODO Auto-generated method stub
-		return takeoffTime;
-	}
-
-	@Override
-	public int getLandingTime() {
-		// TODO Auto-generated method stub
-		return landingTime;
-	}
-
-	@Override
-	public void setBrokedown(boolean brokeDown) {
-		this.brokeDown = brokeDown;
-		
-	}
-
-	@Override
-	public boolean isBrokedown() {
-		return brokeDown;
-	}
-
-	@Override
-	public int getMaintenanceTime() {
-		return maintenanceTime;
-	}
-
-	@Override
-	public int getFuelFlyingTime() {
+	public int getFuelLevel() {
 		return 0;
-	}
-	
-	@Override
-	public int getWaitingTime() {
-		return waitingTime;
-	}
-	
-	@Override
-	public int compareTo(Aircraft a) {
-		if (this == a) {
-			return 1;
-		}
-		else {
-			return 0;
-		}
 	}
 
 }
