@@ -14,7 +14,21 @@ public class GUI {
 	private JComboBox strategy;
 	
 	public GUI() {
+		JButton runButton = new JButton();
+		JButton quitButton = new JButton();
 		
+		gliderSlider = new LabelledSlider(); //the 3 sliders need things added beteen the ()
+		lightSlider = new LabelledSlider();
+		commercialSlider = new LabelledSlider();
+		
+		runButton.setText("Run");
+		runButton.setToolTipText("Run simulation");
+		quitButton.setText("Quit");
+		quitButton.setToolTipText("Quit simulation");
+		
+		gliderSlider.setToolTipText("Set probability of generating a glider.");
+		lightSlider.setToolTipText("Set probability of generating a light aircraft.");
+		commercialSlider.setToolTipText("Set probability of generating a commercial aircraft.");
 	}
 
 }
