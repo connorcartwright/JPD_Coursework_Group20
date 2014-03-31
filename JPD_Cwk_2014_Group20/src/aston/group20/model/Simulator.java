@@ -1,5 +1,6 @@
 package aston.group20.model;
 import java.util.Random;
+import aston.group20.GUIview.GUI;
 
 public class Simulator {
 
@@ -18,7 +19,8 @@ public class Simulator {
 			numSteps = 1;
 		}
 		Simulator sim = new Simulator();
-		sim.simulate(numSteps);
+		GUI airport = new GUI(sim);
+		//sim.simulate(numSteps);
 	}
 
 	public Simulator() {
