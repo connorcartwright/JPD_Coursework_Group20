@@ -1,5 +1,4 @@
 package aston.group20.model;
-
 import java.util.Random;
 
 public class Simulator {
@@ -8,7 +7,7 @@ public class Simulator {
 	private Hangar hangar;
 
 	private int step;
-	private static int numSteps = 1000000; // the number of steps to run for
+	private static int numSteps = 100000; // the number of steps to run for
 	private static final int SEED = 17;
 	private static final Random rand = new Random(SEED);
 
@@ -39,6 +38,7 @@ public class Simulator {
 	public void simulateOneStep() {
 		generateAircraft();
 		airport.schedule();
+		System.out.println(step);
 	}
 
 	private void generateAircraft() {

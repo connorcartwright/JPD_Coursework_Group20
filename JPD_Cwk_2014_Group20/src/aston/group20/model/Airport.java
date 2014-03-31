@@ -97,6 +97,7 @@ public class Airport { // //// would it be better to have this as abstract
 			LightAircraft light = new LightAircraft();
 			light.setWaitingTime(a.getWaitingTime());
 			ACT.getIncoming().add(light);
+			counter.incrementTotalPlanes();
 		}
 	}
 

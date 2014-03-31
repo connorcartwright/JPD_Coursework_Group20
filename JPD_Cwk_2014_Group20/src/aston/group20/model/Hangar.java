@@ -3,13 +3,9 @@ import java.util.Random;
 
 public class Hangar {
 
-	private static final double COMMERCIAL_CREATION_PROBABILITY = 0.1;
+	private static final double COMMERCIAL_CREATION_PROBABILITY = 0.2;
 	private static final double LIGHT_CREATION_PROBABILITY = 0.005;
 	private static final double GLIDER_CREATION_PROBABILITY = 0.002;
-	
-	public Hangar() {
-		
-	}
 	
 	public IAircraft generateAircraft(Random rand) {
 		IAircraft aircraft;
