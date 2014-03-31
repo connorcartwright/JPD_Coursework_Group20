@@ -6,12 +6,14 @@ public class Airport { // //// would it be better to have this as abstract
 	private Runway runway;
 	private boolean defaultScheduling;
 	private Counter counter;
+	private Hangar hangar;
 
 	public Airport() {
 		ACT = new AirControlTower();
 		defaultScheduling = true;
 		runway = new Runway();
 		counter = new Counter();
+		hangar = new Hangar();
 	}
 
 	public void schedule() {
@@ -126,6 +128,10 @@ public class Airport { // //// would it be better to have this as abstract
 	
 	public Counter getCounter() {
 		return counter;
+	}
+	
+	public Hangar getHangar() {
+		return hangar;
 	}
 
 }

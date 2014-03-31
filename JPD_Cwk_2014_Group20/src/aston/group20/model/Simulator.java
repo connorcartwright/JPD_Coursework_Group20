@@ -4,10 +4,9 @@ import java.util.Random;
 public class Simulator {
 
 	private Airport airport;
-	private Hangar hangar;
 
 	private int step;
-	private static int numSteps = 100000; // the number of steps to run for
+	private static int numSteps = 10000000; // the number of steps to run for
 	private static final int SEED = 17;
 	private static final Random rand = new Random(SEED);
 
@@ -24,7 +23,6 @@ public class Simulator {
 
 	public Simulator() {
 		airport = new Airport();
-		hangar = new Hangar();
 		reset();
 	}
 
@@ -42,7 +40,7 @@ public class Simulator {
 	}
 
 	private void generateAircraft() {
-		IAircraft aircraft = hangar.generateAircraft(rand); // has a chance of generating an aircraft
+		IAircraft aircraft = airport.getHangar().generateAircraft(rand); // has a chance of generating an aircraft
 		if (aircraft != null) { // if an aircraft was generated
 			airport.getCounter().incrementTotalPlanes(); // increment the total no. of planes
 			if (rand.nextDouble() < 0.5 && !(aircraft instanceof Glider)) { 

@@ -23,7 +23,7 @@ public class Unpowered_Aircraft extends Aircraft {
 	}
 
 	public int getFuelLevel() {
-		return 0;
+		return Integer.MAX_VALUE;
 	}
 
 }
