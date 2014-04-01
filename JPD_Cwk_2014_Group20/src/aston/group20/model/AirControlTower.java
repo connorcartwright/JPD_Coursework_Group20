@@ -13,9 +13,10 @@ public class AirControlTower {
 	private PriorityQueue<IAircraft> incoming;
 	private PriorityQueue<IAircraft> outgoing;
 	private PriorityQueue<IAircraft> brokenDown;
-	private FuelPriority strategy;
+	private Strategy strategy;
 
 	public AirControlTower() {
+		strategy = new FuelStrategy();
 		incoming = new PriorityQueue<IAircraft>(500, strategy);
 		outgoing = new PriorityQueue<IAircraft>();
 		brokenDown = new PriorityQueue<IAircraft>();

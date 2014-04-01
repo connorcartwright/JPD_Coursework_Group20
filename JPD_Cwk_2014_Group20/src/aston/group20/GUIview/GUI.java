@@ -1,14 +1,9 @@
 package aston.group20.GUIview;
 import aston.group20.model.Simulator;
-
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
+import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
+import javax.swing.border.*;
 
 
 public class GUI {
