@@ -2,6 +2,8 @@ package aston.group20.GUIview;
 import aston.group20.model.Simulator;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -36,7 +38,7 @@ public class GUI {
 		gliderSlider = new LabelledSlider("Glider Probability", 0.002, PROB_MIN, PROB_MAX, 1); //the 3 sliders need things added betWeen the ()
 		lightSlider = new LabelledSlider("Light Aircraft Probability", 0.005, PROB_MIN, PROB_MAX, 1);
 		commercialSlider = new LabelledSlider("Commercial Aircraft Probability (g)", 0.1, PROB_MIN, PROB_MAX, 1);
-		timeSlider = new LabelledSlider("Simulation Length", 2880, 0, 2880, 1);
+		timeSlider = new LabelledSlider("Simulation Length", 2880, 1, 2880, 1);
 		timeSlider.setMajorTickSpacing(120); // 1 hour
 		runButton.setText("Run");
 		runButton.setToolTipText("Run simulation");
@@ -65,6 +67,7 @@ public class GUI {
 				EmptyBorder(padding, padding, padding, padding));
 		
 		// Step 5: Add components to containers 
+		commandBox.add(timeSlider);
 		commandBox.add(runButton);
 		commandBox.add(quitButton);
 		scrollerBox.add(gliderSlider, BorderLayout.NORTH);
@@ -74,6 +77,19 @@ public class GUI {
 		mainFrame.add(scrollerBox, BorderLayout.WEST);
 		
 		// Step 6: Arrange to handle events in the user interface
+		
+		runButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				runSimulation();
+			}
+		});
+		
+		quitButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				exitApp();
+			}
+		});
+		
 		mainFrame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				exitApp();

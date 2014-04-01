@@ -1,9 +1,8 @@
 package aston.group20.model;
+import java.util.Comparator;
 
-public abstract class Strategy {
+public abstract class Strategy implements Comparator {
 
-	public Strategy() {
-		// TODO Auto-generated constructor stub
-	}
-
+	public abstract int compare(Object o1, Object o2);
+	
 }

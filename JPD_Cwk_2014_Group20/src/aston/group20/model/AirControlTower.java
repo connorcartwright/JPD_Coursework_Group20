@@ -14,13 +14,16 @@ public class AirControlTower {
 	private PriorityQueue<IAircraft> outgoing;
 	private PriorityQueue<IAircraft> brokenDown;
 
-	public AirControlTower() {
-		incoming = new PriorityQueue<IAircraft>();
+	public AirControlTower(Strategy strategy) {
+		incoming = new PriorityQueue<IAircraft>(strategy);
 		outgoing = new PriorityQueue<IAircraft>();
 		brokenDown = new PriorityQueue<IAircraft>();
 	}
 	
 	public PriorityQueue<IAircraft> getIncoming() {
+	for (int i = 0; i < incoming.toArray().length; i++) {
+			System.out.println(((IAircraft) incoming.toArray()[i]).getFuelLevel());
+		}
 		return incoming;
 	}
 	
