@@ -8,8 +8,8 @@ public class Airport { // //// would it be better to have this as abstract
 	private Counter counter;
 	private Hangar hangar;
 
-	public Airport(Strategy strategy) {
-		ACT = new AirControlTower(strategy);
+	public Airport() {
+		ACT = new AirControlTower();
 		defaultScheduling = true;
 		runway = new Runway();
 		counter = new Counter();

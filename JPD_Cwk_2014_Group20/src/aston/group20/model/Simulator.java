@@ -10,7 +10,6 @@ public class Simulator {
 	private static int numSteps = 10000; // the number of steps to run for
 	private static final int SEED = 17;
 	private static final Random rand = new Random(SEED);
-	private Strategy strategy;
 
 	public static void main(String[] args) {
 		if (args.length >= 1) {
@@ -20,13 +19,12 @@ public class Simulator {
 			numSteps = 1;
 		}
 		Simulator sim = new Simulator();
-		GUI airportSim = new GUI(sim);
-		//sim.simulate(numSteps);
+		//GUI airportSim = new GUI(sim);
+		sim.simulate(numSteps);
 	}
 
 	public Simulator() {
-		strategy = new FuelPriority();
-		airport = new Airport(strategy);
+		airport = new Airport();
 		reset();
 	}
 
@@ -35,6 +33,10 @@ public class Simulator {
 			simulateOneStep();
 		}
 		System.out.println(airport.getCounter().toString());
+		
+		for (int i = 0; i < airport.getAirControlTower().getIncoming().toArray().length; i++) { // trying to see if the priority sorting is working
+			System.out.println(((IAircraft) airport.getAirControlTower().getIncoming().toArray()[i]).getFuelLevel());
+		}
 	}
 
 	public void simulateOneStep() {

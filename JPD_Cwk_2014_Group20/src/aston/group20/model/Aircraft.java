@@ -20,7 +20,7 @@ public abstract class Aircraft implements IAircraft {
 	private int ID;
 	
 	// Shared Random number generator
-	private static final int SEED = 24;
+	private static final int SEED = 22;
 	protected static Random rand = new Random(SEED);
 
 	public Aircraft(int landingTime, int takeoffTime) {
