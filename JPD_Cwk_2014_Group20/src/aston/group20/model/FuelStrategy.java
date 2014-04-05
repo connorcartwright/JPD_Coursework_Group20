@@ -9,4 +9,20 @@ public class FuelStrategy extends Strategy {
 		
 	     return Integer.compare(a1.getFuelLevel(), a2.getFuelLevel());
 	}
+	
+	public int schedule(IAircraft Incoming, IAircraft Outgoing) { // return 1 = land, return 2 = takeoff, return 3 = crashed, return 0 = nothing;
+		if (Incoming == null) {
+			if (Outgoing != null) {
+				return 2; //takeOff(Outgoing);
+			}		 
+		}
+		else if (Outgoing != null && Outgoing.getTakeoffTime() < Incoming.getFuelLevel() - Incoming.getLandingTime()) {
+			return 2; // takeOff(Outgoing);
+	    }
+		else {
+			return 1; // land(Incoming);
+				}
+		return 0;
+		
+}
 }

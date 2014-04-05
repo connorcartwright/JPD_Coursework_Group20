@@ -7,9 +7,10 @@ public class Simulator {
 	private Airport airport;
 
 	private int step;
-	private static int numSteps = 10000; // the number of steps to run for
-	private static final int SEED = 17;
+	private static int numSteps = 100000; // the number of steps to run for
+	private static final int SEED = 13;
 	private static final Random rand = new Random(SEED);
+	private Strategy strategy;
 
 	public static void main(String[] args) {
 		if (args.length >= 1) {
@@ -24,7 +25,9 @@ public class Simulator {
 	}
 
 	public Simulator() {
-		airport = new Airport();
+		strategy = new FuelStrategy();
+		//strategy = new WaitingTimeStrategy();
+		airport = new Airport(strategy);
 		reset();
 	}
 
@@ -32,11 +35,8 @@ public class Simulator {
 		for (step = 1; step <= numSteps; step++) {
 			simulateOneStep();
 		}
-		System.out.println(airport.getCounter().toString());
-		
-		for (int i = 0; i < airport.getAirControlTower().getIncoming().toArray().length; i++) { // trying to see if the priority sorting is working
-			System.out.println(((IAircraft) airport.getAirControlTower().getIncoming().toArray()[i]).getFuelLevel());
-		}
+		airport.getACT().finish();
+		System.out.println(airport.getACT().getCounter().toString());
 	}
 
 	public void simulateOneStep() {
@@ -48,19 +48,19 @@ public class Simulator {
 	private void generateAircraft() {
 		IAircraft aircraft = airport.getHangar().generateAircraft(rand); // has a chance of generating an aircraft
 		if (aircraft != null) { // if an aircraft was generated
-			airport.getCounter().incrementTotalPlanes(); // increment the total no. of planes
+			airport.getACT().getCounter().incrementTotalPlanes(); // increment the total no. of planes
 			if (rand.nextDouble() < 0.5 && !(aircraft instanceof Glider)) { 
-				airport.getAirControlTower().getIncoming().add(aircraft); // 50% chance to by flying
+				airport.getACT().getIncoming().add(aircraft); // 50% chance to by flying
 			} 
 			else {
-				airport.getAirControlTower().getOutgoing().add(aircraft); // 50% chance to be grounded
+				airport.getACT().getOutgoing().add(aircraft); // 50% chance to be grounded
 			}
 		}
 	}
 
 	public void reset() {
 		step = 0;
-		airport.getAirControlTower().clear();
-		airport.getCounter().clear();
+		airport.getACT().clear();
+		airport.getACT().getCounter().clear();
 	}
 }

@@ -30,11 +30,16 @@ public class GUI {
 		JButton quitButton = new JButton();
 		
 		// Step 2: Set the properties of the components
-		gliderSlider = new LabelledSlider("Glider Probability", 0.002, PROB_MIN, PROB_MAX, 1); //the 3 sliders need things added betWeen the ()
-		lightSlider = new LabelledSlider("Light Aircraft Probability", 0.005, PROB_MIN, PROB_MAX, 1);
-		commercialSlider = new LabelledSlider("Commercial Aircraft Probability (g)", 0.1, PROB_MIN, PROB_MAX, 1);
-		timeSlider = new LabelledSlider("Simulation Length", 2880, 1, 2880, 1);
+		gliderSlider = new LabelledSlider("Glider Probability", 0.002, PROB_MIN, PROB_MAX, 2); //the 3 sliders need things added betWeen the ()
+		lightSlider = new LabelledSlider("Light Aircraft Probability", 0.005, PROB_MIN, PROB_MAX, 2);
+		commercialSlider = new LabelledSlider("Commercial Aircraft Probability (g)", 0.1, PROB_MIN, PROB_MAX, 2);
+		timeSlider = new LabelledSlider("Simulation Length", 2880, 1, 10000, 1);
+		
+		
 		timeSlider.setMajorTickSpacing(120); // 1 hour
+		
+		
+		
 		runButton.setText("Run");
 		runButton.setToolTipText("Run simulation");
 		quitButton.setText("Quit");
