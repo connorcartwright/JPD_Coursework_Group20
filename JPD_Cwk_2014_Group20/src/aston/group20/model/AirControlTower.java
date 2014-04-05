@@ -1,5 +1,4 @@
 package aston.group20.model;
-import java.util.Iterator;
 import java.util.PriorityQueue;
 
 /**

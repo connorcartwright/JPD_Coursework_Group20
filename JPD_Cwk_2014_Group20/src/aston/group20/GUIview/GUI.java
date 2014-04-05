@@ -123,5 +123,12 @@ public class GUI {
 		sim.simulate((int) timeSlider.getValue()); // should be used in the reportFrame
 	}
 	
+	private void chooseStrategy() {
+		// should link to the combo box,
+		// based on the option chosen it should pick the strategy class to be 
+		// used. 
+		// Not sure how to implement this yet.
+	}
+	
 
 }
