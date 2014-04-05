@@ -29,16 +29,18 @@ public class Simulator {
 	}
 
 	public Simulator() {
-		airport = new Airport(strategy[chosenStrategy]);
+		airport = new Airport();
 		reset();
 	}
 
 	public void simulate(int numSteps) {
+		airport.setStrategy(strategy[chosenStrategy]);
 		for (step = 1; step <= numSteps; step++) {
 			simulateOneStep();
 		}
 		airport.getACT().finish();
 		System.out.println(airport.getACT().getCounter().toString());
+		reset();
 	}
 
 	public void simulateOneStep() {

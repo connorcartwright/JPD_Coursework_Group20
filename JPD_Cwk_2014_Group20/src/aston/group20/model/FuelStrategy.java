@@ -16,13 +16,13 @@ public class FuelStrategy extends Strategy {
 				return 2; //takeOff(Outgoing);
 			}		 
 		}
-		else if (Outgoing != null && Outgoing.getTakeoffTime() < Incoming.getFuelLevel() - Incoming.getLandingTime()) {
+		else if (Outgoing != null && Outgoing.getWaitingTime() > Incoming.getWaitingTime() &&
+				  Outgoing.getTakeoffTime() < Incoming.getFuelLevel() - Incoming.getLandingTime()) {
 			return 2; // takeOff(Outgoing);
 	    }
 		else {
 			return 1; // land(Incoming);
 				}
 		return 0;
-		
-}
+		}
 }

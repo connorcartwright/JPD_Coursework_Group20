@@ -7,11 +7,10 @@ public class Airport { // //// would it be better to have this as abstract
 	private Hangar hangar;
 	private Strategy strategy;
 
-	public Airport(Strategy strategy) {
+	public Airport() {
 		ACT = new AirControlTower(strategy);
 		runway = new Runway();
 		hangar = new Hangar();
-		this.strategy = strategy;
 	}
 
 	public void schedule() {
@@ -27,9 +26,6 @@ public class Airport { // //// would it be better to have this as abstract
 			break;
 				
 			case 2: takeOff(Outgoing);
-			break;
-				
-			case 3: crashed(Incoming);
 			break;
 			
 			}
@@ -61,11 +57,6 @@ public class Airport { // //// would it be better to have this as abstract
 		ACT.getIncoming().remove(a);
 	}
 
-	private void crashed(IAircraft a) {
-		ACT.getCounter().incrementCrashes();
-		ACT.getCounter().incrementWaitingTime(a.getWaitingTime());
-		ACT.getIncoming().remove(a);
-	}
 
 	public AirControlTower getACT() {
 		return ACT;
@@ -75,4 +66,9 @@ public class Airport { // //// would it be better to have this as abstract
 		return hangar;
 	}
 
+	public void setStrategy(Strategy strategy) {
+		this.strategy = strategy;
+	}
+	
+	
 }

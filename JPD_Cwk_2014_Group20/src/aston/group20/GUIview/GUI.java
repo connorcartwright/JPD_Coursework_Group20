@@ -1,6 +1,8 @@
 package aston.group20.GUIview;
+import aston.group20.model.FuelStrategy;
 import aston.group20.model.Simulator;
 import aston.group20.model.Strategy;
+import aston.group20.model.WaitingTimeStrategy;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -20,7 +22,10 @@ public class GUI {
 	private LabelledSlider lightSlider; // probability of light creation
 	private LabelledSlider timeSlider; // how long the simulation will run for
 	private JComboBox<String> strategy; // selects the strategy to be used - still working on how to implement this - may have strategy classes
-	private String[] strategies = { "Waiting Time", "Fuel Level" };
+	private String[] strategies = {
+			"Waiting Time Strategy",
+			"Fuel Strategy"		
+	};
 	private static final int PROB_MIN = 0;
 	private static final int PROB_MAX = 1;
 	// need a JScrollPane for the report window
@@ -34,9 +39,9 @@ public class GUI {
 		JButton quitButton = new JButton();
 		
 		// Step 2: Set the properties of the components
-		gliderSlider = new LabelledSlider("Glider Probability", 0.002, PROB_MIN, PROB_MAX, 2); //the 3 sliders need things added betWeen the ()
-		lightSlider = new LabelledSlider("Light Aircraft Probability", 0.005, PROB_MIN, PROB_MAX, 2);
-		commercialSlider = new LabelledSlider("Commercial Aircraft Probability (g)", 0.1, PROB_MIN, PROB_MAX, 2);
+		gliderSlider = new LabelledSlider("Glider Probability", 0.002, PROB_MIN, PROB_MAX, 1); //the 3 sliders need things added betWeen the ()
+		lightSlider = new LabelledSlider("Light Aircraft Probability", 0.005, PROB_MIN, PROB_MAX, 1);
+		commercialSlider = new LabelledSlider("Commercial Aircraft Probability (g)", 0.1, PROB_MIN, PROB_MAX, 1);
 		timeSlider = new LabelledSlider("Simulation Length", 2880, 1, 10000, 1);
 		strategy = new JComboBox<>(strategies);
 		timeSlider.setMajorTickSpacing(120); // 1 hour
@@ -83,13 +88,8 @@ public class GUI {
 		
 		runButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setStrategy();
 				runSimulation();
-			}
-		});
-		
-		strategy.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				chooseStrategy();
 			}
 		});
 		
@@ -132,9 +132,12 @@ public class GUI {
 		sim.simulate((int) timeSlider.getValue()); // should be used in the reportFrame
 	}
 	
-	private void chooseStrategy() {
-		sim.setStrategy(0);
+	private void setStrategy() {
+		System.out.println(strategy.getSelectedIndex() + "bbbbbbbbbbbbbbbboooooooooooooooobs");
+		switch (strategy.getSelectedIndex()) {
+		case 0: sim.setStrategy(0);
+		break;
+		case 1: sim.setStrategy(1);
+		}
 	}
-	
-
 }

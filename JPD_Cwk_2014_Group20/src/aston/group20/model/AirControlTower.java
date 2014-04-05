@@ -24,7 +24,7 @@ public class AirControlTower {
 	}
 	
 	public void step() {
-		for (IAircraft a : (brokenDown.toArray(new IAircraft[brokenDown.size()]))) { // call the step method for all brokenDown planes;
+		for (IAircraft a : brokenDown.toArray(new IAircraft[brokenDown.size()])) { // call the step method for all brokenDown planes;
 			a.step();                                                                             // this will cause their maintenance to continue
 			if (! a.isBrokeDown()) { // if the aircraft has been fixed
 				outgoing.add(a); // add it to the outgoing queue
@@ -33,7 +33,7 @@ public class AirControlTower {
 			
 		}
 		
-		for (IAircraft a : (incoming.toArray(new IAircraft[incoming.size()]))) {
+		for (IAircraft a : incoming.toArray(new IAircraft[incoming.size()])) {
 			a.step();
 			if (a.getFuelLevel() - a.getLandingTime() < 0) { // if the plane doesn't have enough fuel to land
 				incoming.remove(a);
@@ -42,7 +42,7 @@ public class AirControlTower {
 			} 
 		}
 		
-		for (IAircraft a : (outgoing.toArray(new IAircraft[outgoing.size()]))) {
+		for (IAircraft a : outgoing.toArray(new IAircraft[outgoing.size()])) {
 			a.step();
 			if(a.isBrokeDown()) {
 				outgoing.remove(a);
@@ -53,14 +53,12 @@ public class AirControlTower {
 	}
 	
 	public void finish() {
-		for(IAircraft it : incoming) {
-			counter.incrementWaitingTime(it.getWaitingTime());
+		for(IAircraft a : incoming) {
+			counter.incrementWaitingTime(a.getWaitingTime());
 		}
-		for(IAircraft it : outgoing) {
-			counter.incrementWaitingTime(it.getWaitingTime());
+		for(IAircraft a : outgoing) {
+			counter.incrementWaitingTime(a.getWaitingTime());
 		}
-		
-		
 		counter.setGrounded(outgoing.size());
 		counter.setFlying(incoming.size());
 	}

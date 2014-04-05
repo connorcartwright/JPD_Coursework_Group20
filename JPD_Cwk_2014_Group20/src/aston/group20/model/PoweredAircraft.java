@@ -10,7 +10,7 @@ package aston.group20.model;
 public abstract class PoweredAircraft extends Aircraft {
 	
 	// The amount of time the aircraft can fly
-	protected int fuelLevel;
+	private int fuelLevel;
 	
 	/**
 	 * Initialising a new aircraft; each aircraft has a certain 
@@ -18,11 +18,11 @@ public abstract class PoweredAircraft extends Aircraft {
 	 * 
 	 * @param takeOffTime the time it will take for the aircraft to take off
 	 * @param landingTime the time it will take for the aircraft to land
-	 * @param fuelFlyingTime the time the aircraft can fly for
+	 * @param fuelLevel the time the aircraft can fly for
 	 */
-	public PoweredAircraft(int landingTime, int takeoffTime, int fuelFlyingTime) {
+	public PoweredAircraft(int landingTime, int takeoffTime, int fuelLevel) {
 		super(landingTime, takeoffTime);
-		this.fuelLevel = fuelFlyingTime;
+		this.fuelLevel = fuelLevel;
 	}
 	
 	/*
