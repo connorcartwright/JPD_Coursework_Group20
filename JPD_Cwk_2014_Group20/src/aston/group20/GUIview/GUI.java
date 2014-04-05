@@ -1,7 +1,10 @@
 package aston.group20.GUIview;
 import aston.group20.model.Simulator;
+import aston.group20.model.Strategy;
+
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 import javax.swing.border.*;
 
@@ -16,7 +19,8 @@ public class GUI {
 	private LabelledSlider gliderSlider; // probability of glider creation
 	private LabelledSlider lightSlider; // probability of light creation
 	private LabelledSlider timeSlider; // how long the simulation will run for
-	private JComboBox strategy; // selects the strategy to be used - still working on how to implement this - may have strategy classes
+	private JComboBox<String> strategy; // selects the strategy to be used - still working on how to implement this - may have strategy classes
+	private String[] strategies = { "Waiting Time", "Fuel Level" };
 	private static final int PROB_MIN = 0;
 	private static final int PROB_MAX = 1;
 	// need a JScrollPane for the report window
@@ -34,10 +38,8 @@ public class GUI {
 		lightSlider = new LabelledSlider("Light Aircraft Probability", 0.005, PROB_MIN, PROB_MAX, 2);
 		commercialSlider = new LabelledSlider("Commercial Aircraft Probability (g)", 0.1, PROB_MIN, PROB_MAX, 2);
 		timeSlider = new LabelledSlider("Simulation Length", 2880, 1, 10000, 1);
-		
-		
+		strategy = new JComboBox<>(strategies);
 		timeSlider.setMajorTickSpacing(120); // 1 hour
-		
 		
 		
 		runButton.setText("Run");
@@ -53,7 +55,7 @@ public class GUI {
 		mainFrame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		
 		JPanel commandBox = new JPanel();
-		JPanel scrollerBox = new JPanel();
+		JPanel sliderBox = new JPanel();
 		
 		// Step 4: Specify LayoutManagers
 		mainFrame.setLayout(new BorderLayout());
@@ -62,25 +64,32 @@ public class GUI {
 		commandBox.setLayout(new FlowLayout());
 		commandBox.setBorder(new 
 				EmptyBorder(padding, padding, padding, padding));
-		scrollerBox.setLayout(new BorderLayout());
-		scrollerBox.setBorder(new 
+		sliderBox.setLayout(new BorderLayout());
+		sliderBox.setBorder(new 
 				EmptyBorder(padding, padding, padding, padding));
 		
 		// Step 5: Add components to containers 
 		commandBox.add(timeSlider);
+		commandBox.add(strategy);
 		commandBox.add(runButton);
 		commandBox.add(quitButton);
-		scrollerBox.add(gliderSlider, BorderLayout.NORTH);
-		scrollerBox.add(lightSlider, BorderLayout.CENTER);
-		scrollerBox.add(commercialSlider, BorderLayout.SOUTH);
+		sliderBox.add(gliderSlider, BorderLayout.NORTH);
+		sliderBox.add(lightSlider, BorderLayout.CENTER);
+		sliderBox.add(commercialSlider, BorderLayout.SOUTH);
 		mainFrame.add(commandBox, BorderLayout.EAST);
-		mainFrame.add(scrollerBox, BorderLayout.WEST);
+		mainFrame.add(sliderBox, BorderLayout.WEST);
 		
 		// Step 6: Arrange to handle events in the user interface
 		
 		runButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				runSimulation();
+			}
+		});
+		
+		strategy.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				chooseStrategy();
 			}
 		});
 		
@@ -124,10 +133,7 @@ public class GUI {
 	}
 	
 	private void chooseStrategy() {
-		// should link to the combo box,
-		// based on the option chosen it should pick the strategy class to be 
-		// used. 
-		// Not sure how to implement this yet.
+		sim.setStrategy(0);
 	}
 	
 

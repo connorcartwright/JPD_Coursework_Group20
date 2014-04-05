@@ -10,7 +10,11 @@ public class Simulator {
 	private static int numSteps = 100000; // the number of steps to run for
 	private static final int SEED = 13;
 	private static final Random rand = new Random(SEED);
-	private Strategy strategy;
+	private Strategy[] strategy = {
+			new WaitingTimeStrategy(),
+			new FuelStrategy()		
+	};
+	private int chosenStrategy;
 
 	public static void main(String[] args) {
 		if (args.length >= 1) {
@@ -20,14 +24,12 @@ public class Simulator {
 			numSteps = 1;
 		}
 		Simulator sim = new Simulator();
-		//GUI airportSim = new GUI(sim);
-		sim.simulate(numSteps);
+		GUI airportSim = new GUI(sim);
+		//sim.simulate(numSteps);
 	}
 
 	public Simulator() {
-		strategy = new FuelStrategy();
-		//strategy = new WaitingTimeStrategy();
-		airport = new Airport(strategy);
+		airport = new Airport(strategy[chosenStrategy]);
 		reset();
 	}
 
@@ -63,4 +65,13 @@ public class Simulator {
 		airport.getACT().clear();
 		airport.getACT().getCounter().clear();
 	}
+	
+	public Strategy[] getStrategies() {
+		return strategy;
+	}
+	
+	public void setStrategy(int chosenStrategy) {
+		this.chosenStrategy = chosenStrategy;
+	}
+	
 }
