@@ -156,22 +156,22 @@ public class GUI {
 
 	private void openReport() {
 		reportOpen = true;
-		final String reportFrameString = "ReportFrame"; // Used to find client
-														// property
+		final String reportFrameString = "ReportFrame"; // Used to find client property
+		
+		// Step 1: create the components
 		JScrollPane listScroller = new JScrollPane(results);
 		listScroller.setPreferredSize(new Dimension(220, 150));
 		listScroller.setMinimumSize(new Dimension(220, 150));
-
 		final JFrame reportFrame = new JFrame("Simulation Results");
 		JButton runAgainButton = new JButton("Run Again");
-		JButton closeButton = new JButton("Cancel");
+		JButton closeButton = new JButton("Close");
+
+		// Step 2: Set the properties of the components
 		closeButton.putClientProperty(reportFrameString, reportFrame);
 		closeButton.setToolTipText("Close this window.");
 		runAgainButton.setToolTipText("Run the simulation again.");
 
 		// Step 3: Create containers to hold the components
-		reportFrame
-				.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		reportFrame.setPreferredSize(new Dimension(240, 240));
 		reportFrame.setResizable(false);
 		reportFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -181,11 +181,9 @@ public class GUI {
 
 		// Step 4: Specify LayoutManagers
 		reportPanel.setLayout(new BorderLayout());
-		reportPanel.setBorder(new EmptyBorder(padding, padding, padding,
-				padding));
+		reportPanel.setBorder(new EmptyBorder(padding, padding, padding, padding));
 		buttonPanel.setLayout(new FlowLayout());
-		buttonPanel.setBorder(new EmptyBorder(padding, padding, padding,
-				padding));
+		buttonPanel.setBorder(new EmptyBorder(padding, padding, padding, padding));
 		reportFrame.getContentPane().setLayout(new BorderLayout());
 		((JComponent) reportFrame.getContentPane()).setBorder(new EmptyBorder(
 				padding, padding, padding, padding));
@@ -215,6 +213,14 @@ public class GUI {
 				runSimulation();
 			}
 		});
+		
+		reportFrame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				reportOpen = false;
+				resetSimulation();
+				results.setText(null);
+			}
+		});
 
 		// Step 7: Display the GUI
 		reportFrame.pack();
@@ -223,8 +229,7 @@ public class GUI {
 	}
 
 	private void runSimulation() {
-		sim.simulate((int) lengthSlider.getValue()); // should be used in the
-														// reportFrame
+		sim.simulate((int) lengthSlider.getValue());
 		results.append(sim.getResults());
 	}
 
