@@ -1,6 +1,15 @@
 package aston.group20.model;
 import java.util.Random;
 
+/**
+* The Hangar class is used to create aircrafts
+* as well as assigning the probablities of each aircraft being created
+*
+* @author Group_20
+* @version 1.0, March 2014
+*
+*/
+
 public class Hangar {
 
 	private static final double COMMERCIAL_CREATION_PROBABILITY = 0.2;
