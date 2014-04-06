@@ -3,6 +3,7 @@ package aston.group20.model;
 /**
 * The Waiting Time Strategy class is used to identify the waiting time for each aircraft
 * it fulfills the inheritence of the Strategy class
+* @see Strategy
 *
 * @author Group_20
 * @version 1.0, March 2014
