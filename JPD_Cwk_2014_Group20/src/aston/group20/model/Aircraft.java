@@ -3,6 +3,7 @@ import java.util.Random;
 
 /**
 * The Aircraft class fulfills the IAircraft class
+* @see IAircraft
 *
 * @author Group_20
 * @version 1.0, March 2014
