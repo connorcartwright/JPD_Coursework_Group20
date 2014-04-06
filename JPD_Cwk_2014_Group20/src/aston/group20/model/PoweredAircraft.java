@@ -2,6 +2,8 @@ package aston.group20.model;
 
 /**
  * Characterizes the shared behaviours of all powered aircraft
+ * fulfills the inheritence of the Aircraft class
+ * @see Aircraft
  * 
  * @author Group_20
  * @version 1.0, March 2014
