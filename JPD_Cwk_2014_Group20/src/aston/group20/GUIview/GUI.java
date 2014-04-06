@@ -45,33 +45,31 @@ public class GUI {
 		results.setEditable(false);
 
 		// Step 2: Set the properties of the components
-		lengthSlider = new LabelledSlider("Simulation Length", 2880, 1, 10000,
-				1);
+		lengthSlider = new LabelledSlider("Simulation Length", 2880, 1, 10000, 1);
 		lengthSlider.setMajorTickSpacing(720); // 6 hours
-		lengthSlider.setPreferredSize(new Dimension(600, 80));
+		lengthSlider.setPreferredSize(new Dimension(500, 80));
 
 		runButton.setToolTipText("Run the simulation.");
 		quitButton.setToolTipText("Exit the application.");
 
-		gliderSlider
-				.setToolTipText("Used to set the probability of generating a glider.");
-		gliderSlider.setPreferredSize(new Dimension(325, 80));
+		gliderSlider.setToolTipText("Used to set the probability of generating a glider.");
+		gliderSlider.setPreferredSize(new Dimension(275, 70));
 
-		lightSlider
-				.setToolTipText("Used to set the probability of generating a light aircraft.");
-		lightSlider.setPreferredSize(new Dimension(325, 80));
+		lightSlider.setToolTipText("Used to set the probability of generating a light aircraft.");
+		lightSlider.setPreferredSize(new Dimension(275, 70));
 
-		commercialSlider
-				.setToolTipText("Used to set the probability of generating a commercial aircraft.");
-		commercialSlider.setPreferredSize(new Dimension(325, 80));
+		commercialSlider.setToolTipText("Used to set the probability of generating a commercial aircraft.");
+		commercialSlider.setPreferredSize(new Dimension(275, 70));
 
 		strategy.setPreferredSize(new Dimension(250, 80));
+		strategy.setMaximumSize(new Dimension(250, 80));
+		strategy.setMinimumSize(new Dimension(250, 80));
 
 		// Step 3: Create containers to hold the components
 		mainFrame = new JFrame("100/100 Airport Simulator");
 		mainFrame.getContentPane().setBackground(new Color(0, 178, 238));
 		mainFrame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-		mainFrame.setPreferredSize(new Dimension(1000, 300));
+		mainFrame.setPreferredSize(new Dimension(800, 260));
 		mainFrame.setResizable(false);
 
 		JPanel commandBox = new JPanel();
@@ -83,21 +81,20 @@ public class GUI {
 		((JPanel) mainFrame.getContentPane()).setBorder(new EmptyBorder(
 				padding, padding, padding, padding));
 		commandBox.setLayout(new BorderLayout());
-		commandBox
-				.setBorder(new EmptyBorder(padding, padding, padding, padding));
+		commandBox.setBorder(new EmptyBorder(padding, padding, padding, padding));
 		sliderBox.setLayout(new BorderLayout());
-		sliderBox
-				.setBorder(new EmptyBorder(padding, padding, padding, padding));
-		buttonBox.setLayout(new FlowLayout());
-		buttonBox
-				.setBorder(new EmptyBorder(padding, padding, padding, padding));
+		sliderBox.setBorder(new EmptyBorder(padding, padding, padding, padding));
+		buttonBox.setLayout(new BorderLayout());
+		buttonBox.setBorder(new EmptyBorder(padding, padding, padding, padding));
 
 		// Step 5: Add components to containers
-		buttonBox.add(runButton);
-		buttonBox.add(quitButton);
+		buttonBox.add(strategy, BorderLayout.NORTH);
+		buttonBox.add(runButton, BorderLayout.WEST);
+		buttonBox.add(quitButton, BorderLayout.EAST);
+		
 
 		commandBox.add(lengthSlider, BorderLayout.NORTH);
-		commandBox.add(strategy, BorderLayout.CENTER);
+		//commandBox.add(strategy, BorderLayout.CENTER);
 		commandBox.add(buttonBox, BorderLayout.SOUTH);
 
 		sliderBox.add(gliderSlider, BorderLayout.NORTH);
