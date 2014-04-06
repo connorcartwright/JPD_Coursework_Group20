@@ -25,7 +25,6 @@ public class Simulator {
 		}
 		Simulator sim = new Simulator();
 		GUI airportSim = new GUI(sim);
-		//sim.simulate(numSteps);
 	}
 
 	public Simulator() {
@@ -39,8 +38,7 @@ public class Simulator {
 			simulateOneStep();
 		}
 		airport.getACT().finish();
-		System.out.println(airport.getACT().getCounter().toString());
-		reset();
+		System.out.println(getResults());
 	}
 
 	public void simulateOneStep() {
@@ -66,6 +64,10 @@ public class Simulator {
 		step = 0;
 		airport.getACT().clear();
 		airport.getACT().getCounter().clear();
+	}
+	
+	public String getResults() {
+		return airport.getACT().getCounter().toString();
 	}
 	
 	public Strategy[] getStrategies() {
