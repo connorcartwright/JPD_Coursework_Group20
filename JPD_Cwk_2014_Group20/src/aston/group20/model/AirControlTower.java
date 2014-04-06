@@ -3,6 +3,8 @@ import java.util.PriorityQueue;
 
 /**
  * Controls the queues containing the active aircrafts
+ * ensures that the aircrafts that are contained in the queues
+ * are sorted correctly based on the strategy selected
  * 
  * @author Group_20
  * @version 1.0, March 2014
