@@ -1,5 +1,15 @@
 package aston.group20.model;
 
+/**
+* The Light Aircraft class that sets the times for landing, taking off and flying.
+* fulfills the inheritence of the PoweredAircraft
+* @see PoweredAicraft
+*
+* @author Group_20
+* @version 1.0, March 2014
+*
+*/
+
 public class LightAircraft extends PoweredAircraft {
 	
 	// The amount of time it takes to take off
