@@ -1,6 +1,14 @@
 package aston.group20.model;
 import java.util.Random;
 
+/**
+* The Aircraft class fulfills the IAircraft class
+*
+* @author Group_20
+* @version 1.0, March 2014
+*
+*/
+
 public abstract class Aircraft implements IAircraft {
 	
 	// the fields below are measured in half minutes
