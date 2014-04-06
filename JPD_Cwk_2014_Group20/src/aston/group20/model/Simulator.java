@@ -8,7 +8,7 @@ public class Simulator {
 
 	private int step;
 	private static int numSteps = 100000; // the number of steps to run for
-	private static final int SEED = 13;
+	private static final int SEED = 15;
 	private static final Random rand = new Random(SEED);
 	private Strategy[] strategy = {
 			new WaitingTimeStrategy(),

@@ -32,20 +32,17 @@ public class GUI {
 		JButton runButton = new JButton("Run Simulation");
 		JButton quitButton = new JButton("Quit");
 
-		LabelledSlider commercialSlider = new LabelledSlider(
-				"Commercial Probability", 0.1, 0, 1, 1);
-		LabelledSlider gliderSlider = new LabelledSlider("Glider Probability",
-				0.002, 0, 1, 1);
-		LabelledSlider lightSlider = new LabelledSlider("Light Probability",
-				0.005, 0, 1, 1);
+		LabelledSlider commercialSlider = new LabelledSlider("Commercial Probability: ", 0.1, 0, 1, 1);
+		LabelledSlider gliderSlider = new LabelledSlider("Glider Probability: ", 0.002, 0, 1, 1);
+		LabelledSlider lightSlider = new LabelledSlider("Light Probability: ",0.005, 0, 1, 1);
 
-		strategy = new JComboBox<>(strategies);
-
+		strategy = new JComboBox(strategies);
+		
 		results = new JTextArea();
 		results.setEditable(false);
 
 		// Step 2: Set the properties of the components
-		lengthSlider = new LabelledSlider("Simulation Length", 2880, 1, 10000, 1);
+		lengthSlider = new LabelledSlider("Simulation Length: ", 2880, 1, 10000, 1);
 		lengthSlider.setMajorTickSpacing(720); // 6 hours
 		lengthSlider.setPreferredSize(new Dimension(500, 80));
 
@@ -61,10 +58,6 @@ public class GUI {
 		commercialSlider.setToolTipText("Used to set the probability of generating a commercial aircraft.");
 		commercialSlider.setPreferredSize(new Dimension(275, 70));
 
-		strategy.setPreferredSize(new Dimension(250, 80));
-		strategy.setMaximumSize(new Dimension(250, 80));
-		strategy.setMinimumSize(new Dimension(250, 80));
-
 		// Step 3: Create containers to hold the components
 		mainFrame = new JFrame("100/100 Airport Simulator");
 		mainFrame.getContentPane().setBackground(new Color(0, 178, 238));
@@ -77,32 +70,28 @@ public class GUI {
 		JPanel buttonBox = new JPanel();
 
 		// Step 4: Specify LayoutManagers
-		mainFrame.setLayout(new BorderLayout());
-		((JPanel) mainFrame.getContentPane()).setBorder(new EmptyBorder(
-				padding, padding, padding, padding));
+		mainFrame.getContentPane().setLayout(new BorderLayout());
+		((JPanel) mainFrame.getContentPane()).setBorder(new EmptyBorder(padding, padding, padding, padding));
 		commandBox.setLayout(new BorderLayout());
 		commandBox.setBorder(new EmptyBorder(padding, padding, padding, padding));
-		sliderBox.setLayout(new BorderLayout());
+	    sliderBox.setLayout(new BorderLayout());
 		sliderBox.setBorder(new EmptyBorder(padding, padding, padding, padding));
+		
 		buttonBox.setLayout(new BorderLayout());
 		buttonBox.setBorder(new EmptyBorder(padding, padding, padding, padding));
-
-		// Step 5: Add components to containers
-		buttonBox.add(strategy, BorderLayout.NORTH);
 		buttonBox.add(runButton, BorderLayout.WEST);
 		buttonBox.add(quitButton, BorderLayout.EAST);
 		
-
 		commandBox.add(lengthSlider, BorderLayout.NORTH);
-		//commandBox.add(strategy, BorderLayout.CENTER);
+		commandBox.add(strategy, BorderLayout.CENTER);
 		commandBox.add(buttonBox, BorderLayout.SOUTH);
 
 		sliderBox.add(gliderSlider, BorderLayout.NORTH);
 		sliderBox.add(lightSlider, BorderLayout.CENTER);
 		sliderBox.add(commercialSlider, BorderLayout.SOUTH);
 
-		mainFrame.add(commandBox, BorderLayout.EAST);
-		mainFrame.add(sliderBox, BorderLayout.WEST);
+		mainFrame.getContentPane().add(commandBox, BorderLayout.EAST);
+		mainFrame.getContentPane().add(sliderBox, BorderLayout.WEST);
 
 		// Step 6: Arrange to handle events in the user interface
 		runButton.addActionListener(new ActionListener() {
