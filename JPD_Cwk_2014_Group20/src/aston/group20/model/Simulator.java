@@ -63,7 +63,6 @@ public class Simulator {
 	public void reset() {
 		step = 0;
 		airport.getACT().clear();
-		airport.getACT().getCounter().clear();
 		rand.setSeed(SEED);
 	}
 	
