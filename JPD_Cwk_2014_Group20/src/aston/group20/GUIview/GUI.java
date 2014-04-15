@@ -189,6 +189,7 @@ public class GUI {
 				JFrame f = (JFrame) c.getClientProperty(reportFrameString);
 				f.dispose();
 				reportOpen = false;
+				results.setText(null);
 			}
 		});
 
@@ -226,10 +227,10 @@ public class GUI {
 	private void setStrategy() {
 		switch (strategy.getSelectedIndex()) {
 		case 0:
-			sim.setStrategy(0);
+			sim.getAirport().setStrategy(0);
 			break;
 		case 1:
-			sim.setStrategy(1);
+			sim.getAirport().setStrategy(1);
 			break;
 		case 2: // new Strategy here;
 			break;
