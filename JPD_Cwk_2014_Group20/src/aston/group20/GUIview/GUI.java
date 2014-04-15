@@ -16,14 +16,13 @@ public class GUI {
 	private JFrame mainFrame;
 	private JTextArea results;
 	private LabelledSlider lengthSlider; // how long the simulation will run for
-	private JComboBox<String> strategy; // selects the strategy to be used -
-										// still working on how to implement
-										// this - may have strategy classes
-	private String[] strategies = { "Waiting Time Strategy", "Fuel Strategy" };
-	private static final int padding = 5;
+	private JComboBox<String> strategy; // lets the user select the strategy to be used
+	private JComboBox<Integer> seed;
+	private String[] strategies = { "Waiting Time Strategy", "Fuel Strategy" }; // add more strategies here when needed in the future
+	private Integer[] seedSelection = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 
+			19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40 };
+	private static final int padding = 5; // blank space for layout management
 	private boolean reportOpen = false;
-
-	// need a JScrollPane for the report window
 
 	public GUI(Simulator sim) {
 		this.sim = sim;
@@ -31,23 +30,28 @@ public class GUI {
 		// Step 1: create the components
 		JButton runButton = new JButton("Run Simulation");
 		JButton quitButton = new JButton("Quit");
+		JLabel seedText = new JLabel("Seed: ");
+		JLabel strategyText = new JLabel("Strategy: ");
 
 		LabelledSlider commercialSlider = new LabelledSlider("Commercial Probability: ", 0.1, 0, 1, 1);
 		LabelledSlider gliderSlider = new LabelledSlider("Glider Probability: ", 0.002, 0, 1, 1);
 		LabelledSlider lightSlider = new LabelledSlider("Light Probability: ",0.005, 0, 1, 1);
 
 		strategy = new JComboBox(strategies);
+		seed = new JComboBox(seedSelection);
 		
 		results = new JTextArea();
 		results.setEditable(false);
 
 		// Step 2: Set the properties of the components
-		lengthSlider = new LabelledSlider("Simulation Length: ", 2880, 1, 10000, 1);
+		lengthSlider = new LabelledSlider("Simulation Length: ", 2880, 60, 10000, 1);
 		lengthSlider.setMajorTickSpacing(720); // 6 hours
 		lengthSlider.setPreferredSize(new Dimension(500, 80));
 
 		runButton.setToolTipText("Run the simulation.");
+		runButton.setPreferredSize(new Dimension(140, 34));
 		quitButton.setToolTipText("Exit the application.");
+		quitButton.setPreferredSize(new Dimension(100, 34));
 
 		gliderSlider.setToolTipText("Used to set the probability of generating a glider.");
 		gliderSlider.setPreferredSize(new Dimension(275, 70));
@@ -57,7 +61,12 @@ public class GUI {
 
 		commercialSlider.setToolTipText("Used to set the probability of generating a commercial aircraft.");
 		commercialSlider.setPreferredSize(new Dimension(275, 70));
-
+		
+		strategy.setPreferredSize(new Dimension(180, 32));
+		((JLabel)strategy.getRenderer()).setHorizontalAlignment(JLabel.CENTER);
+		seed.setPreferredSize(new Dimension(60, 32));
+		((JLabel)seed.getRenderer()).setHorizontalAlignment(JLabel.CENTER);
+		
 		// Step 3: Create containers to hold the components
 		mainFrame = new JFrame("100/100 Airport Simulator");
 		mainFrame.getContentPane().setBackground(new Color(0, 178, 238));
@@ -68,22 +77,34 @@ public class GUI {
 		JPanel commandBox = new JPanel();
 		JPanel sliderBox = new JPanel();
 		JPanel buttonBox = new JPanel();
+		JPanel comboHolder = new JPanel();
 
 		// Step 4: Specify LayoutManagers
 		mainFrame.getContentPane().setLayout(new BorderLayout());
 		((JPanel) mainFrame.getContentPane()).setBorder(new EmptyBorder(padding, padding, padding, padding));
+		
 		commandBox.setLayout(new BorderLayout());
 		commandBox.setBorder(new EmptyBorder(padding, padding, padding, padding));
+		
 	    sliderBox.setLayout(new BorderLayout());
 		sliderBox.setBorder(new EmptyBorder(padding, padding, padding, padding));
 		
 		buttonBox.setLayout(new BorderLayout());
 		buttonBox.setBorder(new EmptyBorder(padding, padding, padding, padding));
+		
+		comboHolder.setLayout(new FlowLayout());
+		comboHolder.setBorder(new EmptyBorder(20, padding, padding, padding));
+		
 		buttonBox.add(runButton, BorderLayout.WEST);
 		buttonBox.add(quitButton, BorderLayout.EAST);
 		
+		comboHolder.add(strategyText);
+		comboHolder.add(strategy);
+		comboHolder.add(seedText);
+		comboHolder.add(seed);
+		
+		commandBox.add(comboHolder, BorderLayout.CENTER);
 		commandBox.add(lengthSlider, BorderLayout.NORTH);
-		commandBox.add(strategy, BorderLayout.CENTER);
 		commandBox.add(buttonBox, BorderLayout.SOUTH);
 
 		sliderBox.add(gliderSlider, BorderLayout.NORTH);
@@ -97,11 +118,11 @@ public class GUI {
 		runButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (reportOpen) {
-					
+					// do nothing if the report window is already open.
 				} else {
-					setStrategy();
-					openReport();
-					runSimulation();
+					resetSimulation(); // reset the simulation/clear previous results
+					openReport(); // open the report window
+					runSimulation(); // and run the simulation
 				}
 			}
 		});
@@ -136,7 +157,6 @@ public class GUI {
 		if (response == JOptionPane.YES_OPTION) {
 			System.exit(0);
 		}
-
 		// Don't quit
 	}
 
@@ -189,14 +209,13 @@ public class GUI {
 				JFrame f = (JFrame) c.getClientProperty(reportFrameString);
 				f.dispose();
 				reportOpen = false;
-				results.setText(null);
+				resetSimulation();
 			}
 		});
 
 		runAgainButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				resetSimulation();
-				results.setText(null);
 				runSimulation();
 			}
 		});
@@ -205,7 +224,6 @@ public class GUI {
 			public void windowClosing(WindowEvent e) {
 				reportOpen = false;
 				resetSimulation();
-				results.setText(null);
 			}
 		});
 
@@ -221,20 +239,27 @@ public class GUI {
 	}
 
 	private void resetSimulation() {
+		setSeed();
+		setStrategy();
 		sim.reset();
+		results.setText(null);
 	}
 
 	private void setStrategy() {
 		switch (strategy.getSelectedIndex()) {
 		case 0:
-			sim.getAirport().setStrategy(0);
+			sim.setStrategy(0);
 			break;
 		case 1:
-			sim.getAirport().setStrategy(1);
+			sim.setStrategy(1);
 			break;
 		case 2: // new Strategy here;
 			break;
 		}
+	}
+	
+	private void setSeed() {
+		sim.setSeed(seed.getSelectedIndex());
 	}
 
 	public static void centreWindow(Window frame) {

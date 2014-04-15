@@ -8,8 +8,7 @@ public class Simulator {
 
 	private int step;
 	private static int numSteps = 100000; // the number of steps to run for
-	private static final int SEED = 15;
-	private static final Random rand = new Random(SEED);
+	private final Random rand = new Random();
 	private Strategy[] strategy = {
 			new WaitingTimeStrategy(),
 			new FuelStrategy()		
@@ -63,7 +62,6 @@ public class Simulator {
 	public void reset() {
 		step = 0;
 		airport.getACT().clear();
-		rand.setSeed(SEED);
 	}
 	
 	public String getResults() {
@@ -76,6 +74,10 @@ public class Simulator {
 	
 	public void setStrategy(int chosenStrategy) {
 		this.chosenStrategy = chosenStrategy;
+	}
+	
+	public void setSeed(int seed) {
+		rand.setSeed(seed);
 	}
 	
 }
