@@ -2,36 +2,42 @@ package aston.group20.model;
 import java.util.Random;
 
 /**
-* The Aircraft class fulfills the IAircraft class
-* @see IAircraft
-*
-* @author Group_20
-* @version 1.0, March 2014
-*
+ * The Aircraft class implements the IAircraft interface and contains the 
+ * fields and the majority of method implementation; however it still has
+ * the two types of Aircraft below it as well as the concrete subclasses.
+ * 
+ * @see IAircraft
+ * @author Group_20
+ * @version 1.0, March 2014
+ *  
 */
-
 public abstract class Aircraft implements IAircraft {
 	
 	// the fields below are measured in half minutes
 	
-	// The time that it takes for the aircraft to land
+	// The time that it takes for the aircraft to land.
 	private int landingTime;
-	// The time it takes for the aircraft to take off
+	// The time it takes for the aircraft to take off.
 	private int takeoffTime;
-	// The amount of time the aircraft has been waiting
+	// The amount of time the aircraft has been waiting.
 	private int waitingTime;
-	// True if the aircraft has broken down
+	// True if the aircraft has broken down.
 	protected boolean brokeDown;
 	// The amount of time the aircraft has been maintained once it
-	// reaches 120 the aircraft is fixed, and the value reset to 0
+	// reaches 120 the aircraft is fixed, and the value reset to 0.s
 	protected int maintenanceTime;
 	private static int lastID = 0;
 	private int ID;
 	
 	// Shared Random number generator
-	private static final int SEED = 22;
+	private static final int SEED = 42;
 	protected static Random rand = new Random(SEED);
 
+	/**
+	 * Creating a new Aircraft and setting its default values.
+	 * @param landingTime the time the Aircraft takes to land.
+	 * @param takeoffTime the time the Aircraft takes to takeoff.
+	 */
 	public Aircraft(int landingTime, int takeoffTime) {
 		this.landingTime = landingTime;
 		this.takeoffTime = takeoffTime;
@@ -41,6 +47,9 @@ public abstract class Aircraft implements IAircraft {
 		this.ID = nextID();
 	}
 	
+	/**
+	 * The action that all Aircraft take at all turns.
+	 */
 	public abstract void step();
 	
 	public int getID() {
@@ -98,5 +107,4 @@ public abstract class Aircraft implements IAircraft {
 			return -1;
 		}
 	}
-	
 }
