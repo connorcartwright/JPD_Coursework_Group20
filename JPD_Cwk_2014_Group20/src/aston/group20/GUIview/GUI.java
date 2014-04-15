@@ -16,6 +16,9 @@ public class GUI {
 	private JFrame mainFrame;
 	private JTextArea results;
 	private LabelledSlider lengthSlider; // how long the simulation will run for
+	private LabelledSlider commercialSlider;
+	private LabelledSlider gliderSlider;
+	private LabelledSlider lightSlider; 
 	private JComboBox<String> strategy; // lets the user select the strategy to be used
 	private JComboBox<Integer> seed;
 	private String[] strategies = { "Waiting Time Strategy", "Fuel Strategy" }; // add more strategies here when needed in the future
@@ -33,9 +36,9 @@ public class GUI {
 		JLabel seedText = new JLabel("Seed: ");
 		JLabel strategyText = new JLabel("Strategy: ");
 
-		LabelledSlider commercialSlider = new LabelledSlider("Commercial Probability: ", 0.1, 0, 1, 1);
-		LabelledSlider gliderSlider = new LabelledSlider("Glider Probability: ", 0.002, 0, 1, 1);
-		LabelledSlider lightSlider = new LabelledSlider("Light Probability: ",0.005, 0, 1, 1);
+		commercialSlider = new LabelledSlider("Commercial Probability: ", 0.1, 0, 10, 10);
+		gliderSlider = new LabelledSlider("Glider Probability: ", 0.002, 0, 10, 10);
+		lightSlider = new LabelledSlider("Light Probability: ", 0.005, 0, 10, 10);
 
 		strategy = new JComboBox(strategies);
 		seed = new JComboBox(seedSelection);
@@ -45,6 +48,7 @@ public class GUI {
 
 		// Step 2: Set the properties of the components
 		lengthSlider = new LabelledSlider("Simulation Length: ", 2880, 60, 10000, 1);
+		lengthSlider.setToolTipText("Used to set the simulation length in half minutes.");
 		lengthSlider.setMajorTickSpacing(720); // 6 hours
 		lengthSlider.setPreferredSize(new Dimension(500, 80));
 
@@ -234,17 +238,22 @@ public class GUI {
 	}
 
 	private void runSimulation() {
-		sim.simulate((int) lengthSlider.getValue());
+		sim.simulate((int)lengthSlider.getValue());
 		results.append(sim.getResults());
 	}
 
 	private void resetSimulation() {
 		setSeed();
 		setStrategy();
+		setProbabilities();
 		sim.reset();
 		results.setText(null);
 	}
 
+	private void setProbabilities() {
+		sim.setProbabilities(commercialSlider.getValue(), gliderSlider.getValue(), lightSlider.getValue());
+	}
+	
 	private void setStrategy() {
 		switch (strategy.getSelectedIndex()) {
 		case 0:

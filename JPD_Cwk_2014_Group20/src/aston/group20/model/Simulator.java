@@ -68,6 +68,10 @@ public class Simulator {
 		return airport.getACT().getCounter().toString();
 	}
 	
+	public void setProbabilities(double commercial, double glider, double light) {
+		airport.getHangar().setProbabilities(commercial, glider, light);
+	}
+	
 	public Strategy[] getStrategies() {
 		return strategy;
 	}

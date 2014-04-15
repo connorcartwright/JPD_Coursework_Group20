@@ -12,9 +12,9 @@ import java.util.Random;
 
 public class Hangar {
 
-	private static final double COMMERCIAL_CREATION_PROBABILITY = 0.2;
-	private static final double LIGHT_CREATION_PROBABILITY = 0.005;
-	private static final double GLIDER_CREATION_PROBABILITY = 0.002;
+	private double COMMERCIAL_CREATION_PROBABILITY = 0.2;
+	private double LIGHT_CREATION_PROBABILITY = 0.005;
+	private double GLIDER_CREATION_PROBABILITY = 0.002;
 	
 	public IAircraft generateAircraft(Random rand) {
 		IAircraft aircraft;
@@ -32,4 +32,12 @@ public class Hangar {
 		}
 		return aircraft; // return the aircraft
 }
+	
+	public void setProbabilities(double commercial, double glider, double light) {
+		COMMERCIAL_CREATION_PROBABILITY = commercial;
+		GLIDER_CREATION_PROBABILITY = glider;
+		LIGHT_CREATION_PROBABILITY = light;
+	}
+	
+	
 }
