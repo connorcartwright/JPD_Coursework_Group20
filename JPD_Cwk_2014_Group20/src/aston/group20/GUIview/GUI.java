@@ -36,10 +36,10 @@ public class GUI {
 		JLabel seedText = new JLabel("Seed: ");
 		JLabel strategyText = new JLabel("Strategy: ");
 
-		commercialSlider = new LabelledSlider("Commercial Probability: ", 0.1, 0, 10, 10);
-		gliderSlider = new LabelledSlider("Glider Probability: ", 0.002, 0, 10, 10);
-		lightSlider = new LabelledSlider("Light Probability: ", 0.005, 0, 10, 10);
-
+		commercialSlider = new LabelledSlider("Commercial Probability: ", 0.1, 0, 1000, 1000);
+		gliderSlider = new LabelledSlider("Glider Probability: ", 0.002, 0, 1000, 1000);
+		lightSlider = new LabelledSlider("Light Probability: ", 0.005, 0, 1000, 1000);
+		
 		strategy = new JComboBox(strategies);
 		seed = new JComboBox(seedSelection);
 		
@@ -111,9 +111,9 @@ public class GUI {
 		commandBox.add(lengthSlider, BorderLayout.NORTH);
 		commandBox.add(buttonBox, BorderLayout.SOUTH);
 
-		sliderBox.add(gliderSlider, BorderLayout.NORTH);
-		sliderBox.add(lightSlider, BorderLayout.CENTER);
-		sliderBox.add(commercialSlider, BorderLayout.SOUTH);
+		sliderBox.add(commercialSlider, BorderLayout.NORTH);
+		sliderBox.add(gliderSlider, BorderLayout.CENTER);
+		sliderBox.add(lightSlider, BorderLayout.SOUTH);
 
 		mainFrame.getContentPane().add(commandBox, BorderLayout.EAST);
 		mainFrame.getContentPane().add(sliderBox, BorderLayout.WEST);
