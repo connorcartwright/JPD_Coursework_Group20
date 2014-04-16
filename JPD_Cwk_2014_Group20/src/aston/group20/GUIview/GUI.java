@@ -28,6 +28,7 @@ public class GUI {
 	private static final int padding = 5; // blank space for layout management
 	private boolean reportOpen = false;
 	private boolean longReportOpen = false;
+	protected Component errorFrame;
 
 	public GUI(Simulator sim) {
 		this.sim = sim;
@@ -38,7 +39,7 @@ public class GUI {
 		JLabel seedText = new JLabel("Seed: ");
 		JLabel strategyText = new JLabel("Strategy: ");
 
-		commercialSlider = new LabelledSlider("Commercial Probability: ", 0.1, 0, 1000, 1000);
+		commercialSlider = new LabelledSlider("Commercial Probability (p): ", 0.1, 0, 1000, 1000);
 		gliderSlider = new LabelledSlider("Glider Probability: ", 0.002, 0, 1000, 1000);
 		lightSlider = new LabelledSlider("Light Probability: ", 0.005, 0, 1000, 1000);
 		
@@ -71,13 +72,16 @@ public class GUI {
 		commercialSlider.setPreferredSize(new Dimension(275, 70));
 		
 		strategy.setPreferredSize(new Dimension(180, 32));
+		strategy.setToolTipText("Select the scheduling strategy to be used.");
 		((JLabel)strategy.getRenderer()).setHorizontalAlignment(JLabel.CENTER);
 		seed.setPreferredSize(new Dimension(60, 32));
+		seed.setToolTipText("Select the seed the random number generator will use.");
 		((JLabel)seed.getRenderer()).setHorizontalAlignment(JLabel.CENTER);
+		
 		
 		// Step 3: Create containers to hold the components
 		mainFrame = new JFrame("100/100 Airport Simulator");
-		mainFrame.getContentPane().setBackground(new Color(0, 178, 238));
+		mainFrame.getContentPane().setBackground(new Color(61, 145, 64));
 		mainFrame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		mainFrame.setPreferredSize(new Dimension(800, 260));
 		mainFrame.setResizable(false);
@@ -128,9 +132,16 @@ public class GUI {
 				if (reportOpen) {
 					// do nothing if the report window is already open.
 				} else {
-					resetSimulation(); // reset the simulation/clear previous results
-					openReport(); // open the report window
-					runSimulation(); // and run the simulation
+					if (commercialSlider.getValue() + gliderSlider.getValue() + lightSlider.getValue() > 1) {
+						JOptionPane.showMessageDialog(errorFrame,
+							    "The combined probabilties cannot be more than 1. \n Please adjust the values.",
+							    "Aircraft Probability Error",
+							    JOptionPane.ERROR_MESSAGE);
+					} else {
+						resetSimulation(); // reset the simulation/clear previous results
+						openReport(); // open the report window
+						runSimulation(); // and run the simulation
+					}
 				}
 			}
 		});
@@ -261,12 +272,14 @@ public class GUI {
 		longReportOpen = true;
 		// Step 1: create the components
 		JScrollPane listScroller = new JScrollPane(longResults);
-		listScroller.setPreferredSize(new Dimension(620, 500));
+		listScroller.setPreferredSize(new Dimension(620, 506));
 		final JFrame longReportFrame = new JFrame("Detailed Results");
 		JButton closeButton = new JButton("Close");
+		JButton saveFileButton = new JButton("Save to file");
 		
 		// Step 2: Set the properties of the components
 		closeButton.setToolTipText("Close this window.");
+		saveFileButton.setToolTipText("Save the results of the simulation to a text file.");
 
 		// Step 3: Create containers to hold the components
 		longReportFrame.setPreferredSize(new Dimension(880, 600));
@@ -287,6 +300,7 @@ public class GUI {
 
 		// Step 5: Add components to containers
 		reportPanel.add(listScroller, BorderLayout.NORTH);
+		buttonPanel.add(saveFileButton);
 		buttonPanel.add(closeButton);
 		longReportFrame.getContentPane().add(reportPanel, BorderLayout.NORTH);
 		longReportFrame.getContentPane().add(buttonPanel, BorderLayout.CENTER);
