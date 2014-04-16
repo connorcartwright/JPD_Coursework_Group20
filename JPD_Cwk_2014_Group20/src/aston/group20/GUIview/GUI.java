@@ -15,6 +15,7 @@ public class GUI {
 
 	private JFrame mainFrame;
 	private JTextArea results;
+	private JTextArea longResults;
 	private LabelledSlider lengthSlider; // how long the simulation will run for
 	private LabelledSlider commercialSlider;
 	private LabelledSlider gliderSlider;
@@ -26,6 +27,7 @@ public class GUI {
 			19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40 };
 	private static final int padding = 5; // blank space for layout management
 	private boolean reportOpen = false;
+	private boolean longReportOpen = false;
 
 	public GUI(Simulator sim) {
 		this.sim = sim;
@@ -45,6 +47,8 @@ public class GUI {
 		
 		results = new JTextArea();
 		results.setEditable(false);
+		longResults = new JTextArea();
+		longResults.setEditable(false);
 
 		// Step 2: Set the properties of the components
 		lengthSlider = new LabelledSlider("Simulation Length: ", 2880, 60, 10000, 1);
@@ -175,14 +179,16 @@ public class GUI {
 		final JFrame reportFrame = new JFrame("Simulation Results");
 		JButton runAgainButton = new JButton("Run Again");
 		JButton closeButton = new JButton("Close");
+		JButton detailsButton = new JButton("Details");
 
 		// Step 2: Set the properties of the components
 		closeButton.putClientProperty(reportFrameString, reportFrame);
 		closeButton.setToolTipText("Close this window.");
 		runAgainButton.setToolTipText("Run the simulation again.");
+		detailsButton.setToolTipText("Show a more detailed report.");
 
 		// Step 3: Create containers to hold the components
-		reportFrame.setPreferredSize(new Dimension(240, 240));
+		reportFrame.setPreferredSize(new Dimension(240, 270));
 		reportFrame.setResizable(false);
 		reportFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -200,10 +206,11 @@ public class GUI {
 
 		// Step 5: Add components to containers
 		reportPanel.add(listScroller, BorderLayout.NORTH);
+		buttonPanel.add(detailsButton);
 		buttonPanel.add(runAgainButton);
 		buttonPanel.add(closeButton);
 		reportFrame.getContentPane().add(reportPanel, BorderLayout.NORTH);
-		reportFrame.getContentPane().add(buttonPanel, BorderLayout.SOUTH);
+		reportFrame.getContentPane().add(buttonPanel, BorderLayout.CENTER);
 
 		// Step 6: Arrange to handle events in the user interface
 
@@ -224,6 +231,19 @@ public class GUI {
 			}
 		});
 		
+		detailsButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(longReportOpen) {
+					// do nothing if the window is already open.
+				}
+				else {
+					longResults.setText(null);
+					longResults.append(sim.getLongReport().toString());
+					openLongReport();
+				}
+			}
+		});
+		
 		reportFrame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				reportOpen = false;
@@ -235,6 +255,65 @@ public class GUI {
 		reportFrame.pack();
 		centreWindow(reportFrame);
 		reportFrame.setVisible(true);
+	}
+	
+	private void openLongReport() {
+		longReportOpen = true;
+		// Step 1: create the components
+		JScrollPane listScroller = new JScrollPane(longResults);
+		listScroller.setPreferredSize(new Dimension(620, 500));
+		final JFrame longReportFrame = new JFrame("Detailed Results");
+		JButton closeButton = new JButton("Close");
+		
+		// Step 2: Set the properties of the components
+		closeButton.setToolTipText("Close this window.");
+
+		// Step 3: Create containers to hold the components
+		longReportFrame.setPreferredSize(new Dimension(880, 600));
+		longReportFrame.setResizable(false);
+		longReportFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+
+		JPanel reportPanel = new JPanel();
+		JPanel buttonPanel = new JPanel();
+		
+		// Step 4: Specify LayoutManagers
+		reportPanel.setLayout(new BorderLayout());
+		reportPanel.setBorder(new EmptyBorder(padding, padding, padding, padding));
+		buttonPanel.setLayout(new FlowLayout());
+		buttonPanel.setBorder(new EmptyBorder(padding, padding, padding, padding));
+		longReportFrame.getContentPane().setLayout(new BorderLayout());
+		((JComponent) longReportFrame.getContentPane()).setBorder(new EmptyBorder(
+				padding, padding, padding, padding));
+
+		// Step 5: Add components to containers
+		reportPanel.add(listScroller, BorderLayout.NORTH);
+		buttonPanel.add(closeButton);
+		longReportFrame.getContentPane().add(reportPanel, BorderLayout.NORTH);
+		longReportFrame.getContentPane().add(buttonPanel, BorderLayout.CENTER);
+		
+		// Step 6: Arrange to handle events in the user interface
+
+		closeButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JComponent c = (JComponent) e.getSource();
+				longReportFrame.dispose();
+				longReportOpen = false;
+			}
+		});
+
+		
+		longReportFrame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				longReportOpen = false;
+			}
+		});
+		
+		// Step 7: Display the GUI
+		longReportFrame.pack();
+		centreWindow(longReportFrame);
+		longReportFrame.setVisible(true);
+		
+		
 	}
 
 	private void runSimulation() {

@@ -40,20 +40,40 @@ public class Counter {
 		crashes++;
 	}
 	
+	public int getCrashes() {
+		return crashes;
+	}
+	
 	public void incrementTakeoffs() {
 		takeoffs++;
+	}
+	
+	public int getTakeoffs() {
+		return takeoffs;
 	}
 	
 	public void incrementLandings() {
 		landings++;
 	}
 	
+	public int getLandings() {
+		return landings;
+	}
+	
 	public void setFlying(int flying) {
 		this.flying = flying;
 	}
 	
+	public int getFlying() {
+		return flying;
+	}
+	
 	public void setGrounded(int grounded) {
 		this.grounded = grounded;
+	}
+	
+	public int getGrounded() {
+		return grounded;
 	}
 	
 	public void clear() {
@@ -78,6 +98,17 @@ public class Counter {
 				"Planes still grounded: " + grounded + "\n" + 
 				"Planes still flying: " + flying + "\n"
 				);
+	}
+	
+	public String longReport() {
+		return ( 
+	    "       |       Grounded: " + grounded + 
+		"       |       Takeoffs: " + takeoffs +
+		"       |       Flying: " + flying +
+		"       |       Landings: " + landings +
+		"       |       Crashes: " + crashes +
+		"       |       Breakdowns: " + breakdowns
+		);
 	}
 
 }

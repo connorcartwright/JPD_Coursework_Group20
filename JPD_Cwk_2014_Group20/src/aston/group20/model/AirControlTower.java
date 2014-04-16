@@ -66,6 +66,8 @@ public class AirControlTower {
 				counter.incrementBreakdowns();
 			}
 		}
+		counter.setGrounded(outgoing.size());
+		counter.setFlying(incoming.size());
 	}
 	
 	/**
@@ -85,8 +87,6 @@ public class AirControlTower {
 		for(IAircraft a : brokenDown) {
 			counter.incrementWaitingTime(a.getWaitingTime());
 		}
-		counter.setGrounded(outgoing.size());
-		counter.setFlying(incoming.size());
 	}
 	
 	/**

@@ -14,6 +14,7 @@ public class Simulator {
 			new FuelStrategy()		
 	};
 	private int chosenStrategy;
+	private StringBuilder longResults;
 
 	public static void main(String[] args) {
 		if (args.length >= 1) {
@@ -28,6 +29,7 @@ public class Simulator {
 
 	public Simulator() {
 		airport = new Airport();
+		longResults = new StringBuilder();
 		reset();
 	}
 
@@ -43,7 +45,8 @@ public class Simulator {
 	public void simulateOneStep() {
 		generateAircraft();
 		airport.schedule();
-		System.out.println(step);
+		longResults.append(printLongReport());
+		System.out.println(printLongReport());
 	}
 
 	private void generateAircraft() {
@@ -62,6 +65,7 @@ public class Simulator {
 	public void reset() {
 		step = 0;
 		airport.getACT().clear();
+		longResults.setLength(0);
 	}
 	
 	public String getResults() {
@@ -82,6 +86,14 @@ public class Simulator {
 	
 	public void setSeed(int seed) {
 		rand.setSeed(seed);
+	}
+	
+	public String printLongReport() {
+		return ("Step: " + step + airport.getACT().getCounter().longReport() + "\n");	
+	}
+	
+	public StringBuilder getLongReport() {
+		return longResults;//longReport;
 	}
 	
 }
