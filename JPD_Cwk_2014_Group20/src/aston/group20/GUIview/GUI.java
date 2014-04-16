@@ -12,22 +12,16 @@ import javax.swing.border.*;
 public class GUI {
 
 	private Simulator sim;
-
 	private JFrame mainFrame;
-	private JTextArea results;
-	private JTextArea longResults;
-	private LabelledSlider lengthSlider; // how long the simulation will run for
-	private LabelledSlider commercialSlider;
-	private LabelledSlider gliderSlider;
-	private LabelledSlider lightSlider; 
+	private JTextArea results, longResults;
+	private LabelledSlider commercialSlider, gliderSlider, lightSlider, lengthSlider;
 	private JComboBox<String> strategy; // lets the user select the strategy to be used
 	private JComboBox<Integer> seed;
 	private String[] strategies = { "Waiting Time Strategy", "Fuel Strategy" }; // add more strategies here when needed in the future
 	private Integer[] seedSelection = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 
 			19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40 };
 	private static final int padding = 5; // blank space for layout management
-	private boolean reportOpen = false;
-	private boolean longReportOpen = false;
+	private boolean reportOpen, longReportOpen = false;
 	protected Component errorFrame;
 
 	public GUI(Simulator sim) {
@@ -309,9 +303,14 @@ public class GUI {
 
 		closeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JComponent c = (JComponent) e.getSource();
 				longReportFrame.dispose();
 				longReportOpen = false;
+			}
+		});
+		
+		saveFileButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			    JFileChooser saveFile = new JFileChooser();
 			}
 		});
 
