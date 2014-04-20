@@ -1,6 +1,6 @@
 package aston.group20.GUIview;
 
-import aston.group20.model.Simulator;
+import aston.group20.model.Simulator; // importing required resources
 
 import java.awt.*;
 import java.awt.event.*;
@@ -11,6 +11,17 @@ import java.io.FileWriter;
 import javax.swing.*;
 import javax.swing.border.*;
 
+/**
+ * The GUI class is used to provide the user with a graphical interface
+ * so that they can interact with the program. It allows them to change the 
+ * various probabilities of creating aircraft as well as the length of the simulation.
+ * It gives them both a brief and a detailed view of the results of the simulation, and
+ * also allows the user to save the detailed information to a text file in a location
+ * of their choice.
+ *
+ * @author Group_20
+ * @version 1.0, April 2014
+ */
 public class GUI {
 
 	private Simulator sim; // the simulator to be used
@@ -26,6 +37,13 @@ public class GUI {
 	private boolean reportOpen, longReportOpen = false; // initialising so that we know the report frames aren't open
 	protected Component errorFrame; // used when producing the error message
 
+    /**
+     * Creating a new AirControlTower, which will initialise the queues
+     * and set the strategy for how to manage the Incoming aircraft.
+     * 
+     * @param sim the Simulator that will be used for the GUI
+     * @see Simulator to understand the methods used
+     */
 	public GUI(Simulator sim) {
 		this.sim = sim;
 
@@ -162,19 +180,12 @@ public class GUI {
 	}
 
 	/**
-	 * Helper method to ensure consistency in leaving application.
+	 * This method is called from the action listener on the Run button in 
+	 * the GUI constructor/on the mainframe. It opens the smaller of the two report windows, 
+	 * which shows short details regarding the currently run simulation. Buttons
+	 * will be included which allow the user to run the simulation again, as well as
+	 * one that will allow the user to show more detailed information about the simulation.
 	 */
-	private void exitApp() {
-		// Display confirmation dialog before exiting application
-		int response = JOptionPane.showConfirmDialog(mainFrame,
-				"Do you really want to quit?", "Quit?",
-				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-		if (response == JOptionPane.YES_OPTION) {
-			System.exit(0);
-		}
-		// Don't quit
-	}
-
 	private void openReport() {
 		reportOpen = true;
 		final String reportFrameString = "ReportFrame"; // Used to find client property
@@ -269,6 +280,13 @@ public class GUI {
 		reportFrame.setVisible(true); // and make it visible
 	}
 
+	/**
+	 * This method is called from the action listener on the Details button in
+	 * the openReport method/window. It opens the larger of the two report windows,
+	 * which displays detailed information regarding the currently run simulation. Buttons
+	 * are included that allow the user to save the results of the simulation to a text file 
+	 * of their choice, as well as one that will return the user to the smaller report window.
+	 */
 	private void openLongReport() {
 		longReportOpen = true;
 		// Step 1: create the components
@@ -347,11 +365,37 @@ public class GUI {
 
 	}
 
+	/**
+	 * Helper method to ensure consistency in leaving application.
+	 */
+	private void exitApp() {
+		// Display confirmation dialog before exiting application
+		int response = JOptionPane.showConfirmDialog(mainFrame,
+				"Do you really want to quit?", "Quit?",
+				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+		if (response == JOptionPane.YES_OPTION) {
+			System.exit(0);
+		}
+		// Don't quit
+	}
+	
+	/**
+	 * This method is called when the simulation is required to run, e.g. when the
+	 * Run button is pressed on the mainframe, or when the Run Again button is 
+	 * pressed on the smaller report window. It runs the simulation for the value
+	 * selected on the length slider, and adds the results to the results text area.
+	 * 
+	 */
 	private void runSimulation() {
 		sim.simulate((int) lengthSlider.getValue());
 		results.append(sim.getResults());
 	}
 
+	/**
+	 * This method is called when the simulation is first run, or is rerun, so that the
+	 * the changes to the mainframe can be accounted for, e.g. a change in the seed or 
+	 * strategy. It resets the simulation, updates the variables and clears the report text.
+	 */
 	private void resetSimulation() {
 		setSeed();
 		setStrategy();
@@ -360,11 +404,27 @@ public class GUI {
 		results.setText(null);
 	}
 
+	/**
+	 * This method is called from the resetSimulation method; it gets the value
+	 * of the three probability sliders (commercial, glider, light) and applies those
+	 * values to the Simulation variable using the setProbabilities method.
+	 * 
+	 * @see resetSimulation
+	 * @see setProbabilities
+	 */
 	private void setProbabilities() {
 		sim.setProbabilities(commercialSlider.getValue(),
 				gliderSlider.getValue(), lightSlider.getValue());
 	}
 
+	/**
+	 * This method is called from the resetSimulation method; it gets the selected 
+	 * index of the strategy combo box and then selects that strategy in the Simulation
+	 * class.
+	 * 
+	 * @see resetSimulation
+	 * @see setStrategy in the Simulation class.
+	 */
 	private void setStrategy() {
 		switch (strategy.getSelectedIndex()) {
 		case 0:
@@ -373,15 +433,29 @@ public class GUI {
 		case 1:
 			sim.setStrategy(1);
 			break;
-		case 2: // new Strategy here;
+		case 2: // new Strategy here when required;
 			break;
 		}
 	}
 
+	/**
+	 * This method is called from the resetSimulation method; it gets the selected
+	 * index of the seed combo box and then applies that seed to the 'sim' Simulation 
+	 * object.
+	 * 
+	 * @see resetSimulation
+	 * @see setSeed
+	 */
 	private void setSeed() {
 		sim.setSeed(seed.getSelectedIndex());
 	}
 
+	/**
+	 * This method is called from the longReport window/the openLongReport method. 
+	 * It is essentially used as the header of the report to display summary information.
+	 * It is very useful for saved text files, as the user can see what seed/probabilities/etc
+	 * was used for a simulation.
+	 */
 	private String getSimulationDetails() {
 		return (" Simulation Length:  " + (int) lengthSlider.getValue() + "     |     " + 
 	            "Strategy:  " + strategy.getSelectedItem() + "     |     " + 
@@ -391,7 +465,14 @@ public class GUI {
 	            "Light Probability: " + lightSlider.getValue() + "\n \n");
 	}
 
-	public static void centreWindow(Window frame) {
+	/**
+	 * This method centres the GUI window and works on all screen sizes.
+	 * With credit to Don @ StackOverflow.
+	 * 
+	 * @param frame the window/frame to be centred
+	 * @see http://stackoverflow.com/questions/144892/how-to-center-a-window-in-java
+	 */
+	private static void centreWindow(Window frame) {
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		int x = (int) ((dimension.getWidth() - frame.getWidth()) / 2);
 		int y = (int) ((dimension.getHeight() - frame.getHeight()) / 2);
