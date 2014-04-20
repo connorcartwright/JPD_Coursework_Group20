@@ -18,7 +18,7 @@ public abstract class PoweredAircraft extends Aircraft {
 	 * Initialising a new aircraft; each aircraft has a certain 
 	 * level of fuel, as well as a take off and landing time. 
 	 * 
-	 * @param takeOffTime the time it will take for the aircraft to take off
+	 * @param takeoffTime the time it will take for the aircraft to take off
 	 * @param landingTime the time it will take for the aircraft to land
 	 * @param fuelLevel the time the aircraft can fly for
 	 */

@@ -1,14 +1,17 @@
 package aston.group20.model;
 
 /**
-* The Commercial Aircraft class that sets the times for landing, taking off and flying.
-* fulfills the inheritence of the PoweredAircraft
-* @see PoweredAicraft
-*
-* @author Group_20
-* @version 1.0, March 2014
-*
-*/
+ * This class defines the characteristics of Commercial Aircraft, including the landing time,
+ * the takeoff time and the length of time that it can fly for/it's fuel level. It extends
+ * the abstract class PoweredAircraft and is a concrete subclass.
+ * 
+ * @see PoweredAircraft
+ *
+ * @author Group_20
+ * @version 1.0, March 2014
+ *
+ */
+
 
 public class CommercialAircraft extends PoweredAircraft {
 	

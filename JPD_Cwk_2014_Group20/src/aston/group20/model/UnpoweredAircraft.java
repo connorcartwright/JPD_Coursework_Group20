@@ -10,9 +10,9 @@ package aston.group20.model;
 *
 */
 
-public class Unpowered_Aircraft extends Aircraft {
+public class UnpoweredAircraft extends Aircraft {
 	
-	public Unpowered_Aircraft(int landingTime, int takeoffTime) {
+	public UnpoweredAircraft(int landingTime, int takeoffTime) {
 		super(landingTime, takeoffTime);
 	}
 

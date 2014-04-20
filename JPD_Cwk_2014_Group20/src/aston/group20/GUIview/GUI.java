@@ -24,7 +24,11 @@ import javax.swing.border.*;
  */
 public class GUI {
 
-	private Simulator sim; // the simulator to be used
+	/**
+	* The Simulator to be used for the GUI.
+	* @see Simulator
+	*/
+	private Simulator sim;
 	private JFrame mainFrame; // the mainframe/backbone of the GUI
 	private JTextArea results, longResults; // text areas for the report and long report frames
 	private LabelledSlider commercialSlider, gliderSlider, lightSlider, lengthSlider; // sliders for the mainframe
@@ -409,8 +413,8 @@ public class GUI {
 	 * of the three probability sliders (commercial, glider, light) and applies those
 	 * values to the Simulation variable using the setProbabilities method.
 	 * 
-	 * @see resetSimulation
-	 * @see setProbabilities
+	 * @see #resetSimulation()
+	 * @see Simulator#setProbabilities(double, double, double)
 	 */
 	private void setProbabilities() {
 		sim.setProbabilities(commercialSlider.getValue(),
@@ -422,8 +426,8 @@ public class GUI {
 	 * index of the strategy combo box and then selects that strategy in the Simulation
 	 * class.
 	 * 
-	 * @see resetSimulation
-	 * @see setStrategy in the Simulation class.
+	 * @see #resetSimulation()
+	 * @see Simulator#setStrategy(int) in the Simulator class.
 	 */
 	private void setStrategy() {
 		switch (strategy.getSelectedIndex()) {
@@ -443,8 +447,8 @@ public class GUI {
 	 * index of the seed combo box and then applies that seed to the 'sim' Simulation 
 	 * object.
 	 * 
-	 * @see resetSimulation
-	 * @see setSeed
+	 * @see #resetSimulation()
+	 * @see Simulator#setSeed(int)
 	 */
 	private void setSeed() {
 		sim.setSeed(seed.getSelectedIndex());
@@ -470,7 +474,7 @@ public class GUI {
 	 * With credit to Don @ StackOverflow.
 	 * 
 	 * @param frame the window/frame to be centred
-	 * @see http://stackoverflow.com/questions/144892/how-to-center-a-window-in-java
+	 * @link http://stackoverflow.com/questions/144892/how-to-center-a-window-in-java
 	 */
 	private static void centreWindow(Window frame) {
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();

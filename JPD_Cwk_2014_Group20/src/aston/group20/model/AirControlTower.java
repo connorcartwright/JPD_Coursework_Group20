@@ -39,7 +39,7 @@ public class AirControlTower {
 	 * queue and vice versa. It may also remove Aircraft from the Incoming queue if
 	 * the plane does not have enough fuel left to land.
 	 * 
-	 * @see Aircraft.step
+	 * @see Aircraft#step()
 	 */
 	public void step() {
 		for (IAircraft a : brokenDown.toArray(new IAircraft[brokenDown.size()])) { // call the step method for all brokenDown planes;
