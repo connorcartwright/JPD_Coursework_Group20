@@ -102,6 +102,7 @@ public class Counter {
 	
 	public String longReport() {
 		return ( 
+		"       |       Total Planes: " + totalPlanes + 
 	    "       |       Grounded: " + grounded + 
 		"       |       Takeoffs: " + takeoffs +
 		"       |       Flying: " + flying +

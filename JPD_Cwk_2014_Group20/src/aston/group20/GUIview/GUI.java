@@ -5,134 +5,136 @@ import aston.group20.model.Simulator;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.Color;
+import java.io.File;
+import java.io.FileWriter;
 
 import javax.swing.*;
 import javax.swing.border.*;
 
 public class GUI {
 
-	private Simulator sim;
-	private JFrame mainFrame;
-	private JTextArea results, longResults;
-	private LabelledSlider commercialSlider, gliderSlider, lightSlider, lengthSlider;
+	private Simulator sim; // the simulator to be used
+	private JFrame mainFrame; // the mainframe/backbone of the GUI
+	private JTextArea results, longResults; // text areas for the report and long report frames
+	private LabelledSlider commercialSlider, gliderSlider, lightSlider, lengthSlider; // sliders for the mainframe
 	private JComboBox<String> strategy; // lets the user select the strategy to be used
-	private JComboBox<Integer> seed;
+	private JComboBox<Integer> seed; // lets the user select the seed to be used
 	private String[] strategies = { "Waiting Time Strategy", "Fuel Strategy" }; // add more strategies here when needed in the future
-	private Integer[] seedSelection = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 
-			19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40 };
+	private Integer[] seedSelection = new Integer[100]; // array holding the seed numbers
+	{  for(int i = 0; i < 100; i++) { seedSelection[i] = i+1; } }; // populating the seed array
 	private static final int padding = 5; // blank space for layout management
-	private boolean reportOpen, longReportOpen = false;
-	protected Component errorFrame;
+	private boolean reportOpen, longReportOpen = false; // initialising so that we know the report frames aren't open
+	protected Component errorFrame; // used when producing the error message
 
 	public GUI(Simulator sim) {
 		this.sim = sim;
 
 		// Step 1: create the components
-		JButton runButton = new JButton("Run Simulation");
+		JButton runButton = new JButton("Run Simulation"); // creating/initialising the mainframe buttons
 		JButton quitButton = new JButton("Quit");
-		JLabel seedText = new JLabel("Seed: ");
+		JLabel seedText = new JLabel("Seed: "); // creating/initialising the mainframe labels
 		JLabel strategyText = new JLabel("Strategy: ");
 
-		commercialSlider = new LabelledSlider("Commercial Probability (p): ", 0.1, 0, 1000, 1000);
-		gliderSlider = new LabelledSlider("Glider Probability: ", 0.002, 0, 1000, 1000);
-		lightSlider = new LabelledSlider("Light Probability: ", 0.005, 0, 1000, 1000);
-		
-		strategy = new JComboBox(strategies);
-		seed = new JComboBox(seedSelection);
-		
-		results = new JTextArea();
+		lengthSlider = new LabelledSlider("Simulation Length: ", 2880, 60, 10000, 1); // initialising the sliders
+		commercialSlider = new LabelledSlider("Commercial Probability (p): ",0.1, 0, 1000, 1000); // initialising the sliders
+		gliderSlider = new LabelledSlider("Glider Probability: ", 0.002, 0,1000, 1000); // initialising the sliders
+		lightSlider = new LabelledSlider("Light Probability: ", 0.005, 0, 1000, 1000); // initialising the sliders
+
+		strategy = new JComboBox<String>(strategies); // initialising the combo boxes
+		seed = new JComboBox<Integer>(seedSelection); // initialising the combo boxes
+
+		results = new JTextArea(); // initialising the text areas and making them uneditable
 		results.setEditable(false);
-		longResults = new JTextArea();
+		longResults = new JTextArea(); // initialising the text areas and making them uneditable
 		longResults.setEditable(false);
 
 		// Step 2: Set the properties of the components
-		lengthSlider = new LabelledSlider("Simulation Length: ", 2880, 60, 10000, 1);
-		lengthSlider.setToolTipText("Used to set the simulation length in half minutes.");
-		lengthSlider.setMajorTickSpacing(720); // 6 hours
-		lengthSlider.setPreferredSize(new Dimension(500, 80));
-
-		runButton.setToolTipText("Run the simulation.");
+		runButton.setToolTipText("Run the simulation."); // setting the tooltip of the buttons and their preferred size
 		runButton.setPreferredSize(new Dimension(140, 34));
-		quitButton.setToolTipText("Exit the application.");
+		quitButton.setToolTipText("Exit the application."); // setting the tooltip of the buttons and their preferred size
 		quitButton.setPreferredSize(new Dimension(100, 34));
-
-		gliderSlider.setToolTipText("Used to set the probability of generating a glider.");
-		gliderSlider.setPreferredSize(new Dimension(275, 70));
-
-		lightSlider.setToolTipText("Used to set the probability of generating a light aircraft.");
-		lightSlider.setPreferredSize(new Dimension(275, 70));
+		
+		lengthSlider.setToolTipText("Used to set the simulation length in half minutes.");
+		lengthSlider.setMajorTickSpacing(720); // 6 hour major spacing
+		lengthSlider.setPreferredSize(new Dimension(500, 80)); // setting the preferred size of the length slider
 
 		commercialSlider.setToolTipText("Used to set the probability of generating a commercial aircraft.");
-		commercialSlider.setPreferredSize(new Dimension(275, 70));
+		commercialSlider.setPreferredSize(new Dimension(275, 70)); // setting the preferred size of the commercial slider
 		
-		strategy.setPreferredSize(new Dimension(180, 32));
-		strategy.setToolTipText("Select the scheduling strategy to be used.");
-		((JLabel)strategy.getRenderer()).setHorizontalAlignment(JLabel.CENTER);
-		seed.setPreferredSize(new Dimension(60, 32));
-		seed.setToolTipText("Select the seed the random number generator will use.");
-		((JLabel)seed.getRenderer()).setHorizontalAlignment(JLabel.CENTER);
-		
-		
-		// Step 3: Create containers to hold the components
-		mainFrame = new JFrame("100/100 Airport Simulator");
-		mainFrame.getContentPane().setBackground(new Color(61, 145, 64));
-		mainFrame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-		mainFrame.setPreferredSize(new Dimension(800, 260));
-		mainFrame.setResizable(false);
+		gliderSlider.setToolTipText("Used to set the probability of generating a glider.");
+		gliderSlider.setPreferredSize(new Dimension(275, 70)); // setting the preferred size of the glider slider
 
-		JPanel commandBox = new JPanel();
-		JPanel sliderBox = new JPanel();
-		JPanel buttonBox = new JPanel();
-		JPanel comboHolder = new JPanel();
+		lightSlider.setToolTipText("Used to set the probability of generating a light aircraft.");
+		lightSlider.setPreferredSize(new Dimension(275, 70)); // setting the preferred size of the light slider 
+
+		strategy.setPreferredSize(new Dimension(180, 32)); // setting the preferred size of the strategy combo box
+		strategy.setToolTipText("Select the scheduling strategy to be used."); // setting the tooltip of the strategy combo box
+		((JLabel) strategy.getRenderer()).setHorizontalAlignment(JLabel.CENTER); // centering the text in the strategy combo box
+		seed.setPreferredSize(new Dimension(60, 32)); // setting the preferred size of the seed combo box
+		seed.setToolTipText("Select the seed the random number generator will use."); // setting the tooltip of the seed combo box
+		((JLabel) seed.getRenderer()).setHorizontalAlignment(JLabel.CENTER); // centering the text in the seed combo box
+
+		// Step 3: Create containers to hold the components
+		mainFrame = new JFrame("100/100 Airport Simulator"); // initialising the mainframe
+		mainFrame.getContentPane().setBackground(new Color(61, 145, 64)); // setting the background colour of the mainframe
+		mainFrame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE); // setting the default close operation
+		mainFrame.setPreferredSize(new Dimension(800, 260)); // setting the preferred size
+		mainFrame.setResizable(false); // making it so that the frame cannot be resized, making the preferred size the fixed size.
+
+		JPanel commandBox = new JPanel(); // initialising the panels that will be present on the mainframe
+		JPanel sliderBox = new JPanel(); // that will hold the components that need to be used
+		JPanel buttonBox = new JPanel(); // initialising the panels that will be present on the mainframe
+		JPanel comboHolder = new JPanel(); // that will hold the components that need to be used
 
 		// Step 4: Specify LayoutManagers
-		mainFrame.getContentPane().setLayout(new BorderLayout());
+		mainFrame.getContentPane().setLayout(new BorderLayout()); // set the layout for the mainframe
 		((JPanel) mainFrame.getContentPane()).setBorder(new EmptyBorder(padding, padding, padding, padding));
-		
-		commandBox.setLayout(new BorderLayout());
+
+		commandBox.setLayout(new BorderLayout()); // set the layout for the command panel
 		commandBox.setBorder(new EmptyBorder(padding, padding, padding, padding));
-		
-	    sliderBox.setLayout(new BorderLayout());
+
+		sliderBox.setLayout(new BorderLayout()); // set the layout for the slider panel
 		sliderBox.setBorder(new EmptyBorder(padding, padding, padding, padding));
-		
-		buttonBox.setLayout(new BorderLayout());
+
+		buttonBox.setLayout(new BorderLayout()); // set the layout for the button panel
 		buttonBox.setBorder(new EmptyBorder(padding, padding, padding, padding));
-		
-		comboHolder.setLayout(new FlowLayout());
+
+		comboHolder.setLayout(new FlowLayout()); // set the layout for the combo panel
 		comboHolder.setBorder(new EmptyBorder(20, padding, padding, padding));
-		
-		buttonBox.add(runButton, BorderLayout.WEST);
-		buttonBox.add(quitButton, BorderLayout.EAST);
-		
-		comboHolder.add(strategyText);
-		comboHolder.add(strategy);
-		comboHolder.add(seedText);
-		comboHolder.add(seed);
-		
-		commandBox.add(comboHolder, BorderLayout.CENTER);
-		commandBox.add(lengthSlider, BorderLayout.NORTH);
-		commandBox.add(buttonBox, BorderLayout.SOUTH);
 
-		sliderBox.add(commercialSlider, BorderLayout.NORTH);
-		sliderBox.add(gliderSlider, BorderLayout.CENTER);
-		sliderBox.add(lightSlider, BorderLayout.SOUTH);
+		buttonBox.add(runButton, BorderLayout.WEST); // adding the buttons to the button panel
+		buttonBox.add(quitButton, BorderLayout.EAST); // adding the buttons to the button panel
 
-		mainFrame.getContentPane().add(commandBox, BorderLayout.EAST);
-		mainFrame.getContentPane().add(sliderBox, BorderLayout.WEST);
+		comboHolder.add(strategyText); // adding the text/combo boxes to the combo panel
+		comboHolder.add(strategy); // adding the text/combo boxes to the combo panel
+		comboHolder.add(seedText); // adding the text/combo boxes to the combo panel
+		comboHolder.add(seed); // adding the text/combo boxes to the combo panel
+
+		commandBox.add(lengthSlider, BorderLayout.NORTH); // adding the length slider to the command panel at the top
+		commandBox.add(comboHolder, BorderLayout.CENTER); // adding the combo panel to the command panel at the middle
+		commandBox.add(buttonBox, BorderLayout.SOUTH); // adding the button panel to the command panel at the bottom
+
+		sliderBox.add(commercialSlider, BorderLayout.NORTH); // adding the sliders to the slider panel
+		sliderBox.add(gliderSlider, BorderLayout.CENTER); // adding the sliders to the slider panel
+		sliderBox.add(lightSlider, BorderLayout.SOUTH); // adding the sliders to the slider panel
+
+		mainFrame.getContentPane().add(commandBox, BorderLayout.EAST); // adding the command box to the right of the mainframe
+		mainFrame.getContentPane().add(sliderBox, BorderLayout.WEST); // adding the slider box to the left of the mainframe
 
 		// Step 6: Arrange to handle events in the user interface
 		runButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (reportOpen) {
 					// do nothing if the report window is already open.
-				} else {
-					if (commercialSlider.getValue() + gliderSlider.getValue() + lightSlider.getValue() > 1) {
-						JOptionPane.showMessageDialog(errorFrame,
-							    "The combined probabilties cannot be more than 1. \n Please adjust the values.",
-							    "Aircraft Probability Error",
-							    JOptionPane.ERROR_MESSAGE);
-					} else {
-						resetSimulation(); // reset the simulation/clear previous results
+				} 
+				else {
+					if (commercialSlider.getValue() + gliderSlider.getValue() + lightSlider.getValue() > 1) { // if the combined probabilities are more than 1 / ineligble
+						JOptionPane.showMessageDialog(errorFrame, // then show an informative error message
+								"The combined probabilties cannot be more than 1. \n Please adjust the values.",
+								"Aircraft Probability Error", JOptionPane.ERROR_MESSAGE);
+					} 
+					else {
+						resetSimulation(); // ELSE, reset the simulation / clear the previous results
 						openReport(); // open the report window
 						runSimulation(); // and run the simulation
 					}
@@ -142,20 +144,20 @@ public class GUI {
 
 		quitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				exitApp();
+				exitApp(); // run the exitApp method if the quit button is pressed
 			}
 		});
 
 		mainFrame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
-				exitApp();
+				exitApp(); // run the exitApp method if the window 'x' button is pressed
 			}
 		});
 
 		// Step 7: Display the GUI
-		mainFrame.pack();
-		centreWindow(mainFrame);
-		mainFrame.setVisible(true);
+		mainFrame.pack(); // build the mainframe
+		centreWindow(mainFrame); // centre the mainframe
+		mainFrame.setVisible(true); // and make it visible
 
 	}
 
@@ -176,12 +178,13 @@ public class GUI {
 	private void openReport() {
 		reportOpen = true;
 		final String reportFrameString = "ReportFrame"; // Used to find client property
-		
+
 		// Step 1: create the components
+		final JFrame reportFrame = new JFrame("Simulation Results");
 		JScrollPane listScroller = new JScrollPane(results);
 		listScroller.setPreferredSize(new Dimension(220, 150));
 		listScroller.setMinimumSize(new Dimension(220, 150));
-		final JFrame reportFrame = new JFrame("Simulation Results");
+		
 		JButton runAgainButton = new JButton("Run Again");
 		JButton closeButton = new JButton("Close");
 		JButton detailsButton = new JButton("Details");
@@ -194,27 +197,31 @@ public class GUI {
 
 		// Step 3: Create containers to hold the components
 		reportFrame.setPreferredSize(new Dimension(240, 270));
-		reportFrame.setResizable(false);
-		reportFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		reportFrame.setResizable(false); // make it so the frame can't be resized
+		reportFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); // setting default close operation
 
-		JPanel reportPanel = new JPanel();
-		JPanel buttonPanel = new JPanel();
+		JPanel reportPanel = new JPanel(); // creating the panel to hold the text
+		JPanel buttonPanel = new JPanel(); // creating the panel to hold the buttons
 
 		// Step 4: Specify LayoutManagers
-		reportPanel.setLayout(new BorderLayout());
-		reportPanel.setBorder(new EmptyBorder(padding, padding, padding, padding));
-		buttonPanel.setLayout(new FlowLayout());
-		buttonPanel.setBorder(new EmptyBorder(padding, padding, padding, padding));
-		reportFrame.getContentPane().setLayout(new BorderLayout());
+		reportFrame.getContentPane().setLayout(new BorderLayout()); // setting the layout for the report frame
 		((JComponent) reportFrame.getContentPane()).setBorder(new EmptyBorder(
 				padding, padding, padding, padding));
+		
+		reportPanel.setLayout(new BorderLayout()); // setting the layout for the panel holding the text
+		reportPanel.setBorder(new EmptyBorder(padding, padding, padding, padding));
+		
+		buttonPanel.setLayout(new FlowLayout()); // setting the layout for the panel holding the buttons
+		buttonPanel.setBorder(new EmptyBorder(padding, padding, padding, padding));
 
 		// Step 5: Add components to containers
-		reportPanel.add(listScroller, BorderLayout.NORTH);
-		buttonPanel.add(detailsButton);
+		reportPanel.add(listScroller, BorderLayout.NORTH); // add the text to the report panel
+		
+		buttonPanel.add(detailsButton); // adding the buttons to the button panel
 		buttonPanel.add(runAgainButton);
 		buttonPanel.add(closeButton);
-		reportFrame.getContentPane().add(reportPanel, BorderLayout.NORTH);
+		
+		reportFrame.getContentPane().add(reportPanel, BorderLayout.NORTH); // put the text/report at the top of the panel
 		reportFrame.getContentPane().add(buttonPanel, BorderLayout.CENTER);
 
 		// Step 6: Arrange to handle events in the user interface
@@ -223,114 +230,125 @@ public class GUI {
 			public void actionPerformed(ActionEvent e) {
 				JComponent c = (JComponent) e.getSource();
 				JFrame f = (JFrame) c.getClientProperty(reportFrameString);
-				f.dispose();
-				reportOpen = false;
-				resetSimulation();
+				f.dispose(); // close the window and switch focus back to the mainframe
+				reportOpen = false; // the report is no longer open
+				resetSimulation(); // reset the results of the window
 			}
 		});
 
 		runAgainButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				resetSimulation();
-				runSimulation();
+				resetSimulation(); // clear the results
+				runSimulation(); // and run the simulation
 			}
 		});
-		
+
 		detailsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(longReportOpen) {
+				if (longReportOpen) {
 					// do nothing if the window is already open.
-				}
-				else {
-					longResults.setText(null);
-					longResults.append(sim.getLongReport().toString());
-					openLongReport();
+				} else {
+					longResults.setText(null); // clear the text
+					longResults.append(getSimulationDetails()); // add the simulation details
+					longResults.append(sim.getLongReport().toString()); // add the simulation results
+					openLongReport(); // and open the long report frame
 				}
 			}
 		});
-		
+
 		reportFrame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
-				reportOpen = false;
-				resetSimulation();
+				reportOpen = false; // the report frame is no longer open
+				resetSimulation(); // reset the results
 			}
 		});
 
 		// Step 7: Display the GUI
-		reportFrame.pack();
-		centreWindow(reportFrame);
-		reportFrame.setVisible(true);
+		reportFrame.pack(); // pack the report frame
+		centreWindow(reportFrame); // centre the report frame
+		reportFrame.setVisible(true); // and make it visible
 	}
-	
+
 	private void openLongReport() {
 		longReportOpen = true;
 		// Step 1: create the components
-		JScrollPane listScroller = new JScrollPane(longResults);
-		listScroller.setPreferredSize(new Dimension(620, 506));
-		final JFrame longReportFrame = new JFrame("Detailed Results");
-		JButton closeButton = new JButton("Close");
-		JButton saveFileButton = new JButton("Save to file");
+		final JFrame longReportFrame = new JFrame("Detailed Results"); // creating the frame to be used
 		
+		JScrollPane listScroller = new JScrollPane(longResults); // creating the listscroller and setting the text it takes
+		
+		JButton closeButton = new JButton("Close"); // creating the buttons
+		JButton saveFileButton = new JButton("Save to file"); // creating the buttons
+
 		// Step 2: Set the properties of the components
-		closeButton.setToolTipText("Close this window.");
-		saveFileButton.setToolTipText("Save the results of the simulation to a text file.");
+		closeButton.setToolTipText("Close this window."); // setting the tooltip text of the buttons
+		saveFileButton.setToolTipText("Save the results of the simulation to a text file."); // setting the tooltip text of the buttons
+		
+		listScroller.setPreferredSize(new Dimension(620, 506)); // setting the preferred size of the listscroller
 
 		// Step 3: Create containers to hold the components
-		longReportFrame.setPreferredSize(new Dimension(880, 600));
-		longReportFrame.setResizable(false);
-		longReportFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		longReportFrame.setPreferredSize(new Dimension(1000, 600)); // setting the preferred/fixed size
+		longReportFrame.setResizable(false); // setting it so that the window can't be changed in size
+		longReportFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); // setting close operation
 
-		JPanel reportPanel = new JPanel();
-		JPanel buttonPanel = new JPanel();
+		JPanel reportPanel = new JPanel(); // create the panel to hold the text
+		JPanel buttonPanel = new JPanel(); // create the panel to hold the buttons
 		
 		// Step 4: Specify LayoutManagers
-		reportPanel.setLayout(new BorderLayout());
+		longReportFrame.getContentPane().setLayout(new BorderLayout()); // setting the layout for the long report frame
+		((JComponent) longReportFrame.getContentPane()).setBorder
+		(new EmptyBorder(padding, padding, padding, padding));
+		
+		reportPanel.setLayout(new BorderLayout()); // setting the layout for the area containing the text
 		reportPanel.setBorder(new EmptyBorder(padding, padding, padding, padding));
-		buttonPanel.setLayout(new FlowLayout());
+		
+		buttonPanel.setLayout(new FlowLayout()); // setting the layout for the area containing the buttons
 		buttonPanel.setBorder(new EmptyBorder(padding, padding, padding, padding));
-		longReportFrame.getContentPane().setLayout(new BorderLayout());
-		((JComponent) longReportFrame.getContentPane()).setBorder(new EmptyBorder(
-				padding, padding, padding, padding));
 
 		// Step 5: Add components to containers
-		reportPanel.add(listScroller, BorderLayout.NORTH);
-		buttonPanel.add(saveFileButton);
-		buttonPanel.add(closeButton);
-		longReportFrame.getContentPane().add(reportPanel, BorderLayout.NORTH);
-		longReportFrame.getContentPane().add(buttonPanel, BorderLayout.CENTER);
-		
-		// Step 6: Arrange to handle events in the user interface
+		reportPanel.add(listScroller, BorderLayout.NORTH); // adding the listScroller
+		buttonPanel.add(saveFileButton); // adding the save button
+		buttonPanel.add(closeButton); // adding the close button
+		longReportFrame.getContentPane().add(reportPanel, BorderLayout.NORTH); // put the text at the top
+		longReportFrame.getContentPane().add(buttonPanel, BorderLayout.CENTER); // put the buttons just below the text
 
+		// Step 6: Arrange to handle events in the user interface
 		closeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				longReportFrame.dispose();
-				longReportOpen = false;
-			}
-		});
-		
-		saveFileButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			    JFileChooser saveFile = new JFileChooser();
+				longReportFrame.dispose(); // switch focus back to the previous window
+				longReportOpen = false; // the longReport is no longer open
 			}
 		});
 
-		
-		longReportFrame.addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent e) {
-				longReportOpen = false;
+		saveFileButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser saveFile = new JFileChooser(); // create new file chooser
+				saveFile.setCurrentDirectory(new File("Documents")); // default location at My Documents
+				int retrieval = saveFile.showSaveDialog(null);
+				if (retrieval == JFileChooser.APPROVE_OPTION) { // if the user chose to save the file
+					try (FileWriter fw = new FileWriter(saveFile.getSelectedFile() + ".txt")) {
+						longResults.write(fw); // write the results to the file
+					} catch (Exception ex) {
+						ex.printStackTrace(); // else print details as to why it didn't work
+					}
+				}
 			}
 		});
-		
+
+		longReportFrame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				longReportOpen = false; // the longReport is no longer open
+			}
+		});
+
 		// Step 7: Display the GUI
 		longReportFrame.pack();
-		centreWindow(longReportFrame);
-		longReportFrame.setVisible(true);
-		
-		
+		centreWindow(longReportFrame); // centre the window
+		longReportFrame.setVisible(true); // make the longReport frame visible
+
 	}
 
 	private void runSimulation() {
-		sim.simulate((int)lengthSlider.getValue());
+		sim.simulate((int) lengthSlider.getValue());
 		results.append(sim.getResults());
 	}
 
@@ -343,9 +361,10 @@ public class GUI {
 	}
 
 	private void setProbabilities() {
-		sim.setProbabilities(commercialSlider.getValue(), gliderSlider.getValue(), lightSlider.getValue());
+		sim.setProbabilities(commercialSlider.getValue(),
+				gliderSlider.getValue(), lightSlider.getValue());
 	}
-	
+
 	private void setStrategy() {
 		switch (strategy.getSelectedIndex()) {
 		case 0:
@@ -358,9 +377,18 @@ public class GUI {
 			break;
 		}
 	}
-	
+
 	private void setSeed() {
 		sim.setSeed(seed.getSelectedIndex());
+	}
+
+	private String getSimulationDetails() {
+		return (" Simulation Length:  " + (int) lengthSlider.getValue() + "     |     " + 
+	            "Strategy:  " + strategy.getSelectedItem() + "     |     " + 
+				"Seed:  " + seed.getSelectedIndex() + "     |     " + 
+	            "Commercial Probability: "+ commercialSlider.getValue() + "     |     " + 
+				"Glider Probability: " + gliderSlider.getValue() + "     |     " + 
+	            "Light Probability: " + lightSlider.getValue() + "\n \n");
 	}
 
 	public static void centreWindow(Window frame) {

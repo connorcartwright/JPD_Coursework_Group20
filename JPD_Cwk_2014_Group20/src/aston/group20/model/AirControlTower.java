@@ -43,7 +43,7 @@ public class AirControlTower {
 	 */
 	public void step() {
 		for (IAircraft a : brokenDown.toArray(new IAircraft[brokenDown.size()])) { // call the step method for all brokenDown planes;
-			a.step();                                                                             // this will cause their maintenance to continue
+			a.step();                                                              // this will cause their maintenance to continue
 			if (! a.isBrokeDown()) { // if the aircraft has been fixed
 				outgoing.add(a); // add it to the outgoing queue
 				brokenDown.remove(a); // and remove it from the broken down queue

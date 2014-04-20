@@ -89,7 +89,7 @@ public class Simulator {
 	}
 	
 	public String printLongReport() {
-		return ("Step: " + step + airport.getACT().getCounter().longReport() + "\n");	
+		return (" Step: " + step + airport.getACT().getCounter().longReport() + "\n");	
 	}
 	
 	public StringBuilder getLongReport() {
