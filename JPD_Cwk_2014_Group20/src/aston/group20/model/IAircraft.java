@@ -1,7 +1,5 @@
 package aston.group20.model;
 
-import java.util.Random;
-
 /**
  * The IAircraft class defines the functionality that all Aircrafts share, including both
  * the currently implemented Powered and Unpowered Aircraft classes.
@@ -96,6 +94,10 @@ public interface IAircraft extends Comparable<IAircraft> {
 	 */
 	public abstract void setIsFlying(boolean isFlying);
 	
-	public abstract void setRandom(Random rand);
+	/**
+	 * Ths method returns whether or not the Aircraft is flying (or on the ground).
+	 * @return whether or not the Aircraft is flying.
+	 */
+	public abstract boolean isFlying();
 	
 }

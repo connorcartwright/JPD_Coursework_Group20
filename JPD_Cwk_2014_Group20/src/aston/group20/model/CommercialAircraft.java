@@ -1,17 +1,14 @@
 package aston.group20.model;
 
 /**
- * This class defines the characteristics of Commercial Aircraft, including the landing time,
- * the takeoff time and the length of time that it can fly for/it's fuel level. It extends
- * the abstract class PoweredAircraft and is a concrete subclass.
- * 
- * @see PoweredAircraft
+ * This concrete subclass defines the characteristics of CommercialAircraft; it defines the landing time,
+ * the takeoff time and the length of time it can fly for (it's fuel level) in order to
+ * successfully inherit from the PoweredAircraft class. 
  *
  * @author Group_20
  * @version 1.0, March 2014
  *
  */
-
 
 public class CommercialAircraft extends PoweredAircraft {
 	
@@ -22,6 +19,12 @@ public class CommercialAircraft extends PoweredAircraft {
 	// The amount of time the aircraft can fly
 	private static final int COMMERCIAL_FUEL_FLYING_TIME = (rand.nextInt(40) + 40); // measured in half minutes
 	
+	/**
+	 * Creating a new CommercialAircraft, calling the constructor of the PoweredAircraft class
+	 * and filling in the values required to instantiate the object.
+	 * 
+	 * @see PoweredAircraft
+	 */
 	public CommercialAircraft() {
 		super(COMMERCIAL_TAKEOFF, COMMERCIAL_LANDING, COMMERCIAL_FUEL_FLYING_TIME);
 	}

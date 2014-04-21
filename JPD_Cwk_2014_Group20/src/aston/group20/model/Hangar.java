@@ -38,22 +38,23 @@ public class Hangar {
 		IAircraft aircraft;
 		if (rand.nextDouble() <= GLIDER_CREATION_PROBABILITY) { 
 			aircraft = (IAircraft) new Glider(); // setting variable aircraft to be a glider
-			aircraft.setRandom(rand);
 		}
 		else if (rand.nextDouble() <= LIGHT_CREATION_PROBABILITY + GLIDER_CREATION_PROBABILITY) {
 			aircraft = (IAircraft) new LightAircraft(); // setting variable aircraft to be a light aircraft
-			aircraft.setRandom(rand);
 		}
 		else if (rand.nextDouble() <= COMMERCIAL_CREATION_PROBABILITY) {
 			aircraft = (IAircraft) new CommercialAircraft(); // setting variable aircraft to be a commercial aircraft
-			aircraft.setRandom(rand);
 		}
 		else {
 			aircraft = null; // if the double didn't meet any of the rules, the aircraft is null
 		}
+		
+		if(aircraft != null && rand.nextDouble() < 0.5 && !(aircraft instanceof Glider)) {
+			aircraft.setIsFlying(true);
+		}
 		return aircraft; // return the aircraft
 	}
-
+	
 	/**
 	 * This method is called from the Simulator class and supports the User Interaction that the GUI
 	 * provides; it allows the user to change the results of the Simulation, due to how often and what

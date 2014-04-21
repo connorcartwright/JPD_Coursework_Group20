@@ -53,10 +53,10 @@ public class Simulator {
 		IAircraft aircraft = airport.getHangar().generateAircraft(rand); // has a chance of generating an aircraft
 		if (aircraft != null) { // if an aircraft was generated
 			airport.getACT().getCounter().incrementTotalPlanes(); // increment the total no. of planes
-			if (rand.nextDouble() < 0.5 && !(aircraft instanceof Glider)) { 
+			
+			if(aircraft.isFlying()) {
 				airport.getACT().getIncoming().add(aircraft); // 50% chance to by flying
-				aircraft.setIsFlying(true);
-			} 
+			}
 			else {
 				airport.getACT().getOutgoing().add(aircraft); // 50% chance to be grounded
 			}

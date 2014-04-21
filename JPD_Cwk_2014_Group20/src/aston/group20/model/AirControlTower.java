@@ -18,7 +18,7 @@ public class AirControlTower {
 	private Counter counter;
 
     /**
-     * Creating a new AirControlTower, which will initialise the queues
+     * Creating a new <code>AirControlTower</code>, which will initialise the queues
      * and set the strategy for how to manage the Incoming aircraft.
      * 
      * @param strategy determines how the Incoming Aircraft will be sorted.
@@ -70,7 +70,7 @@ public class AirControlTower {
 				counter.incrementBreakdowns();
 			}
 		}
-		counter.setGrounded(outgoing.size());
+		counter.setGrounded(outgoing.size() + brokenDown.size());
 		counter.setFlying(incoming.size());
 	}
 	
@@ -79,7 +79,7 @@ public class AirControlTower {
 	 * The method ensures that all of the planes still in the queues are accounted for in
 	 * the end report through the counters increment/set methods.
 	 * 
-	 * @see Counter
+	 * @see Counter#incrementWaitingTime(int)
 	 */
 	public void finish() {
 		for(IAircraft a : incoming) {

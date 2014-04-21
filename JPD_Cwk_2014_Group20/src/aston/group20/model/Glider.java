@@ -1,17 +1,13 @@
 package aston.group20.model;
 
 /**
- * This class defines the characteristics of Gliders, including both the landing time and 
- * the takeoff It extends the abstract class UnpoweredAircraft and is a concrete subclass.
- * 
- * @see UnpoweredAircraft
+ * This concrete subclass defines the characteristics of Gliders; it defines the landing time and
+ * the takeoff time in order to successfully inherit from the UnoweredAircraft class. 
  *
  * @author Group_20
  * @version 1.0, March 2014
  *
  */
-
-
 public class Glider extends UnpoweredAircraft {
 	
 	// The amount of time it takes to take off
@@ -19,6 +15,12 @@ public class Glider extends UnpoweredAircraft {
 	// The amount of time it takes to land
 	private static final int GLIDER_LANDING = 8; // measured in half minutes
 	
+	/**
+	 * Creating a new Glider, calling the constructor of the UnPoweredAircraft class
+	 * and filling in the values required to instantiate the object.
+	 * 
+	 * @see UnpoweredAircraft
+	 */
 	public Glider() {
 		super(GLIDER_TAKEOFF, GLIDER_LANDING);
 	}
