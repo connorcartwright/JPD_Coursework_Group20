@@ -139,7 +139,7 @@ public abstract class Aircraft implements IAircraft {
 	
 	/**
 	 * This method sets the state of the boolean which tells us whether
-	 * or not the Aircraft has broken down; if the parameter is true, than the 
+	 * or not the Aircraft has broken down - if the parameter is true, than the 
 	 * Aircraft's state will be seen as broken down.
 	 * 
 	 * @param brokeDown whether or not the Aircraft is broken down.
