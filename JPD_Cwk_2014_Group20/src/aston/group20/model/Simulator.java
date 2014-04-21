@@ -11,17 +11,16 @@ import aston.group20.GUIview.GUI;
  */
 public class Simulator {
 
-	private Airport airport;
-
-	private int step;
+	private Airport airport; // the airport to be used for the Simulation
+	private int step; // the current step of the simulation
 	private static int numSteps = 100000; // the number of steps to run for
 	private final Random rand = new Random();
-	private Strategy[] strategy = {
+	private Strategy[] strategy = { // array containing the different types of strategies
 			new WaitingTimeStrategy(),
 			new FuelStrategy() // can add more strategies here whenever needed		
 	};
-	private int chosenStrategy;
-	private StringBuilder longReport;
+	private int chosenStrategy; // the strategy chosen, used in conjunction with the Array
+	private StringBuilder longReport; // the StringBuilder contanining the step-by-step long report
 
 	/**
 	 * Creates a GUI which will allow the user to run the Simulation for a specified number
