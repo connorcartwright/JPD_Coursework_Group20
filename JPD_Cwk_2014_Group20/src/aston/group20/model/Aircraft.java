@@ -142,7 +142,7 @@ public abstract class Aircraft implements IAircraft {
 	 * or not the Aircraft has broken down; if the parameter is true, than the 
 	 * Aircraft's state will be seen as broken down.
 	 * 
-	 * @param whether or not the Aircraft is broken down.
+	 * @param brokeDown whether or not the Aircraft is broken down.
 	 */
 	public void setBrokeDown(boolean brokeDown) {
 		this.brokeDown = brokeDown;
@@ -151,7 +151,7 @@ public abstract class Aircraft implements IAircraft {
 	/**
 	 * This method sets the waiting time of the Aircraft.
 	 * 
-	 * @param the waiting time of the Aircraft.
+	 * @param waitingTime the waiting time of the Aircraft.
 	 */
 	public void setWaitingTime(int waitingTime) {
 		this.waitingTime = waitingTime;
@@ -188,7 +188,7 @@ public abstract class Aircraft implements IAircraft {
 	 * information as to whether the parameter Aircraft is the same Aircraft as this Aircraft,
 	 * was created before this Aircraft, or was created after this Aircraft.
 	 * 
-	 * @param the Aircraft in question.
+	 * @param a the Aircraft in question.
 	 * @return a negative integer, zero, or a positive integer if this Aircraft is less than, equal to, or greater than the parameter Aircraft.
 	 */
 	public int compareTo(IAircraft a) {

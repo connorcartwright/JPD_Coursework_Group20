@@ -39,7 +39,7 @@ public class Airport {
 	 * whether the plane should @takeOff or @land .
 	 * If the Runway wasn't available, the method will increment the Runway's time.
 	 * 
-	 * @see ACT#step()
+	 * @see AirControlTower#step()
 	 * @see Strategy#schedule(IAircraft, IAircraft)
 	 */
 	public void schedule() {
