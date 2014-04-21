@@ -42,7 +42,7 @@ public class Runway { // maybe make abstract later, e.g. large Runway
 	/**
 	 * This method will set the availability of the Runway to the parameter value.
 	 * 
-	 * @param isAvailable whether or not the Runway is available.
+	 * @param isAvailable whether or not the Runway is available for use.
 	 */
 	public void setAvailable(boolean isAvailable) {
 		this.isAvailable = isAvailable;
