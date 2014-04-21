@@ -34,19 +34,21 @@ public abstract class PoweredAircraft extends Aircraft {
 	public void step() {
 		incrementWaitingTime();
 		fuelLevel--;
-		if(isBrokeDown() == false && fuelLevel > 0) {
-			if (rand.nextDouble() < 0.0001) {
-				brokeDown = true;
-			}
-		}
-		else {
+		
+		if(isBrokeDown()) {
 			incrementMaintenanceTime();
 			if(maintenanceTime >= 120) {
 				brokeDown = false;
 				maintenanceTime = 0;
+				}
+			} 
+		else if (!isFlying && rand.nextDouble() < 0.0001) {
+			brokeDown = true;
+			}
+		else if (isFlying && (fuelLevel - landingTime) < 0) { // if the plane doesn't have enough fuel to land
+			crashed = true;
 			}
 		}
-	}
 
 
 	/**

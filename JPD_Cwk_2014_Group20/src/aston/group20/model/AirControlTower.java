@@ -37,7 +37,9 @@ public class AirControlTower {
 	 * calling the step method of each individual Aircraft; depending on the state of 
 	 * the Aircraft it may move Aircraft from the outgoing queue to the broken down 
 	 * queue and vice versa. It may also remove Aircraft from the Incoming queue if
-	 * the plane does not have enough fuel left to land.
+	 * the plane does not have enough fuel left to land, that is if they have crashed.
+	 * It will perform/call the appropriate methods in all cases.
+	 * 
 	 * 
 	 * @see Aircraft#step()
 	 */
@@ -52,11 +54,13 @@ public class AirControlTower {
 		}
 		for (IAircraft a : incoming.toArray(new IAircraft[incoming.size()])) {
 			a.step();
-			if (a.getFuelLevel() - a.getLandingTime() < 0) { // if the plane doesn't have enough fuel to land
+			
+			if(a.isCrashed()) {
 				incoming.remove(a);
 				counter.incrementCrashes();
 				counter.incrementWaitingTime(a.getWaitingTime());
-			} 
+			}
+
 		}
 		for (IAircraft a : outgoing.toArray(new IAircraft[outgoing.size()])) {
 			a.step();

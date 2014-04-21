@@ -372,6 +372,7 @@ public class GUI {
 
 	/**
 	 * Helper method to ensure consistency in leaving application.
+	 * With credit to Aston University Computer Science.
 	 */
 	private void exitApp() {
 		// Display confirmation dialog before exiting application
@@ -464,7 +465,7 @@ public class GUI {
 	private String getSimulationDetails() {
 		return (" Simulation Length:  " + (int) lengthSlider.getValue() + "     |     " + 
 	            "Strategy:  " + strategy.getSelectedItem() + "     |     " + 
-				"Seed:  " + seed.getSelectedIndex() + "     |     " + 
+				"Seed:  " + (seed.getSelectedIndex()+ 1) + "     |     " + 
 	            "Commercial Probability: "+ commercialSlider.getValue() + "     |     " + 
 				"Glider Probability: " + gliderSlider.getValue() + "     |     " + 
 	            "Light Probability: " + lightSlider.getValue() + "\n \n");

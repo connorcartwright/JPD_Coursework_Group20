@@ -55,6 +55,7 @@ public class Simulator {
 			airport.getACT().getCounter().incrementTotalPlanes(); // increment the total no. of planes
 			if (rand.nextDouble() < 0.5 && !(aircraft instanceof Glider)) { 
 				airport.getACT().getIncoming().add(aircraft); // 50% chance to by flying
+				aircraft.setIsFlying(true);
 			} 
 			else {
 				airport.getACT().getOutgoing().add(aircraft); // 50% chance to be grounded

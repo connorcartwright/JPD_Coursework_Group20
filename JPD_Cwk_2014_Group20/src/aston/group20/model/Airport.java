@@ -20,7 +20,7 @@ public class Airport { // //// would it be better to have this as abstract
 			IAircraft Incoming = ACT.getIncoming().peek(); // Variable Incoming = the first Incoming Aircraft
 			IAircraft Outgoing = ACT.getOutgoing().peek(); // Variable Outgoing = the first Outgoing aircraft 
 			
-			switch(strategy.schedule(Incoming, Outgoing)) { // 1 for landing, 2 for takeoff, 3 for crash
+			switch(strategy.schedule(Incoming, Outgoing)) { // 1 for landing, 2 for takeoff
 			
 			case 1: land(Incoming);
 			break;
@@ -69,6 +69,5 @@ public class Airport { // //// would it be better to have this as abstract
 	public void setStrategy(Strategy strategy) {
 		this.strategy = strategy;
 	}
-	
 	
 }

@@ -1,5 +1,7 @@
 package aston.group20.model;
 
+import java.util.Random;
+
 /**
  * The IAircraft class defines the functionality that all Aircrafts share, including both
  * the currently implemented Powered and Unpowered Aircraft classes.
@@ -79,4 +81,21 @@ public interface IAircraft extends Comparable<IAircraft> {
 	 * @param waitingTime the time to set the Aircrafts waiting time.
 	 */
 	public abstract void setWaitingTime(int waitingTime);
+	
+	/**
+	 * This method returns whether or not the Aircraft has crashed.
+	 * @return whether or not the Aircraft has crashed.
+	 */
+	public abstract boolean isCrashed();
+	
+	/**
+	 * This method allows the recipient to set whether or not the Aircraft is 
+	 * in the air/flying, and thus landing/taking off.
+	 * 
+	 * @param isFlying whether or not the Aircraft is flying
+	 */
+	public abstract void setIsFlying(boolean isFlying);
+	
+	public abstract void setRandom(Random rand);
+	
 }
