@@ -42,8 +42,9 @@ public class GUI {
 	protected Component errorFrame; // used when producing the error message
 
     /**
-     * Creating a new AirControlTower, which will initialise the queues
-     * and set the strategy for how to manage the Incoming aircraft.
+     * Creating a new <code>GUI</code>, which will give the user a graphical interface
+     * with which to interact with the program. It will allow the user to adjust various variables
+     * regarding the simulation, giving them full control over how it should run.
      * 
      * @param sim the Simulator that will be used for the GUI
      * @see Simulator to understand the methods used

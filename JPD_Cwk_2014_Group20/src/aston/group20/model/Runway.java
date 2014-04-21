@@ -19,7 +19,7 @@ public class Runway { // maybe make abstract later, e.g. large Runway
 	private int clearRunway; // timer to tell us when the Runway is available again
 
 	/**
-	 * Creating a new Runway which will set the occupied time and the integer 
+	 * Creating a new <code>Runway</code> which will set the occupied time and the integer 
 	 * clearRunway which counts up to that occupied time as 0. It will also make
 	 * sure that the Runway is available upon creation.
 	 */
