@@ -183,11 +183,11 @@
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="10"/>  
   </message>  
-  <message id="11" operation="GUI(aston.group20.model.Simulator)">    
+  <message id="11">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="12"/>  
   </message>  
-  <message id="13" operation="GUI(aston.group20.model.Simulator)">    
+  <message id="13">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="14"/>  
   </message>  

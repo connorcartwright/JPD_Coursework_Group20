@@ -26,7 +26,7 @@ public class CommercialAircraft extends PoweredAircraft {
 	 * @see PoweredAircraft
 	 */
 	public CommercialAircraft() {
-		super(COMMERCIAL_TAKEOFF, COMMERCIAL_LANDING, COMMERCIAL_FUEL_FLYING_TIME);
+		super(COMMERCIAL_LANDING, COMMERCIAL_TAKEOFF, COMMERCIAL_FUEL_FLYING_TIME);
 	}
 
 }

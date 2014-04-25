@@ -28,7 +28,7 @@ public class GUI {
 	* The Simulator to be used for the GUI.
 	* @see Simulator
 	*/
-	private Simulator sim;
+	private static Simulator sim;
 	private JFrame mainFrame; // the mainframe/backbone of the GUI
 	private JTextArea results, longResults; // text areas for the report and long report frames
 	private LabelledSlider commercialSlider, gliderSlider, lightSlider, lengthSlider; // sliders for the mainframe
@@ -41,6 +41,10 @@ public class GUI {
 	private boolean reportOpen, longReportOpen = false; // initialising so that we know the report frames aren't open
 	protected Component errorFrame; // used when producing the error message
 
+	public static void main(String[] args) {
+		@SuppressWarnings("unused")
+		final GUI gui = new GUI();
+	}
     /**
      * Creating a new <code>GUI</code>, which will give the user a graphical interface
      * with which to interact with the program. It will allow the user to adjust various variables
@@ -49,8 +53,8 @@ public class GUI {
      * @param sim the Simulator that will be used for the GUI
      * @see Simulator to understand the methods used
      */
-	public GUI(Simulator sim) {
-		this.sim = sim;
+	public GUI() {
+		sim = new Simulator();
 
 		// Step 1: create the components
 		JButton runButton = new JButton("Run Simulation"); // creating/initialising the mainframe buttons

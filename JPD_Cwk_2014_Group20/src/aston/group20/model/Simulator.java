@@ -13,7 +13,7 @@ public class Simulator {
 
 	private Airport airport; // the airport to be used for the Simulation
 	private int step; // the current step of the simulation
-	private static int numSteps = 100000; // the number of steps to run for
+	private static int numSteps = 2880; // the number of steps to run for, set to default
 	private final Random rand = new Random();
 	private Strategy[] strategy = { // array containing the different types of strategies
 			new WaitingTimeStrategy(),
@@ -35,7 +35,7 @@ public class Simulator {
 			numSteps = 1;
 		}
 		Simulator sim = new Simulator();
-		GUI airportSim = new GUI(sim);
+		sim.simulate(numSteps);
 	}
 
 	/**

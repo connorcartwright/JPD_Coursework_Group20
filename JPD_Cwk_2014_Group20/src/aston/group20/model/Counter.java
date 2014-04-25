@@ -3,7 +3,6 @@ package aston.group20.model;
 /**
  * The Counter class is used to store and display information regarding the Simulation;
  * it is used for both the basic console interface as well as the short and long GUI reports.
- * for the final report when the GUI is run
  *
  * @author Group_20
  * @version 1.0, April 2014
