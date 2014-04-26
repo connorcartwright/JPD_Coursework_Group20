@@ -22,7 +22,7 @@ public class Glider extends UnpoweredAircraft {
 	 * @see UnpoweredAircraft
 	 */
 	public Glider() {
-		super(GLIDER_TAKEOFF, GLIDER_LANDING);
+		super(GLIDER_LANDING, GLIDER_TAKEOFF);
 	}
 	
 }

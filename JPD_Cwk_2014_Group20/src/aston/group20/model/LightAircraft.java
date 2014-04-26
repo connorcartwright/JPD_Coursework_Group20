@@ -26,7 +26,7 @@ public class LightAircraft extends PoweredAircraft {
 	 * @see PoweredAircraft
 	 */
 	public LightAircraft() {
-		super(LIGHT_TAKEOFF, LIGHT_LANDING, LIGHT_FUEL_FLYING_TIME);
+		super(LIGHT_LANDING, LIGHT_TAKEOFF, LIGHT_FUEL_FLYING_TIME);
 	}
 
 }
