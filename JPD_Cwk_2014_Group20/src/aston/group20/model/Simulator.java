@@ -1,6 +1,5 @@
 package aston.group20.model;
 import java.util.Random;
-import aston.group20.GUIview.GUI;
 
 /**
  * This class models a simplistic Airport simulation, based on an Airport that
@@ -35,7 +34,7 @@ public class Simulator {
 			numSteps = 1;
 		}
 		Simulator sim = new Simulator();
-		GUI airportSim = new GUI(sim);
+		sim.simulate(numSteps);
 	}
 
 	/**
@@ -111,7 +110,8 @@ public class Simulator {
 	 */
 	public void reset() {
 		step = 0;
-		airport.getACT().clear();
+		airport = null;
+		airport = new Airport();
 		longReport.setLength(0);
 	}
 

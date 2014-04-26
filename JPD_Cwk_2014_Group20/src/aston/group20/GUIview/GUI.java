@@ -157,8 +157,7 @@ public class GUI {
 								"Aircraft Probability Error", JOptionPane.ERROR_MESSAGE);
 					} 
 					else {
-						resetSimulation(); // ELSE, reset the simulation / clear the previous results
-						openReport(); // open the report window
+						openReport(); // ELSE open the report window
 						runSimulation(); // and run the simulation
 					}
 				}
@@ -254,8 +253,7 @@ public class GUI {
 
 		runAgainButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				resetSimulation(); // clear the results
-				runSimulation(); // and run the simulation
+				runSimulation(); // Run the simulation
 			}
 		});
 
@@ -393,6 +391,7 @@ public class GUI {
 	 * 
 	 */
 	private void runSimulation() {
+		resetSimulation();
 		sim.simulate((int) lengthSlider.getValue());
 		results.append(sim.getResults());
 	}
