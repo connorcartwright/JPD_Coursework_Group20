@@ -86,7 +86,13 @@ public class AirControlTower {
 			counter.incrementWaitingTime(a.getWaitingTime());
 		}
 		for(IAircraft a : outgoing) {
+			if (a instanceof Glider) { // if the planes was a glider, account for the light Aircraft towing it
+				counter.incrementWaitingTime(a.getWaitingTime());
+				counter.incrementWaitingTime(a.getWaitingTime());
+			}
+			else { // else if it wasn't a glider then just do a single Aircraft
 			counter.incrementWaitingTime(a.getWaitingTime());
+			}
 		}
 		for(IAircraft a : brokenDown) {
 			counter.incrementWaitingTime(a.getWaitingTime());

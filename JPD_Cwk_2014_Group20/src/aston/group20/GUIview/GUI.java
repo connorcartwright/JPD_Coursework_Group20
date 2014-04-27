@@ -54,8 +54,6 @@ public class GUI {
      * @see Simulator to understand the methods used
      */
 	public GUI() {
-		sim = new Simulator();
-
 		// Step 1: create the components
 		JButton runButton = new JButton("Run Simulation"); // creating/initialising the mainframe buttons
 		JButton quitButton = new JButton("Quit");
@@ -179,6 +177,12 @@ public class GUI {
 				exitApp(); // run the exitApp method if the window 'x' button is pressed
 			}
 		});
+		
+		strategy.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 
 		// Step 7: Display the GUI
 		mainFrame.pack(); // build the mainframe
@@ -251,7 +255,6 @@ public class GUI {
 				JFrame f = (JFrame) c.getClientProperty(reportFrameString);
 				f.dispose(); // close the window and switch focus back to the mainframe
 				reportOpen = false; // the report is no longer open
-				resetSimulation(); // reset the results of the window
 			}
 		});
 
@@ -277,7 +280,6 @@ public class GUI {
 		reportFrame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				reportOpen = false; // the report frame is no longer open
-				resetSimulation(); // reset the results
 			}
 		});
 
@@ -395,6 +397,7 @@ public class GUI {
 	 * 
 	 */
 	private void runSimulation() {
+		sim = new Simulator();
 		resetSimulation();
 		sim.simulate((int) lengthSlider.getValue());
 		results.append(sim.getResults());
@@ -435,16 +438,7 @@ public class GUI {
 	 * @see Simulator#setStrategy(int) in the Simulator class.
 	 */
 	private void setStrategy() {
-		switch (strategy.getSelectedIndex()) {
-		case 0:
-			sim.setStrategy(0);
-			break;
-		case 1:
-			sim.setStrategy(1);
-			break;
-		case 2: // new Strategy here when required;
-			break;
-		}
+		sim.setStrategy(strategy.getSelectedIndex());
 	}
 
 	/**

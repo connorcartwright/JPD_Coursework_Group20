@@ -32,6 +32,7 @@ public class CommercialAircraft extends PoweredAircraft {
 	 * @return the fuel level generated for this particular Commercial Aircraft
 	 */
 	private static int generateFuelLevel() {
+		System.out.println(rand.nextInt(40+40));
 		return (rand.nextInt(40) + 40);
 	}
 

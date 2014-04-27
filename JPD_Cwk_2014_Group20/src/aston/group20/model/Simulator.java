@@ -13,13 +13,15 @@ public class Simulator {
 	private Airport airport; // the airport to be used for the Simulation
 	private int step; // the current step of the simulation
 	private static int numSteps = 2880; // the number of steps to run for, set to default
-	private final Random rand = new Random();
+	private int seed = 17;
+	private final Random rand = new Random(seed);
 	private Strategy[] strategy = { // array containing the different types of strategies
 			new WaitingTimeStrategy(),
 			new FuelStrategy() // can add more strategies here whenever needed		
 	};
 	private int chosenStrategy; // the strategy chosen, used in conjunction with the Array
 	private StringBuilder longReport; // the StringBuilder contanining the step-by-step long report
+	private static Simulator sim;
 
 	/**
 	 * Creates a GUI which will allow the user to run the Simulation for a specified number
@@ -33,7 +35,7 @@ public class Simulator {
 		if (numSteps <= 0) {
 			numSteps = 1;
 		}
-		Simulator sim = new Simulator();
+		sim = new Simulator();
 		sim.simulate(numSteps);
 	}
 
@@ -103,6 +105,7 @@ public class Simulator {
 				airport.getACT().getOutgoing().add(aircraft); // 50% chance to be grounded
 			}
 		}
+		// else do nothing if an Aircraft wasn't generated
 	}
 
 	/**
@@ -111,6 +114,7 @@ public class Simulator {
 	public void reset() {
 		step = 0;
 		airport.getACT().clear();
+		rand.setSeed(seed);
 		longReport.setLength(0);
 	}
 
