@@ -1,8 +1,8 @@
 package aston.group20.model;
 
 /**
- * Characterizes the shared behaviours of all powered aircraft
- * fulfills the inheritence of the Aircraft class
+ * Characterises the shared behaviours of all Powered Aircraft; this class, alongside
+ * Unpowered Aircraft, fulfils the remaining inheritance from the IAircraft interface.
  * @see Aircraft
  * 
  * @author Group_20
@@ -32,21 +32,10 @@ public abstract class PoweredAircraft extends Aircraft {
 	 * simulation for each and every aircraft.
 	 */
 	public void step() {
-		incrementWaitingTime();
+		super.step();
 		fuelLevel--;
-		
-		if(isBrokeDown()) {
-			incrementMaintenanceTime();
-			if(maintenanceTime >= 120) {
-				brokeDown = false;
-				maintenanceTime = 0;
-				}
-			} 
-		else if (!isFlying && rand.nextDouble() < 0.0001) {
-			brokeDown = true;
-			}
-		else if (isFlying && (fuelLevel - landingTime) < 0) { // if the plane doesn't have enough fuel to land
-			crashed = true;
+		if (isFlying && (fuelLevel - landingTime) < 0) { // if the plane doesn't have enough fuel to land
+			crashed = true; // then it is crashed/going to crash
 			}
 		}
 

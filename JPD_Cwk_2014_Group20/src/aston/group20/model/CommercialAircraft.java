@@ -16,9 +16,7 @@ public class CommercialAircraft extends PoweredAircraft {
 	private static final int COMMERCIAL_TAKEOFF = 4; // measured in half minutes
 	// The amount of time it takes to land
 	private static final int COMMERCIAL_LANDING = 6; // measured in half minutes
-	// The amount of time the aircraft can fly
-	private static final int COMMERCIAL_FUEL_FLYING_TIME = (rand.nextInt(40) + 40); // measured in half minutes
-	
+
 	/**
 	 * Creating a new CommercialAircraft, calling the constructor of the PoweredAircraft class
 	 * and filling in the values required to instantiate the object.
@@ -26,7 +24,15 @@ public class CommercialAircraft extends PoweredAircraft {
 	 * @see PoweredAircraft
 	 */
 	public CommercialAircraft() {
-		super(COMMERCIAL_LANDING, COMMERCIAL_TAKEOFF, COMMERCIAL_FUEL_FLYING_TIME);
+		super(COMMERCIAL_LANDING, COMMERCIAL_TAKEOFF, generateFuelLevel());
+	}
+	
+	/**
+	 * Generates the fuel level for the Commercial Aircrafts
+	 * @return the fuel level generated for this particular Commercial Aircraft
+	 */
+	private static int generateFuelLevel() {
+		return (rand.nextInt(40) + 40);
 	}
 
 }

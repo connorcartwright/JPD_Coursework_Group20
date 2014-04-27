@@ -13,7 +13,7 @@ import java.util.Random;
  * @version 1.0, March 2014
  */
 public class Hangar {
-
+	
 	private double COMMERCIAL_CREATION_PROBABILITY = 0.1;
 	private double LIGHT_CREATION_PROBABILITY = 0.005;
 	private double GLIDER_CREATION_PROBABILITY = 0.002;

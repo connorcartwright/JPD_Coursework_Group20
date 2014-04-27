@@ -110,8 +110,7 @@ public class Simulator {
 	 */
 	public void reset() {
 		step = 0;
-		airport = null;
-		airport = new Airport();
+		airport.getACT().clear();
 		longReport.setLength(0);
 	}
 

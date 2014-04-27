@@ -1,8 +1,8 @@
 package aston.group20.model;
 
 /**
- * Characterizes the shared behaviours of all Unpowered aircraft fulfills the
- * inheritence of the Aircraft class
+ * Characterises the shared behaviours of all Unpowered Aircraft; this class, alongside the
+ * Powered Aircraft class, fulfils the remaining Inheritance from the IAircraft interface.
  * 
  * @see Aircraft
  * 
@@ -18,17 +18,7 @@ public class UnpoweredAircraft extends Aircraft {
 	}
 
 	public void step() {
-		incrementWaitingTime();
-		if (isBrokeDown()) {
-			incrementMaintenanceTime();
-			if (maintenanceTime >= 120) {
-				brokeDown = false;
-				maintenanceTime = 0;
-			}
-		} 
-		else if (!isFlying && rand.nextDouble() < 0.0001) {
-			brokeDown = true;
-		}
+		super.step();
 	}
 
 	public int getFuelLevel() {

@@ -64,7 +64,22 @@ public abstract class Aircraft implements IAircraft {
 	 * This method updates the aircrafts's state; it will be fulfilled by the abstract classes
 	 * PoweredAircraft and UnpoweredAircraft, which will define how the Aircrafts should act.
 	 */
-	public abstract void step();
+	public void step() {
+		incrementWaitingTime();
+		
+		if (isBrokeDown() == false) {
+			if (!isFlying && rand.nextDouble() < 0.0001) {
+				brokeDown = true;
+			}
+		}
+		else if (isBrokeDown()) {
+			incrementMaintenanceTime();
+			if(maintenanceTime >= 120) {
+				brokeDown = false;
+				maintenanceTime = 0;
+				}
+		}
+	}
 	
 	/**
 	 * This method returns the Aircrafts unique identifier.

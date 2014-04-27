@@ -16,8 +16,6 @@ public class LightAircraft extends PoweredAircraft {
 	private static final int LIGHT_TAKEOFF = 4; // measured in half minutes
 	// The amount of time it takes to land
 	private static final int LIGHT_LANDING = 6; // measured in half minutes
-	// The amount of time the aircraft can fly
-	private static final int LIGHT_FUEL_FLYING_TIME = (rand.nextInt(20) + 20); // measured in half minutes
 	
 	/**
 	 * Creating a new LightAircraft, calling the constructor of the PoweredAircraft class
@@ -26,7 +24,15 @@ public class LightAircraft extends PoweredAircraft {
 	 * @see PoweredAircraft
 	 */
 	public LightAircraft() {
-		super(LIGHT_LANDING, LIGHT_TAKEOFF, LIGHT_FUEL_FLYING_TIME);
+		super(LIGHT_LANDING, LIGHT_TAKEOFF, generateFuelLevel());
+	}
+	
+	/**
+	 * Generates the fuel level for the Light Aircrafts
+	 * @return the fuel level generated for this particular Light Aircraft
+	 */
+	private static int generateFuelLevel() {
+		return (rand.nextInt(20) + 20);
 	}
 
 }

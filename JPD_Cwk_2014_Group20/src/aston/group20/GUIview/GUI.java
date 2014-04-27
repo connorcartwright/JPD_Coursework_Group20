@@ -161,8 +161,8 @@ public class GUI {
 								"Aircraft Probability Error", JOptionPane.ERROR_MESSAGE);
 					} 
 					else {
-						openReport(); // ELSE open the report window
 						runSimulation(); // and run the simulation
+						openReport(); // ELSE open the report window
 					}
 				}
 			}
