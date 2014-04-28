@@ -18,7 +18,7 @@ public class Hangar {
 	private double LIGHT_CREATION_PROBABILITY = 0.005;
 	private double GLIDER_CREATION_PROBABILITY = 0.002;
 	
-	private Random gen = new Random(17);
+	private Random gen = new Random(42);
 	/**
 	 * Creates a new <code>Hangar</code>.
 	 */
@@ -32,7 +32,6 @@ public class Hangar {
 	 * (Commercial, Glider, Light) based on the probability fields; in the chance that the probabilities are
 	 * too low, a null Aircraft is returned which is dealt with in the Simulator class.
 	 * 
-	 * @param rand the random number generator from the Simulator class.
 	 * @return an Aircraft of any of the types supported, or null.
 	 */
 	public IAircraft generateAircraft() {

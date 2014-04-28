@@ -92,7 +92,7 @@ public class Simulator {
 	 * Airports AirControlTower. It calls the Hangar's generateAircraft method which could return an Aircraft
 	 * that would then be added to one of the queues.
 	 * 
-	 * @see Hangar#generateAircraft(Random)
+	 * @see Hangar#generateAircraft()
 	 */
 	private void generateAircraft() {
 		IAircraft aircraft = airport.getHangar().generateAircraft(); // has a chance of generating an aircraft
@@ -168,6 +168,11 @@ public class Simulator {
 		return longReport;
 	}
 
+	/**
+	 * This method returns the Airport that the Simulation is using,
+	 * so that the the other classes can be accessed easily from the GUI.
+	 * @return returns the Airport that the Simulation is using.
+	 */
 	public Airport getAirport() {
 		return airport;
 	}

@@ -50,7 +50,6 @@ public class GUI {
      * with which to interact with the program. It will allow the user to adjust various variables
      * regarding the simulation, giving them full control over how it should run.
      * 
-     * @param sim the Simulator that will be used for the GUI
      * @see Simulator to understand the methods used
      */
 	public GUI() {
@@ -419,10 +418,10 @@ public class GUI {
 	/**
 	 * This method is called from the resetSimulation method; it gets the value
 	 * of the three probability sliders (commercial, glider, light) and applies those
-	 * values to the Simulation variable using the setProbabilities method.
+	 * values to the Simulation variable using the setProbabilities in the Hangar class.
 	 * 
 	 * @see #resetSimulation()
-	 * @see Simulator#setProbabilities(double, double, double)
+	 * @see aston.group20.model.Hangar#setProbabilities(double, double, double)
 	 */
 	private void setProbabilities() {
 		sim.getAirport().getHangar().setProbabilities(commercialSlider.getValue(),
@@ -443,14 +442,16 @@ public class GUI {
 
 	/**
 	 * This method is called from the resetSimulation method; it gets the selected
-	 * index of the seed combo box and then applies that seed to the 'sim' Simulation 
-	 * object.
+	 * index of the seed combo box and then applies that seed to the Hangar and
+	 * AirControlTower objects.
 	 * 
 	 * @see #resetSimulation()
-	 * @see Simulator#setSeed(int)
+	 * @see aston.group20.model.Hangar#setSeed(int)
+	 * @see aston.group20.model.AirControlTower#setSeed(int)
 	 */
 	private void setSeed() {
 		sim.getAirport().getHangar().setSeed(seed.getSelectedIndex());
+		sim.getAirport().getACT().setSeed(seed.getSelectedIndex());
 	}
 
 	/**

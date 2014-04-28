@@ -1,5 +1,4 @@
 package aston.group20.model;
-import java.util.Random;
 
 /**
  * The Aircraft class implements the IAircraft interface and contains the 
@@ -36,10 +35,6 @@ public abstract class Aircraft implements IAircraft {
 	protected boolean isFlying;
 	// True if the aircraft has crashed
 	protected boolean crashed;
-	
-	// Shared Random number generator
-	private static final int SEED = 17;
-	private static final Random rand = new Random(SEED);
 
 	/**
 	 * Creating a new <code>Aircraft</code> which takes two parameters, the landing time
@@ -66,13 +61,7 @@ public abstract class Aircraft implements IAircraft {
 	 */
 	public void step() {
 		incrementWaitingTime();
-		
-		if (isBrokeDown() == false) {
-			if (!isFlying && rand.nextDouble() < 0.0001) {
-				brokeDown = true;
-			}
-		}
-		else if (isBrokeDown()) {
+		if (isBrokeDown()) {
 			incrementMaintenanceTime();
 			if(maintenanceTime >= 120) {
 				brokeDown = false;

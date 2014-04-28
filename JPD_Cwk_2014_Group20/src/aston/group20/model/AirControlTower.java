@@ -1,5 +1,6 @@
 package aston.group20.model;
 import java.util.PriorityQueue;
+import java.util.Random;
 
 /**
  * The Air Control Tower class manages the queues containing the active aircraft;
@@ -12,6 +13,7 @@ import java.util.PriorityQueue;
  */
 public class AirControlTower {
 
+	private Random gen = new Random(42);
 	private PriorityQueue<IAircraft> incoming; // the queue for incoming Aircraft
 	private PriorityQueue<IAircraft> outgoing; // the queue for Outgoing Aircraft
 	private PriorityQueue<IAircraft> brokenDown; // the queue for Aircraft that have broken down
@@ -64,10 +66,14 @@ public class AirControlTower {
 		}
 		for (IAircraft a : outgoing.toArray(new IAircraft[outgoing.size()])) {
 			a.step();
-			if(a.isBrokeDown()) {
-				outgoing.remove(a);
-				brokenDown.add(a);
-				counter.incrementBreakdowns();
+			
+			if (a.isBrokeDown() == false) {
+				if (a.isFlying() == false && gen.nextDouble() < 0.0001) { // if the next double meets the breakdown criteria
+					a.setBrokeDown(true); // then the plane has broken down;
+					outgoing.remove(a); // move it from the outgoing queue
+					brokenDown.add(a); // into the broken down queue
+					counter.incrementBreakdowns(); // and increment the number of breakdowns
+				}
 			}
 		}
 		counter.setGrounded(outgoing.size() + brokenDown.size());
@@ -141,6 +147,15 @@ public class AirControlTower {
 		outgoing.clear();
 		brokenDown.clear();
 		counter.clear();
+	}
+	
+	/**
+	 * This method is used to set the seed of the random number generator, so that the
+	 * Simulation results are reproducible.
+	 * @param seed the seed used for the random number generator (gen).
+	 */
+	public void setSeed(int seed) {
+		gen.setSeed(seed);
 	}
 	
 }

@@ -50,11 +50,14 @@ public class Airport {
 			IAircraft Outgoing = ACT.getOutgoing().peek(); // Variable Outgoing = the first Outgoing aircraft 
 			
 			switch(strategy.schedule(Incoming, Outgoing)) { // 1 for landing, 2 for takeoff
+			case 0: // do nothing
+				break;
+			
 			case 1: land(Incoming);
-			break;
+				break;
 				
 			case 2: takeOff(Outgoing);
-			break;
+				break;
 			}
 		} 
 		else {
