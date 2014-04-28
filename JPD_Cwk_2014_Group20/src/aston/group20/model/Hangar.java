@@ -3,11 +3,11 @@ import java.util.Random;
 
 /**
  * The Hangar class is used to control the creation of Aircraft; it is created in the Airport class
- * and has it's methods called from the Simulator in order to potentially generate Aircraft at every step. 
+ * and has it's methods called from the Airport in order to potentially generate Aircraft at every step. 
  * The variables are not static/final due to the fact that they are required to be changeable, mostly 
  * through the user interaction provided with the GUI.
  * 
- * @see Simulator#generateAircraft()
+ * @see Airport#generateAircraft()
  *
  * @author Group_20
  * @version 1.0, March 2014
@@ -55,17 +55,41 @@ public class Hangar {
 		return aircraft; // return the aircraft
 	}
 	
+	/**
+	 * This method generates a Commercial Aircraft with a random amount of fuel in the range of
+	 * 40-80, as expected by the coursework brief. This method is used both locally, but is made 
+	 * public so that if a commercial aircraft is ever needed to be created outside of the 
+	 * generic generation of Aircraft
+	 * it can be.
+	 * 
+	 * @return a new Commercial Aircraft
+	 */
 	public IAircraft generateCommercialAircraft() {
 		System.out.println(gen.nextInt(40) + 40);
 		IAircraft aircraft = (IAircraft) new CommercialAircraft(gen.nextInt(40) + 40);
 		return aircraft;
 	}
 	
+	/**
+	 * This method generates a Glider. This method is used both locally, but is made public so that if 
+	 * a glider is ever needed to be created outside of the generic generation of Aircraft it can be. 
+	 * 
+	 * @return a new Glider
+	 */
 	public IAircraft generateGlider() {
 		IAircraft aircraft = (IAircraft) new Glider();
 		return aircraft;
 	}
 	
+	/**
+	 * This method generates a Light Aircraft with a random amount of fuel in the range of
+	 * 20-40, as expected by the coursework brief. This method is used both locally, but is made 
+	 * public so that if it a light aircraft is ever needed to be created outside of the generic
+	 * generation of Aircraft it can be; this method is actually called from the Airport class, 
+	 * upon the takeoff of a Glider.
+	 * 
+	 * @return a new Light Aircraft
+	 */
 	public IAircraft generateLightAircraft() {
 		IAircraft aircraft = (IAircraft) new LightAircraft(gen.nextInt(20) + 20);
 		return aircraft;
@@ -86,6 +110,11 @@ public class Hangar {
 		LIGHT_CREATION_PROBABILITY = light;
 	}
 	
+	/**
+	 * This method is used to set the seed of the random number generator, so that the
+	 * Simulation results are reproducible.
+	 * @param seed the seed used for the random number generator (gen).
+	 */
 	public void setSeed(int seed) {
 		gen.setSeed(seed);
 	}

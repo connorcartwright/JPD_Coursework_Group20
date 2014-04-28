@@ -434,10 +434,10 @@ public class GUI {
 	 * class.
 	 * 
 	 * @see #resetSimulation()
-	 * @see Simulator#setStrategy(int) in the Simulator class.
+	 * @see aston.group20.model.Airport#setStrategy(int) in the Simulator class.
 	 */
 	private void setStrategy() {
-		sim.setStrategy(strategy.getSelectedIndex());
+		sim.getAirport().setStrategy(strategy.getSelectedIndex());
 	}
 
 	/**

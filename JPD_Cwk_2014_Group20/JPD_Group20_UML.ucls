@@ -66,7 +66,7 @@
   </interface>  
   <class id="8" language="java" name="aston.group20.model.Counter" project="JPD_Cwk2014_Group20" 
     file="/JPD_Cwk2014_Group20/src/aston/group20/model/Counter.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="135" y="678"/>    
+    <position height="-1" width="-1" x="162" y="733"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -111,23 +111,14 @@
   </class>  
   <class id="13" language="java" name="aston.group20.model.Runway" project="JPD_Cwk2014_Group20" 
     file="/JPD_Cwk2014_Group20/src/aston/group20/model/Runway.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="310" y="515"/>    
+    <position height="-1" width="-1" x="343" y="563"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="14" language="java" name="aston.group20.model.Strategy" project="JPD_Cwk2014_Group20" 
-    file="/JPD_Cwk2014_Group20/src/aston/group20/model/Strategy.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="931" y="626"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
-      visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="15" language="java" name="aston.group20.model.WaitingTimeStrategy" project="JPD_Cwk2014_Group20" 
+  <class id="14" language="java" name="aston.group20.model.WaitingTimeStrategy" project="JPD_Cwk2014_Group20" 
     file="/JPD_Cwk2014_Group20/src/aston/group20/model/WaitingTimeStrategy.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1082" y="805"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -136,16 +127,16 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="16" language="java" name="aston.group20.GUIview.GUI" project="JPD_Cwk2014_Group20" 
+  <class id="15" language="java" name="aston.group20.GUIview.GUI" project="JPD_Cwk2014_Group20" 
     file="/JPD_Cwk2014_Group20/src/aston/group20/GUIview/GUI.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1318" y="301"/>    
+    <position height="-1" width="-1" x="1187" y="302"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="17" language="java" name="aston.group20.model.Simulator" project="JPD_Cwk2014_Group20" 
+  <class id="16" language="java" name="aston.group20.model.Simulator" project="JPD_Cwk2014_Group20" 
     file="/JPD_Cwk2014_Group20/src/aston/group20/model/Simulator.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="934" y="300"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
@@ -154,130 +145,132 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <generalization id="18">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="3"/>  
-  </generalization>  
-  <association id="19">    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="20" name="strategy"/>      
-      <multiplicity id="21" minimum="0" maximum="2147483647"/>    
+  <class id="17" language="java" name="aston.group20.model.Strategy" project="JPD_Cwk2014_Group20" 
+    file="/JPD_Cwk2014_Group20/src/aston/group20/model/Strategy.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="898" y="625"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="18">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="19" name="brokenDown"/>      
+      <multiplicity id="20" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
+    <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="22">    
+  <generalization id="21">    
     <end type="SOURCE" refId="6"/>    
     <end type="TARGET" refId="2"/>  
   </generalization>  
-  <association id="23">    
-    <bendpoint x="780" y="627"/>    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="24" name="strategy"/>      
-      <multiplicity id="25" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="26">    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="27" name="airport"/>      
-      <multiplicity id="28" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="29">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="1"/>  
-  </generalization>  
-  <realization id="30">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="7"/>  
-  </realization>  
-  <generalization id="31">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="14"/>  
-  </generalization>  
-  <association id="32">    
+  <association id="22">    
     <bendpoint x="392" y="1033"/>    
     <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="33" name="incoming"/>      
-      <multiplicity id="34" minimum="0" maximum="2147483647"/>    
+      <attribute id="23" name="incoming"/>      
+      <multiplicity id="24" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="35">    
+  <association id="25">    
     <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="36" name="ACT"/>      
-      <multiplicity id="37" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="11" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="38">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="39" name="counter"/>      
-      <multiplicity id="40" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="41">    
-    <end type="SOURCE" refId="15"/>    
-    <end type="TARGET" refId="14"/>  
-  </generalization>  
-  <generalization id="42">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="1"/>  
-  </generalization>  
-  <association id="43">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="44" name="sim"/>      
-      <multiplicity id="45" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="17" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="46">    
-    <bendpoint x="444" y="515"/>    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="47" name="runway"/>      
-      <multiplicity id="48" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="49">    
-    <bendpoint x="758" y="1032"/>    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="50" name="outgoing"/>      
-      <multiplicity id="51" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="52">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="53" name="brokenDown"/>      
-      <multiplicity id="54" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="55">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="2"/>  
-  </generalization>  
-  <association id="56">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="57" name="hangar"/>      
-      <multiplicity id="58" minimum="0" maximum="1"/>    
+      <attribute id="26" name="hangar"/>      
+      <multiplicity id="27" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <generalization id="28">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <association id="29">    
+    <bendpoint x="758" y="1032"/>    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="30" name="outgoing"/>      
+      <multiplicity id="31" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="32">    
+    <bendpoint x="341" y="733"/>    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="33" name="counter"/>      
+      <multiplicity id="34" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="35">    
+    <bendpoint x="751" y="625"/>    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="36" name="strategy"/>      
+      <multiplicity id="37" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="38">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <association id="39">    
+    <bendpoint x="480" y="564"/>    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="40" name="runway"/>      
+      <multiplicity id="41" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="42">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="17"/>  
+  </generalization>  
+  <generalization id="43">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <association id="44">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="45" name="airport"/>      
+      <multiplicity id="46" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="47">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="48" name="ACT"/>      
+      <multiplicity id="49" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="50">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="17"/>  
+  </generalization>  
+  <association id="51">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="52" name="sim"/>      
+      <multiplicity id="53" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="54">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <realization id="55">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="7"/>  
+  </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

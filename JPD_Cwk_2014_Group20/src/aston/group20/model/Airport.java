@@ -26,6 +26,7 @@ public class Airport {
      * and set the strategy for how to manage the Incoming aircraft.
      */
 	public Airport() {
+		strategy = new WaitingTimeStrategy();
 		ACT = new AirControlTower(strategy);
 		runway = new Runway();
 		hangar = new Hangar();
@@ -43,6 +44,7 @@ public class Airport {
 	 * @see Strategy#schedule(IAircraft, IAircraft)
 	 */
 	public void schedule() {
+		generateAircraft();
 		ACT.step();
 		
 		if (runway.isAvailable()) {
@@ -63,6 +65,29 @@ public class Airport {
 		else {
 			runway.incrementTime();
 		}
+	}
+	
+	/**
+	 * This method has the potential to add an Aircraft to either the Incoming or Outgoing queues of the
+	 * Airports AirControlTower. It calls the Hangar's generateAircraft method which could return an Aircraft
+	 * that would then be added to one of the queues, or it could return null, depending on the random number
+	 * generator.
+	 * 
+	 * @see Hangar#generateAircraft()
+	 */
+	private void generateAircraft() {
+		IAircraft aircraft = hangar.generateAircraft(); // has a chance of generating an aircraft
+		if (aircraft != null) { // if an aircraft was generated
+			ACT.getCounter().incrementTotalPlanes(); // increment the total no. of planes
+			
+			if(aircraft.isFlying()) {
+				ACT.getIncoming().add(aircraft); // 50% chance to by flying
+			}
+			else {
+				ACT.getOutgoing().add(aircraft); // 50% chance to be grounded
+			}
+		}
+		// else do nothing if an Aircraft wasn't generated
 	}
 
 	/**
@@ -120,12 +145,27 @@ public class Airport {
 
 	/**
 	 * This method is used to set the strategy that will be used to determine how the Aircraft should be handled.
-	 * @param strategy the strategy that will determine how the Aircraft at this Airport should be handled.
+	 * @param strategyNumber the number indicating the strategy that will determine how the Aircraft at this 
+	 * Airport should be handled; see the GUI's combo box for ordering.
+	 * 
+	 * @see aston.group20.GUIview.GUI
 	 */
-	public void setStrategy(Strategy strategy) {
-		this.strategy = strategy;
+	public void setStrategy(int strategyNumber) {
+		switch(strategyNumber) {
+		case 0: strategy = new WaitingTimeStrategy();
+			break;
+		case 1: strategy = new FuelStrategy();
+			break;
+		case 2: // new strategy can be implemented here and so on
+			break;
+		}
 	}
 	
+	/**
+	 * This method ensures that all the components of the Airport that need to be reset/cleared
+	 * are reset/cleared. It is used in order to ensure consistency between Simulations, so that 
+	 * there are no leftover values/settings between Simulations.
+	 */
 	public void reset() {
 		ACT.clear();
 		runway.reset();
