@@ -23,16 +23,8 @@ public class LightAircraft extends PoweredAircraft {
 	 * 
 	 * @see PoweredAircraft
 	 */
-	public LightAircraft() {
-		super(LIGHT_LANDING, LIGHT_TAKEOFF, generateFuelLevel());
-	}
-	
-	/**
-	 * Generates the fuel level for the Light Aircrafts
-	 * @return the fuel level generated for this particular Light Aircraft
-	 */
-	private static int generateFuelLevel() {
-		return (rand.nextInt(20) + 20);
+	public LightAircraft(int fuelLevel) {
+		super(LIGHT_LANDING, LIGHT_TAKEOFF, fuelLevel);
 	}
 
 }

@@ -2,6 +2,8 @@ package aston.group20.test;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Random;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,6 +13,7 @@ import aston.group20.model.WaitingTimeStrategy;
 
 public class TestWaitingTimeStrategy {
 
+	Random rand = new Random(17);
 	WaitingTimeStrategy strategy;
 	LightAircraft l1;
 	CommercialAircraft c1;
@@ -20,8 +23,8 @@ public class TestWaitingTimeStrategy {
 	public void setUp() throws Exception {
 		strategy = new WaitingTimeStrategy();
 		
-		c1 = new CommercialAircraft();
-		l1 = new LightAircraft();
+		c1 = new CommercialAircraft(rand.nextInt(40) + 40);
+		l1 = new LightAircraft(rand.nextInt(20) + 20);
 		cn = null;	
 	}
 	

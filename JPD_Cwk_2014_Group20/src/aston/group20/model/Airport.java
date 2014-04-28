@@ -78,7 +78,7 @@ public class Airport {
 		runway.setOccupiedTime(a.getTakeoffTime());
 		ACT.getOutgoing().remove(a);
 		if (a instanceof Glider) {
-			LightAircraft light = new LightAircraft();
+			IAircraft light = hangar.generateLightAircraft();
 			light.setWaitingTime(a.getWaitingTime());
 			ACT.getIncoming().add(light);
 			ACT.getCounter().incrementTotalPlanes();
@@ -89,7 +89,8 @@ public class Airport {
 	 * This method is used when a plane is ready to land; it is called from the schedule method if the strategy 
 	 * has decided that a plane should land. The method increments the appropriate fields in the AirControlTower's
 	 * Counter and will ensure that the Runway's state is updated so that it is shown to be occupied.
-	 * @param a
+	 * 
+	 * @param a the Aircraft that will be landing.
 	 */
 	private void land(IAircraft a) {
 		ACT.getCounter().incrementLandings();
@@ -120,6 +121,11 @@ public class Airport {
 	 */
 	public void setStrategy(Strategy strategy) {
 		this.strategy = strategy;
+	}
+	
+	public void reset() {
+		ACT.clear();
+		runway.reset();
 	}
 	
 }

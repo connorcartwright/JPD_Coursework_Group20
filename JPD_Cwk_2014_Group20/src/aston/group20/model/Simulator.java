@@ -68,6 +68,7 @@ public class Simulator {
 		}
 		airport.getACT().finish();
 		System.out.println(getResults());
+		
 	}
 
 	/**
@@ -94,7 +95,7 @@ public class Simulator {
 	 * @see Hangar#generateAircraft(Random)
 	 */
 	private void generateAircraft() {
-		IAircraft aircraft = airport.getHangar().generateAircraft(rand); // has a chance of generating an aircraft
+		IAircraft aircraft = airport.getHangar().generateAircraft(); // has a chance of generating an aircraft
 		if (aircraft != null) { // if an aircraft was generated
 			airport.getACT().getCounter().incrementTotalPlanes(); // increment the total no. of planes
 			
@@ -113,21 +114,9 @@ public class Simulator {
 	 */
 	public void reset() {
 		step = 0;
-		airport.getACT().clear();
+		airport.reset();
 		rand.setSeed(seed);
 		longReport.setLength(0);
-	}
-
-	/**
-	 * This method sets the probabilities for the creation of Aircraft through the {@link Hangar#generateAircraft(Random)}
-	 * method.
-	 * 
-	 * @param commercial the probability of generating a commercial aircraft.
-	 * @param glider the probability of generating a glider.
-	 * @param light the probability of generating a light aircraft.
-	 */
-	public void setProbabilities(double commercial, double glider, double light) {
-		airport.getHangar().setProbabilities(commercial, glider, light);
 	}
 	
 	/**
@@ -150,15 +139,6 @@ public class Simulator {
 		this.chosenStrategy = chosenStrategy;
 	}
 	
-	/**
-	 * This method sets the seed that the random number generator 'rand' should be using. It is called in the 
-	 * {@link #reset()} method to ensure that the simulation is up to date and accurate.
-	 * 
-	 * @param seed the seed that the random number generator 'rand' should be using.
-	 */
-	public void setSeed(int seed) {
-		rand.setSeed(seed);
-	}
 	
 	/**
 	 * This method returns a String that contains the shorter end results of the Simulation.
@@ -186,6 +166,10 @@ public class Simulator {
 	 */
 	public StringBuilder getLongReport() {
 		return longReport;
+	}
+
+	public Airport getAirport() {
+		return airport;
 	}
 	
 }

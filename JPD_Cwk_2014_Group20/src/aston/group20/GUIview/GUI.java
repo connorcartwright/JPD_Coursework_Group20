@@ -54,6 +54,7 @@ public class GUI {
      * @see Simulator to understand the methods used
      */
 	public GUI() {
+		sim = new Simulator();
 		// Step 1: create the components
 		JButton runButton = new JButton("Run Simulation"); // creating/initialising the mainframe buttons
 		JButton quitButton = new JButton("Quit");
@@ -397,7 +398,6 @@ public class GUI {
 	 * 
 	 */
 	private void runSimulation() {
-		sim = new Simulator();
 		resetSimulation();
 		sim.simulate((int) lengthSlider.getValue());
 		results.append(sim.getResults());
@@ -409,11 +409,11 @@ public class GUI {
 	 * strategy. It resets the simulation, updates the variables and clears the report text.
 	 */
 	private void resetSimulation() {
+		setProbabilities();
 		setSeed();
 		setStrategy();
-		setProbabilities();
-		sim.reset();
 		results.setText(null);
+		sim.reset();
 	}
 
 	/**
@@ -425,7 +425,7 @@ public class GUI {
 	 * @see Simulator#setProbabilities(double, double, double)
 	 */
 	private void setProbabilities() {
-		sim.setProbabilities(commercialSlider.getValue(),
+		sim.getAirport().getHangar().setProbabilities(commercialSlider.getValue(),
 				gliderSlider.getValue(), lightSlider.getValue());
 	}
 
@@ -450,7 +450,7 @@ public class GUI {
 	 * @see Simulator#setSeed(int)
 	 */
 	private void setSeed() {
-		sim.setSeed(seed.getSelectedIndex());
+		sim.getAirport().getHangar().setSeed(seed.getSelectedIndex());
 	}
 
 	/**

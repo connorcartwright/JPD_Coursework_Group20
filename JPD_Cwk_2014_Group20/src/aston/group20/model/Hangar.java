@@ -18,6 +18,7 @@ public class Hangar {
 	private double LIGHT_CREATION_PROBABILITY = 0.005;
 	private double GLIDER_CREATION_PROBABILITY = 0.002;
 	
+	private Random gen = new Random(17);
 	/**
 	 * Creates a new <code>Hangar</code>.
 	 */
@@ -34,25 +35,41 @@ public class Hangar {
 	 * @param rand the random number generator from the Simulator class.
 	 * @return an Aircraft of any of the types supported, or null.
 	 */
-	public IAircraft generateAircraft(Random rand) {
+	public IAircraft generateAircraft() {
 		IAircraft aircraft;
-		if (rand.nextDouble() <= GLIDER_CREATION_PROBABILITY) { 
-			aircraft = (IAircraft) new Glider(); // setting variable aircraft to be a glider
+		if (gen.nextDouble() <= GLIDER_CREATION_PROBABILITY) { 
+			aircraft = generateGlider(); // setting variable aircraft to be a glider
 		}
-		else if (rand.nextDouble() <= LIGHT_CREATION_PROBABILITY + GLIDER_CREATION_PROBABILITY) {
-			aircraft = (IAircraft) new LightAircraft(); // setting variable aircraft to be a light aircraft
+		else if (gen.nextDouble() <= LIGHT_CREATION_PROBABILITY + GLIDER_CREATION_PROBABILITY) {
+			aircraft = generateLightAircraft(); // setting variable aircraft to be a light aircraft
 		}
-		else if (rand.nextDouble() <= COMMERCIAL_CREATION_PROBABILITY) {
-			aircraft = (IAircraft) new CommercialAircraft(); // setting variable aircraft to be a commercial aircraft
+		else if (gen.nextDouble() <= COMMERCIAL_CREATION_PROBABILITY) {
+			aircraft = generateCommercialAircraft(); // setting variable aircraft to be a commercial aircraft
 		}
 		else {
 			aircraft = null; // if the double didn't meet any of the rules, the aircraft is null
 		}
 		
-		if(aircraft != null && rand.nextDouble() < 0.5 && !(aircraft instanceof Glider)) {
+		if(aircraft != null && gen.nextInt(100) < 50 && !(aircraft instanceof Glider)) {
 			aircraft.setIsFlying(true);
 		}
 		return aircraft; // return the aircraft
+	}
+	
+	public IAircraft generateCommercialAircraft() {
+		System.out.println(gen.nextInt(40) + 40);
+		IAircraft aircraft = (IAircraft) new CommercialAircraft(gen.nextInt(40) + 40);
+		return aircraft;
+	}
+	
+	public IAircraft generateGlider() {
+		IAircraft aircraft = (IAircraft) new Glider();
+		return aircraft;
+	}
+	
+	public IAircraft generateLightAircraft() {
+		IAircraft aircraft = (IAircraft) new LightAircraft(gen.nextInt(20) + 20);
+		return aircraft;
 	}
 	
 	/**
@@ -68,6 +85,10 @@ public class Hangar {
 		COMMERCIAL_CREATION_PROBABILITY = commercial;
 		GLIDER_CREATION_PROBABILITY = glider;
 		LIGHT_CREATION_PROBABILITY = light;
-	}	
+	}
+	
+	public void setSeed(int seed) {
+		gen.setSeed(seed);
+	}
 	
 }

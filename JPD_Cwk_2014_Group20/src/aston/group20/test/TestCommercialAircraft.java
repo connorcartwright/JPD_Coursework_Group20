@@ -1,8 +1,12 @@
 package aston.group20.test;
 
 import static org.junit.Assert.*;
+
+import java.util.Random;
+
 import org.junit.Before;
 import org.junit.Test;
+
 import aston.group20.model.CommercialAircraft;
 
 public class TestCommercialAircraft {
@@ -13,9 +17,10 @@ public class TestCommercialAircraft {
 	
 	@Before
 	public void setUp() throws Exception {
-		c1 = new CommercialAircraft();
-		c2 = new CommercialAircraft();
-		c3 = new CommercialAircraft();
+		Random rand = new Random(17);
+		c1 = new CommercialAircraft(rand.nextInt(40) + 40);
+		c2 = new CommercialAircraft(rand.nextInt(40) + 40);
+		c3 = new CommercialAircraft(rand.nextInt(40) + 40);
 	}
 
 	@Test

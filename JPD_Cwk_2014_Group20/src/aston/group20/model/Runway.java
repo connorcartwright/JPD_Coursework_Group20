@@ -24,9 +24,7 @@ public class Runway { // maybe make abstract later, e.g. large Runway
 	 * sure that the Runway is available upon creation.
 	 */
 	public Runway() {
-		isAvailable = true;
-		clearRunway = 0;
-		occupiedTime = 0;
+		reset();
 	}
 
 	/**
@@ -72,6 +70,12 @@ public class Runway { // maybe make abstract later, e.g. large Runway
 			occupiedTime = 0;
 			isAvailable = true;
 		}
+	}
+	
+	public void reset() {
+		isAvailable = true;
+		clearRunway = 0;
+		occupiedTime = 0;
 	}
 
 }

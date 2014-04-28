@@ -3,6 +3,8 @@ package aston.group20.test;
 
 import static org.junit.Assert.*;
 
+import java.util.Random;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,6 +15,7 @@ import aston.group20.model.LightAircraft;
 
 public class TestFuelStrategy {
 
+	Random rand = new Random(17);
 	FuelStrategy strategy;
 	LightAircraft l1;
 	CommercialAircraft c1;
@@ -22,8 +25,8 @@ public class TestFuelStrategy {
 	public void setUp() throws Exception {
 		strategy = new FuelStrategy();
 		
-		c1 = new CommercialAircraft();
-		l1 = new LightAircraft();
+		c1 = new CommercialAircraft(rand.nextInt(40) + 40);
+		l1 = new LightAircraft(rand.nextInt(20) + 20);
 		cn = null;	
 	}
 	

@@ -39,7 +39,7 @@ public abstract class Aircraft implements IAircraft {
 	
 	// Shared Random number generator
 	private static final int SEED = 17;
-	protected static Random rand = new Random(SEED);
+	private static final Random rand = new Random(SEED);
 
 	/**
 	 * Creating a new <code>Aircraft</code> which takes two parameters, the landing time
