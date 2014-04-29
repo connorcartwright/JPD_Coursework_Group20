@@ -12,7 +12,7 @@ public class Simulator {
 	private Airport airport; // the airport to be used for the Simulation
 	private int step; // the current step of the simulation
 	private static int numSteps = 2880; // the number of steps to run for, set to default
-	private StringBuilder longReport; // the StringBuilder contanining the step-by-step long report
+	private StringBuilder longReport; // the StringBuilder containing the step-by-step long report
 	private static Simulator sim;
 
 	/**
