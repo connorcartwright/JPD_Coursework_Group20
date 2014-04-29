@@ -3,7 +3,7 @@
   realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
   <class id="1" language="java" name="aston.group20.model.Aircraft" project="JPD_Cwk2014_Group20" 
     file="/JPD_Cwk2014_Group20/src/aston/group20/model/Aircraft.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="568" y="1528"/>    
+    <position height="-1" width="-1" x="617" y="1508"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="aston.group20.model.PoweredAircraft" project="JPD_Cwk2014_Group20" 
     file="/JPD_Cwk2014_Group20/src/aston/group20/model/PoweredAircraft.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="370" y="1527"/>    
+    <position height="-1" width="-1" x="419" y="1507"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="aston.group20.model.UnpoweredAircraft" project="JPD_Cwk2014_Group20" 
     file="/JPD_Cwk2014_Group20/src/aston/group20/model/UnpoweredAircraft.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="785" y="1527"/>    
+    <position height="-1" width="-1" x="834" y="1507"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="aston.group20.model.Glider" project="JPD_Cwk2014_Group20" 
     file="/JPD_Cwk2014_Group20/src/aston/group20/model/Glider.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="779" y="1672"/>    
+    <position height="-1" width="-1" x="828" y="1652"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="aston.group20.model.CommercialAircraft" project="JPD_Cwk2014_Group20" 
     file="/JPD_Cwk2014_Group20/src/aston/group20/model/CommercialAircraft.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="165" y="1524"/>    
+    <position height="-1" width="-1" x="214" y="1504"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="aston.group20.model.LightAircraft" project="JPD_Cwk2014_Group20" 
     file="/JPD_Cwk2014_Group20/src/aston/group20/model/LightAircraft.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="365" y="1689"/>    
+    <position height="-1" width="-1" x="414" y="1669"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <interface id="7" language="java" name="aston.group20.model.IAircraft" project="JPD_Cwk2014_Group20" 
     file="/JPD_Cwk2014_Group20/src/aston/group20/model/IAircraft.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="573" y="1032"/>    
+    <position height="-1" width="-1" x="622" y="1033"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,7 +66,7 @@
   </interface>  
   <class id="8" language="java" name="aston.group20.model.Counter" project="JPD_Cwk2014_Group20" 
     file="/JPD_Cwk2014_Group20/src/aston/group20/model/Counter.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="162" y="733"/>    
+    <position height="-1" width="-1" x="191" y="1038"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,7 +75,7 @@
   </class>  
   <class id="9" language="java" name="aston.group20.model.Airport" project="JPD_Cwk2014_Group20" 
     file="/JPD_Cwk2014_Group20/src/aston/group20/model/Airport.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="572" y="301"/>    
+    <position height="-1" width="-1" x="620" y="300"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -84,7 +84,7 @@
   </class>  
   <class id="10" language="java" name="aston.group20.model.Hangar" project="JPD_Cwk2014_Group20" 
     file="/JPD_Cwk2014_Group20/src/aston/group20/model/Hangar.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="260" y="301"/>    
+    <position height="-1" width="-1" x="275" y="360"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -93,7 +93,7 @@
   </class>  
   <class id="11" language="java" name="aston.group20.model.AirControlTower" project="JPD_Cwk2014_Group20" 
     file="/JPD_Cwk2014_Group20/src/aston/group20/model/AirControlTower.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="571" y="678"/>    
+    <position height="-1" width="-1" x="620" y="681"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -102,7 +102,7 @@
   </class>  
   <class id="12" language="java" name="aston.group20.model.FuelStrategy" project="JPD_Cwk2014_Group20" 
     file="/JPD_Cwk2014_Group20/src/aston/group20/model/FuelStrategy.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="897" y="805"/>    
+    <position height="-1" width="-1" x="897" y="730"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -111,7 +111,7 @@
   </class>  
   <class id="13" language="java" name="aston.group20.model.Runway" project="JPD_Cwk2014_Group20" 
     file="/JPD_Cwk2014_Group20/src/aston/group20/model/Runway.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="343" y="563"/>    
+    <position height="-1" width="-1" x="266" y="635"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -120,7 +120,7 @@
   </class>  
   <class id="14" language="java" name="aston.group20.model.WaitingTimeStrategy" project="JPD_Cwk2014_Group20" 
     file="/JPD_Cwk2014_Group20/src/aston/group20/model/WaitingTimeStrategy.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1082" y="805"/>    
+    <position height="-1" width="-1" x="1081" y="732"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -147,7 +147,7 @@
   </class>  
   <class id="17" language="java" name="aston.group20.model.Strategy" project="JPD_Cwk2014_Group20" 
     file="/JPD_Cwk2014_Group20/src/aston/group20/model/Strategy.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="898" y="625"/>    
+    <position height="-1" width="-1" x="897" y="547"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -155,122 +155,123 @@
     </display>  
   </class>  
   <association id="18">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="19" name="brokenDown"/>      
-      <multiplicity id="20" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="21">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="2"/>  
-  </generalization>  
-  <association id="22">    
-    <bendpoint x="392" y="1033"/>    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="23" name="incoming"/>      
-      <multiplicity id="24" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="25">    
+    <bendpoint x="754" y="547"/>    
     <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="26" name="hangar"/>      
-      <multiplicity id="27" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="28">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="2"/>  
-  </generalization>  
-  <association id="29">    
-    <bendpoint x="758" y="1032"/>    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="30" name="outgoing"/>      
-      <multiplicity id="31" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="32">    
-    <bendpoint x="341" y="733"/>    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="33" name="counter"/>      
-      <multiplicity id="34" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="35">    
-    <bendpoint x="751" y="625"/>    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="36" name="strategy"/>      
-      <multiplicity id="37" minimum="0" maximum="1"/>    
+      <attribute id="19" name="strategy"/>      
+      <multiplicity id="20" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="17" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="38">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="1"/>  
-  </generalization>  
-  <association id="39">    
-    <bendpoint x="480" y="564"/>    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="40" name="runway"/>      
-      <multiplicity id="41" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="42">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="17"/>  
-  </generalization>  
-  <generalization id="43">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="3"/>  
-  </generalization>  
-  <association id="44">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="45" name="airport"/>      
-      <multiplicity id="46" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="47">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="48" name="ACT"/>      
-      <multiplicity id="49" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="11" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="50">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="17"/>  
-  </generalization>  
-  <association id="51">    
+  <association id="21">    
     <end type="SOURCE" refId="15" navigable="false">      
-      <attribute id="52" name="sim"/>      
-      <multiplicity id="53" minimum="0" maximum="1"/>    
+      <attribute id="22" name="sim"/>      
+      <multiplicity id="23" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="16" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="54">    
-    <end type="SOURCE" refId="2"/>    
+  <generalization id="24">    
+    <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="1"/>  
   </generalization>  
-  <realization id="55">    
+  <association id="25">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="26" name="airport"/>      
+      <multiplicity id="27" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="28">    
+    <bendpoint x="807" y="1033"/>    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="29" name="outgoing"/>      
+      <multiplicity id="30" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="31">    
+    <bendpoint x="329" y="1039"/>    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="32" name="counter"/>      
+      <multiplicity id="33" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="34">    
+    <bendpoint x="441" y="1034"/>    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="35" name="incoming"/>      
+      <multiplicity id="36" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="37">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="17"/>  
+  </generalization>  
+  <generalization id="38">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <generalization id="39">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="17"/>  
+  </generalization>  
+  <association id="40">    
+    <bendpoint x="418" y="636"/>    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="41" name="runway"/>      
+      <multiplicity id="42" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="43">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="7"/>  
   </realization>  
+  <generalization id="44">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <generalization id="45">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <generalization id="46">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <association id="47">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="48" name="brokenDown"/>      
+      <multiplicity id="49" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="50">    
+    <bendpoint x="469" y="359"/>    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="51" name="hangar"/>      
+      <multiplicity id="52" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="53">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="54" name="ACT"/>      
+      <multiplicity id="55" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

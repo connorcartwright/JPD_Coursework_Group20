@@ -77,7 +77,6 @@ public class Simulator {
 		System.out.println(printLongReport());
 	}
 
-
 	/**
 	 * Resets the simulation so that it is ready to run again if it is required.
 	 */
