@@ -9,7 +9,7 @@ package aston.group20.model;
  * @version 1.0, March 2014
  *
  */
-public abstract class PoweredAircraft extends Aircraft {
+public class PoweredAircraft extends Aircraft {
 	
 	// The amount of time the aircraft can fly
 	private int fuelLevel;
