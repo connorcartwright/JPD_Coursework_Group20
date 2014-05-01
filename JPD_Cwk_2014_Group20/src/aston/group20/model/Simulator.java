@@ -21,14 +21,25 @@ public class Simulator {
 	 * as the Strategy/Seed used.
 	 */
 	public static void main(String[] args) {
-		if (args.length >= 1) {
-			numSteps = Integer.parseInt(args[0]);
-		}
-		if (numSteps <= 0) {
-			numSteps = 1;
-		}
+		try { 
+			if (args.length >= 1) {
+				if (args[0].equals("-help")) {
+					System.out.println("Usage: Java Simulator <Sim length>");
+					System.exit(0);
+				}
+				else {
+					numSteps = Integer.parseInt(args[0]);
+					}
+				}
+			}
+		catch (Exception e) {
+			System.err.println("An error occured!");
+			System.out.println("Usage: Java Simulator <Sim length>");
+			System.err.println(e);
+			}
+		
 		sim = new Simulator();
-		sim.simulate(numSteps);
+		sim.simulate(numSteps);	
 	}
 
 	/**

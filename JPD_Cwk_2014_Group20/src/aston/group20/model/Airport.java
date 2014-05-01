@@ -80,6 +80,19 @@ public class Airport {
 		if (aircraft != null) { // if an aircraft was generated
 			ACT.getCounter().incrementTotalPlanes(); // increment the total no. of planes
 			
+			if (aircraft instanceof CommercialAircraft) {
+				ACT.getCounter().incrementCommercialAircraft(); // increment to show a Commercial Aircraft has been generated
+			}
+			else if (aircraft instanceof Glider) {
+				ACT.getCounter().incrementGlider(); // increment to show a Glider has been generated
+			}
+			else if (aircraft instanceof LightAircraft) {
+				ACT.getCounter().incrementLightAircraft(); // increment to show a Light Aircraft has been generated
+			}
+			else {
+				// could add a new Aircraft type here
+			}
+			
 			if(aircraft.isFlying()) {
 				ACT.getIncoming().add(aircraft); // 50% chance to by flying
 			}

@@ -205,7 +205,7 @@ public class GUI {
 		// Step 1: create the components
 		final JFrame reportFrame = new JFrame("Simulation Results");
 		JScrollPane listScroller = new JScrollPane(results);
-		listScroller.setPreferredSize(new Dimension(220, 150));
+		listScroller.setPreferredSize(new Dimension(220, 195));
 		listScroller.setMinimumSize(new Dimension(220, 150));
 		
 		JButton runAgainButton = new JButton("Run Again");
@@ -219,7 +219,7 @@ public class GUI {
 		detailsButton.setToolTipText("Show a more detailed report.");
 
 		// Step 3: Create containers to hold the components
-		reportFrame.setPreferredSize(new Dimension(240, 270));
+		reportFrame.setPreferredSize(new Dimension(240, 315));
 		reportFrame.setResizable(false); // make it so the frame can't be resized
 		reportFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); // setting default close operation
 
@@ -398,7 +398,7 @@ public class GUI {
 	 */
 	private void runSimulation() {
 		resetSimulation();
-		sim.simulate((int) lengthSlider.getValue());
+		sim.simulate((int) Math.round(lengthSlider.getValue()));
 		results.append(sim.getResults());
 	}
 
@@ -463,7 +463,7 @@ public class GUI {
 	private String getSimulationDetails() {
 		return (" Simulation Length:  " + (int) lengthSlider.getValue() + "     |     " + 
 	            "Strategy:  " + strategy.getSelectedItem() + "     |     " + 
-				"Seed:  " + (seed.getSelectedIndex()+ 1) + "     |     " + 
+				"Seed:  " + (seed.getSelectedIndex() + 1) + "     |     " + 
 	            "Commercial Probability: "+ commercialSlider.getValue() + "     |     " + 
 				"Glider Probability: " + gliderSlider.getValue() + "     |     " + 
 	            "Light Probability: " + lightSlider.getValue() + "\n \n");

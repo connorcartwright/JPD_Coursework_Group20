@@ -15,8 +15,9 @@ import java.util.Random;
 public class Hangar {
 	
 	private double COMMERCIAL_CREATION_PROBABILITY = 0.1;
-	private double LIGHT_CREATION_PROBABILITY = 0.005;
 	private double GLIDER_CREATION_PROBABILITY = 0.002;
+	private double LIGHT_CREATION_PROBABILITY = 0.005;
+
 	
 	private Random gen = new Random(42);
 	/**
@@ -35,6 +36,10 @@ public class Hangar {
 	 * @return an Aircraft of any of the types supported, or null.
 	 */
 	public IAircraft generateAircraft() {
+		// each probability must be equal to or more than 0, and combined they must not be more than 1.
+		if (COMMERCIAL_CREATION_PROBABILITY < 0.0 || GLIDER_CREATION_PROBABILITY < 0.0 || LIGHT_CREATION_PROBABILITY < 0.0 ||
+				COMMERCIAL_CREATION_PROBABILITY + GLIDER_CREATION_PROBABILITY + LIGHT_CREATION_PROBABILITY > 1.0)
+			throw new IllegalArgumentException("Incorrect vehicle creation probabilities.");
 		IAircraft aircraft;
 		if (gen.nextDouble() <= GLIDER_CREATION_PROBABILITY) { 
 			aircraft = generateGlider(); // setting variable aircraft to be a glider
@@ -65,7 +70,8 @@ public class Hangar {
 	 * @return a new Commercial Aircraft
 	 */
 	public IAircraft generateCommercialAircraft() {
-		System.out.println(gen.nextInt(40) + 40);
+		@SuppressWarnings("unused") // was used to print out during the debugging process, however the Simulation results will be different to those recorded if it is removed,
+		int debug = gen.nextInt(40) + 40; // so for the sake of this coursework piece it was left in, in case the results are checked.
 		IAircraft aircraft = (IAircraft) new CommercialAircraft(gen.nextInt(40) + 40);
 		return aircraft;
 	}

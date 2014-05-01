@@ -11,6 +11,9 @@ package aston.group20.model;
 public class Counter {
 
 	private int totalPlanes; // the total number of planes in the Simulation
+	private int commercialAircraft;
+	private int gliders;
+	private int lightAircraft;
 	private int waitingTime; // the total waitingTime of all planes
 	private int breakdowns; // the number of aircraft breakdowns
 	private int crashes; // the number of aircraft crashes
@@ -61,6 +64,32 @@ public class Counter {
 	public void incrementCrashes() {
 		crashes++;
 	}
+	
+	/**
+	 * Increments the commercialAircraft field in order to indicate that a Commercial Aircraft
+	 * has been generated and has entered the Simulation.
+	 */
+	public void incrementCommercialAircraft() {
+		commercialAircraft++;
+	}
+	
+	/**
+	 * Increments the gliders field in order to indicate that a Glider
+	 * has been generated and has entered the Simulation.
+	 */
+	public void incrementGlider() {
+		gliders++;
+	}
+	
+	/**
+	 * Increments the lightAircraft field in order to indicate that a Lighty Aircraft
+	 * has been generated and has entered the Simulation.
+	 */
+	public void incrementLightAircraft() {
+		lightAircraft++;
+	}
+	
+	
 	
 	/**
 	 * Returns the number of Aircraft crashes in the current Simulation.
@@ -143,6 +172,9 @@ public class Counter {
 	 */
 	public void clear() {
 		totalPlanes = 0;
+		commercialAircraft = 0;
+		gliders = 0;
+		lightAircraft = 0;
 		waitingTime = 0;
 		takeoffs = 0;
 		landings = 0;
@@ -162,14 +194,17 @@ public class Counter {
 	 */
 	public String toString() {
 		return (
-				"Total Planes: " + totalPlanes + "\n" +
-				"Total Takeoffs: " + takeoffs + "\n" +
-				"Total Landings: " + landings + "\n" +
-				"Average Waiting Time: " + waitingTime/totalPlanes + "\n" +
-				"Total Crashes: " + crashes + "\n" +
-				"Total Breakdowns: " + breakdowns + "\n" +
-				"Planes still grounded: " + grounded + "\n" + 
-				"Planes still flying: " + flying + "\n"
+				" Total Planes: " + totalPlanes + "\n" +
+			    " Commercial Aircraft: " + commercialAircraft + "\n" +
+				" Gliders: " + gliders + "\n" +
+				" LightAircraft: " + lightAircraft + "\n" +
+				" Total Takeoffs: " + takeoffs + "\n" +
+				" Total Landings: " + landings + "\n" +
+				" Average Waiting Time: " + waitingTime/totalPlanes + "\n" +
+				" Total Crashes: " + crashes + "\n" +
+				" Total Breakdowns: " + breakdowns + "\n" +
+				" Planes still grounded: " + grounded + "\n" + 
+				" Planes still flying: " + flying + "\n"
 				);
 	}
 
