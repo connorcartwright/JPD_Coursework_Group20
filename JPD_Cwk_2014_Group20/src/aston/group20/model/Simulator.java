@@ -24,7 +24,7 @@ public class Simulator {
 		try { 
 			if (args.length >= 1) {
 				if (args[0].equals("-help")) {
-					System.out.println("Usage: Java Simulator <Sim length>");
+					System.out.println("Usage: Java Airport Simulator <Sim length>");
 					System.exit(0);
 				}
 				else {
@@ -34,7 +34,7 @@ public class Simulator {
 			}
 		catch (Exception e) {
 			System.err.println("An error occured!");
-			System.out.println("Usage: Java Simulator <Sim length>");
+			System.out.println("Usage: Java Airport Simulator <Sim length>");
 			System.err.println(e);
 			}
 		
