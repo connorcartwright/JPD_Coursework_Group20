@@ -17,8 +17,6 @@ public class Hangar {
 	private double COMMERCIAL_CREATION_PROBABILITY = 0.1;
 	private double GLIDER_CREATION_PROBABILITY = 0.002;
 	private double LIGHT_CREATION_PROBABILITY = 0.005;
-
-	
 	private Random gen = new Random(42);
 	/**
 	 * Creates a new <code>Hangar</code>.
