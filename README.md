@@ -1,3 +1,5 @@
+Second Term Coursework from my first year at Aston University.
+
 JPD_Coursework_Group20
 ======================
 
